@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="HeadLabel">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -81,7 +81,7 @@
     <string>player 4: </string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="player1Name">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -91,7 +91,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="player2Name">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -101,7 +101,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="player3Name">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -111,7 +111,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
+  <widget class="QLineEdit" name="player4Name">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -121,7 +121,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="roundsLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -134,7 +134,7 @@
     <string>Maximum number of rounds (optional):</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="spinBoxRounds">
    <property name="geometry">
     <rect>
      <x>270</x>

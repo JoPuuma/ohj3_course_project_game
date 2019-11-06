@@ -8,11 +8,11 @@ CONFIG += c++14
 SOURCES += \
     main.cpp \
     mapwindow.cc \
-    gamewindow.cpp
+    startdialog.cpp
 
 HEADERS += \
     mapwindow.hh \
-    gamewindow.hh
+    startdialog.hh
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -40,5 +40,4 @@ else:unix: PRE_TARGETDEPS += \
 
 FORMS += \
     mapwindow.ui \
-    startdialog.ui \
-    gamewindow.ui
+    startdialog.ui
