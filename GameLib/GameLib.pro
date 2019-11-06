@@ -23,11 +23,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        gamelib.cpp
+        gamelib.cpp \
+    Tiles/rock.cpp \
+    Tiles/water.cpp \
+    Tiles/sand.cpp
 
 HEADERS += \
         gamelib.hh \
-        gamelib_global.hh 
+        gamelib_global.hh \ 
+    Tiles/rock.hh \
+    Tiles/water.hh \
+    Tiles/sand.hh
+
+INCLUDEPATH += \
+    $$PWD/../Course/CourseLib
+
+DEPENDPATH += \
+    $$PWD/../Course/CourseLib
+
 
 unix {
     target.path = /usr/lib
