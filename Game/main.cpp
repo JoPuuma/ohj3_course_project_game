@@ -11,4 +11,6 @@ int main(int argc, char* argv[])
     MapWindow mapWindow;
     mapWindow.show();
     return app.exec();
+
+
 }
