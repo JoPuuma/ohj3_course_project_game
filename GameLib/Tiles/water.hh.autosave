@@ -18,7 +18,6 @@ namespace Game {
  *
  * Tile supports 1 buildings.
  */
-// lisää basicproduction arvot
 
 class Water : public Course::TileBase
 {
