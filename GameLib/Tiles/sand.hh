@@ -2,6 +2,7 @@
 #define SAND_HH
 
 #include "tiles/tilebase.h"
+#include "Core/resourcemaps.hh"
 
 namespace Game {
 /**
@@ -41,7 +42,7 @@ public:
          const std::shared_ptr<Course::iObjectManager>& objectmanager,
          const unsigned int& max_build = 2,
          const unsigned int& max_work = 3,
-         const Course::ResourceMap& production = Course::ConstResourceMaps::SAND_BP);
+         const Course::ResourceMap& production = ConstResourceMap::SAND_BP);
 
     /**
      * @brief Default destructor.

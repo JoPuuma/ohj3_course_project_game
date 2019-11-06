@@ -2,6 +2,8 @@
 #define ROCK_HH
 
 #include "tiles/tilebase.h"
+#include "Core/resourcemaps.hh"
+
 
 namespace Game {
 /**
@@ -41,7 +43,7 @@ public:
          const std::shared_ptr<Course::iObjectManager>& objectmanager,
          const unsigned int& max_build = 2,
          const unsigned int& max_work = 3,
-         const Course::ResourceMap& production = Course::ConstResourceMaps::ROCK_BP);
+         const Course::ResourceMap& production = ConstResourceMap::ROCK_BP);
 
     /**
      * @brief Default destructor.

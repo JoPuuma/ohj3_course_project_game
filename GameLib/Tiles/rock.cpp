@@ -8,7 +8,7 @@ Rock::Rock(const Course::Coordinate& location,
            const unsigned int& max_build,
            const unsigned int& max_work,
            const Course::ResourceMap& production):
-    Course::TileBase(location,
+            TileBase(location,
                      eventhandler,
                      objectmanager,
                      max_build,

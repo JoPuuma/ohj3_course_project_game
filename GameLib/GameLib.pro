@@ -26,14 +26,21 @@ SOURCES += \
         gamelib.cpp \
     Tiles/rock.cpp \
     Tiles/water.cpp \
-    Tiles/sand.cpp
+    Tiles/sand.cpp \
+    Buildings/mine.cpp \
+    Buildings/fishinghut.cpp \
+    Buildings/cottage.cpp
 
 HEADERS += \
         gamelib.hh \
         gamelib_global.hh \ 
     Tiles/rock.hh \
     Tiles/water.hh \
-    Tiles/sand.hh
+    Tiles/sand.hh \
+    Buildings/mine.hh \
+    Buildings/fishinghut.hh \
+    Buildings/cottage.hh \
+    Core/resourcemaps.hh
 
 INCLUDEPATH += \
     $$PWD/../Course/CourseLib

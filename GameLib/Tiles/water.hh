@@ -2,6 +2,7 @@
 #define WATER_HH
 
 #include "tiles/tilebase.h"
+#include "Core/resourcemaps.hh"
 
 namespace Game {
 /**
@@ -18,7 +19,6 @@ namespace Game {
  *
  * Tile supports 1 buildings.
  */
-// lisää basicproduction arvot
 
 class Water : public Course::TileBase
 {
@@ -42,7 +42,7 @@ public:
          const std::shared_ptr<Course::iObjectManager>& objectmanager,
          const unsigned int& max_build = 1,
          const unsigned int& max_work = 2,
-         const Course::ResourceMap& production = Course::ConstResourceMaps::WATER_BP);
+         const Course::ResourceMap& production = ConstResourceMap::WATER_BP);
 
     /**
      * @brief Default destructor.
