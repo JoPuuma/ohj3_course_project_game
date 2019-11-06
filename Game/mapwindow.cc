@@ -1,5 +1,6 @@
 #include "mapwindow.hh"
 #include "ui_mapwindow.h"
+#include "startdialog.hh"
 
 #include "graphics/simplemapitem.h"
 
@@ -13,6 +14,10 @@ MapWindow::MapWindow(QWidget *parent,
     m_simplescene(new Course::SimpleGameScene(this))
 {
     m_ui->setupUi(this);
+
+    //start dialog
+    Dialog d;
+    d.exec();
 
     Course::SimpleGameScene* sgs_rawptr = m_simplescene.get();
 

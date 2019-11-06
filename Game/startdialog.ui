@@ -90,6 +90,9 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLineEdit" name="player2Name">
    <property name="geometry">
@@ -99,6 +102,9 @@
      <width>151</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLineEdit" name="player3Name">
@@ -110,6 +116,9 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLineEdit" name="player4Name">
    <property name="geometry">
@@ -120,28 +129,66 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QLabel" name="roundsLabel">
+  <widget class="QSpinBox" name="spinBoxRounds">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>220</y>
+     <width>49</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>199</number>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBoxUsesMax">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>240</y>
-     <width>261</width>
-     <height>30</height>
+     <y>220</y>
+     <width>281</width>
+     <height>26</height>
     </rect>
    </property>
    <property name="text">
     <string>Maximum number of rounds (optional):</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBoxRounds">
+  <widget class="QPushButton" name="pushButtonCancel">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>242</y>
-     <width>49</width>
+     <x>190</x>
+     <y>260</y>
+     <width>84</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonOK">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>260</y>
+     <width>84</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+   <property name="autoDefault">
+    <bool>true</bool>
+   </property>
+   <property name="default">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

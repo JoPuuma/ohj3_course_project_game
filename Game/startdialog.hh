@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QGraphicsScene>
 #include <QDebug>
+//#include <vector>
+//#include <string>
 #include "ui_mapwindow.h"
 
 #include "interfaces/igameeventhandler.h"
@@ -24,9 +26,18 @@ public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
 
+
+public slots:
+    void checkValues();
+    void checkBoxValueChanged();
+
+signals:
+    void sendData(std::vector<std::string> p, int rounds);
+
 private:
 
     Ui::Dialog *ui;
+    std::vector<std::string> players;
 };
 
 #endif // STARTDIALOG_HH
