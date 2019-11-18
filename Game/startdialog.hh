@@ -32,7 +32,7 @@ public slots:
     void checkBoxValueChanged();
 
 signals:
-    void sendData(std::vector<std::string> p, int rounds);
+    void sendData(std::vector<std::string> p, bool roundLimit, int rounds);
 
 private:
 
