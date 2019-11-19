@@ -28,7 +28,10 @@ SOURCES += \
     Tiles/sand.cpp \
     Buildings/mine.cpp \
     Buildings/fishinghut.cpp \
-    Buildings/cottage.cpp
+    Buildings/cottage.cpp \
+    Workers/miner.cpp \
+    Workers/fisher.cpp \
+    Workers/timberjack.cpp
 
 
 HEADERS += \
@@ -39,7 +42,10 @@ HEADERS += \
     Buildings/mine.hh \
     Buildings/fishinghut.hh \
     Buildings/cottage.hh \
-    Core/resourcemaps.hh
+    Core/resourcemaps.hh \
+    Workers/miner.hh \
+    Workers/fisher.hh \
+    Workers/timberjack.hh
 
 INCLUDEPATH += \
     $$PWD/../Course/CourseLib

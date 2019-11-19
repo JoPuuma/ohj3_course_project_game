@@ -43,6 +43,40 @@ const Course::ResourceMap SAND_BP = {
     {Course::BasicResource::ORE, 0},
 };
 
+// building cottage
+const Course::ResourceMap COTTAGE_BUILD_COST = {
+
+};
+const Course::ResourceMap COTTAGE_PRODUCTION = {
+
+};
+
+// building fishinghut
+const Course::ResourceMap FISHINGHUT_BUILD_COST = {
+
+};
+const Course::ResourceMap FISHINGHUT_PRODUCTION = {
+
+};
+
+// building mine
+const Course::ResourceMap MINE_BUILD_COST = {
+
+};
+const Course::ResourceMap MINE_PRODUCTION = {
+
+};
+
+// Worker - Miner
+const Course::ResourceMapDouble MINER_WORKER_EFFICIENCY = {
+
+};
+
+const Course::ResourceMap MINER_RECRUITMENT_COST = {
+
+};
+
+
 }
 }
 

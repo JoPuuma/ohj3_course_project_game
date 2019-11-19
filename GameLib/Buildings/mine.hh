@@ -2,7 +2,7 @@
 #define MINE_HH
 
 #include "buildings/buildingbase.h"
-#include "core/resourcemaps.h"
+#include "Core/resourcemaps.hh"
 
 
 namespace Game {
@@ -36,9 +36,9 @@ public:
             const std::shared_ptr<Course::iObjectManager>& objectmanager,
             const std::shared_ptr<Course::PlayerBase>& owner,
             const int& tilespaces = 1,
-            const Course::ResourceMap& buildcost = Course::ConstResourceMaps::FARM_BUILD_COST,
-            const Course::ResourceMap& production = Course::ConstResourceMaps::FARM_PRODUCTION
-            );  // muuta cost and product oikeaksi.
+            const Course::ResourceMap& buildcost = ConstResourceMap::MINE_BUILD_COST,
+            const Course::ResourceMap& production = ConstResourceMap::MINE_PRODUCTION
+            );
 
     /**
      * @brief Default destructor.
