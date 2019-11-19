@@ -30,6 +30,7 @@ SOURCES += \
     Buildings/fishinghut.cpp \
     Buildings/cottage.cpp
 
+
 HEADERS += \
         gamelib_global.hh \ 
     Tiles/rock.hh \
@@ -51,3 +52,4 @@ unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
