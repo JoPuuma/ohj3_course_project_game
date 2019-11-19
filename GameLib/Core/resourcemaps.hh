@@ -76,9 +76,27 @@ const Course::ResourceMap MINER_RECRUITMENT_COST = {
 
 };
 
+// Worker - Fisher
+const Course::ResourceMapDouble FISHER_WORKER_EFFICIENCY = {
+
+};
+
+const Course::ResourceMap FISHER_RECRUITMENT_COST = {
+
+};
+
+// Worker - Timberjack
+const Course::ResourceMapDouble TIMBERJACK_WORKER_EFFICIENCY = {
+
+};
+
+const Course::ResourceMap TIMBERJACK_RECRUITMENT_COST = {
+
+};
 
 }
 }
+
 
 
 #endif // RESOURCEMAPS_HH

@@ -91,7 +91,7 @@ private:
 
 }; // class Miner
 
-} // namespace Course
+} // namespace Game
 
 
 #endif // MINER_HH
