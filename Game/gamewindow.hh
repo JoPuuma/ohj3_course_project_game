@@ -2,6 +2,16 @@
 #define GAMEWINDOW_HH
 
 #include <QMainWindow>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QMouseEvent>
+#include <QGraphicsSceneMouseEvent>
+#include <QDebug>
+
+#include <map>
+
+#include "Core/gameeventhandler.hh"
+
 
 namespace Ui {
 class GameWindow;
@@ -17,6 +27,7 @@ public:
 
 private:
     Ui::GameWindow *ui;
+
 };
 
 #endif // GAMEWINDOW_HH

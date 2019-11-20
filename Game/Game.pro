@@ -24,10 +24,12 @@ else:unix: LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/ -lCourseLib
 
 INCLUDEPATH += \
-    $$PWD/../Course/CourseLib
+    $$PWD/../Course/CourseLib \
+    $$PWD/../GameLib
 
 DEPENDPATH += \
-    $$PWD/../Course/CourseLib
+    $$PWD/../Course/CourseLib \
+    $$PWD/../GameLib
 
 win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/release/libCourseLib.a
