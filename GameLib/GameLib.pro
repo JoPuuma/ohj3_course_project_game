@@ -34,7 +34,8 @@ SOURCES += \
     Workers/timberjack.cpp \
     Core/worldgenerator.cpp \
     Core/gameeventhandler.cpp \
-    Core/objectmanager.cpp
+    Core/objectmanager.cpp \
+    Core/player.cpp
 
 
 HEADERS += \
@@ -51,7 +52,8 @@ HEADERS += \
     Workers/timberjack.hh \
     Core/worldgenerator.hh \
     Core/gameeventhandler.hh \
-    Core/objectmanager.hh
+    Core/objectmanager.hh \
+    Core/player.hh
 
 INCLUDEPATH += \
     $$PWD/../Course/CourseLib
