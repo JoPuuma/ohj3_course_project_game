@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       -= gui
+QT       += gui \
+            widgets
 
 TARGET = GameLib
 TEMPLATE = lib
@@ -34,7 +35,9 @@ SOURCES += \
     Workers/timberjack.cpp \
     Core/worldgenerator.cpp \
     Core/gameeventhandler.cpp \
-    Core/objectmanager.cpp
+    Core/objectmanager.cpp \
+    Graphics/gamescene.cpp \
+    Graphics/mapitem.cpp
 
 
 HEADERS += \
@@ -51,7 +54,9 @@ HEADERS += \
     Workers/timberjack.hh \
     Core/worldgenerator.hh \
     Core/gameeventhandler.hh \
-    Core/objectmanager.hh
+    Core/objectmanager.hh \
+    Graphics/gamescene.hh \
+    Graphics/mapitem.hh
 
 INCLUDEPATH += \
     $$PWD/../Course/CourseLib
