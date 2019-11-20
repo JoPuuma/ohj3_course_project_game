@@ -32,7 +32,6 @@ SOURCES += \
     Workers/miner.cpp \
     Workers/fisher.cpp \
     Workers/timberjack.cpp \
-    worldgenerator.cpp \
     Core/worldgenerator.cpp \
     Core/gameeventhandler.cpp \
     Core/objectmanager.cpp
@@ -50,7 +49,6 @@ HEADERS += \
     Workers/miner.hh \
     Workers/fisher.hh \
     Workers/timberjack.hh \
-    worldgenerator.hh \
     Core/worldgenerator.hh \
     Core/gameeventhandler.hh \
     Core/objectmanager.hh
