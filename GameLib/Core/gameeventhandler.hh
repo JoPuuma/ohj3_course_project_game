@@ -1,7 +1,7 @@
 #ifndef GAMEEVENTHANDLER_HH
 #define GAMEEVENTHANDLER_HH
 
-//#include "igameeventhandler.h"
+#include "igameeventhandler.h"
 
 namespace Game{
 class GameEventHandler

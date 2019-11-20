@@ -27,7 +27,7 @@ public:
     ~Dialog();
 
 
-public slots:
+private slots:
     void checkValues();
     void checkBoxValueChanged();
 

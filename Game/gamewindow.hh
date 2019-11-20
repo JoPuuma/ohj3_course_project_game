@@ -7,7 +7,6 @@
 #include <QMouseEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
-
 #include <map>
 
 #include "Core/gameeventhandler.hh"
@@ -25,6 +24,8 @@ public:
     explicit GameWindow(QWidget *parent = 0);
     ~GameWindow();
 
+public slots:
+    void receiveData(std::vector<std::string> p, bool roundLimit, int rounds);
 private:
     Ui::GameWindow *ui;
 
