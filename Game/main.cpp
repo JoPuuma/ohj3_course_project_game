@@ -12,8 +12,15 @@ int main(int argc, char* argv[])
 
     QApplication app(argc, argv);
 
+
     //std::shared_ptr<Game::GameEventHandler> GEHandler(new Game::GameEventHandler());
     //GameWindow gameWindow(0, GEHandler);
+
+
+
+    //MapWindow mapWindow;
+    //mapWindow.show();
+
     GameWindow gameWindow;
     gameWindow.show();
 

@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       -= gui
+QT       += gui \
+            widgets
 
 TARGET = GameLib
 TEMPLATE = lib
@@ -37,6 +38,10 @@ SOURCES += \
     Core/objectmanager.cpp \
     Core/player.cpp
 
+    Graphics/gamescene.cpp \
+    Graphics/mapitem.cpp
+
+
 
 HEADERS += \
         gamelib_global.hh \ 
@@ -54,6 +59,9 @@ HEADERS += \
     Core/gameeventhandler.hh \
     Core/objectmanager.hh \
     Core/player.hh
+    Graphics/gamescene.hh \
+    Graphics/mapitem.hh
+
 
 INCLUDEPATH += \
     $$PWD/../Course/CourseLib

@@ -6,6 +6,7 @@
 #include "player.hh"
 #include "core/basicresources.h"
 
+
 namespace Game{
 
 class GameEventHandler: public Course::iGameEventHandler
