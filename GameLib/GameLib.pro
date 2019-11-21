@@ -36,11 +36,9 @@ SOURCES += \
     Core/worldgenerator.cpp \
     Core/gameeventhandler.cpp \
     Core/objectmanager.cpp \
-    Core/player.cpp
-
+    Core/player.cpp \
     Graphics/gamescene.cpp \
     Graphics/mapitem.cpp
-
 
 
 HEADERS += \
@@ -58,16 +56,19 @@ HEADERS += \
     Core/worldgenerator.hh \
     Core/gameeventhandler.hh \
     Core/objectmanager.hh \
-    Core/player.hh
+    Core/player.hh \
     Graphics/gamescene.hh \
     Graphics/mapitem.hh
 
 
 INCLUDEPATH += \
     $$PWD/../Course/CourseLib
+    $$PWD/../GameLib
 
 DEPENDPATH += \
     $$PWD/../Course/CourseLib
+    $$PWD/../GameLib
+
 
 
 unix {
