@@ -22,7 +22,14 @@ using TileConstructorPointer = std::function<std::shared_ptr<Course::TileBase>(
 class WorldGenerator
 {
 public:
-    WorldGenerator();
+
+    static WorldGenerator& getInstance();
+
+    // Prevent copy and move construction and assignment.
+    WorldGenerator(const WorldGenerator&) = delete;
+    WorldGenerator& operator=(const WorldGenerator&) = delete;
+    WorldGenerator(WorldGenerator&&) = delete;
+    WorldGenerator& operator=(WorldGenerator&&) = delete;
 
     template<typename T>
     void addConstructor(char n);
@@ -32,12 +39,16 @@ public:
                      const std::shared_ptr<ObjectManager>& ObjectManager,
                      const std::shared_ptr<GameEventHandler>& EventHandler);
 
-    void FindRightTile(unsigned int number_x,
-                       unsigned int number_y) const;
+
 
     void GreateReferenceMap();
 
 private:
+
+    WorldGenerator() = default;
+
+    ~WorldGenerator() = default;
+
     std::vector<std::vector<char>> Referencemap = {};
 
     std::map<char, TileConstructorPointer> m_ctors;

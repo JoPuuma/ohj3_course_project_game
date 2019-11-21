@@ -11,10 +11,12 @@
 namespace Game {
 
 
-WorldGenerator::WorldGenerator()
+WorldGenerator& WorldGenerator::getInstance()
 {
-
+    static WorldGenerator instance;
+    return instance;
 }
+
 
 template<typename T>
 void WorldGenerator::addConstructor(char n)
@@ -31,6 +33,7 @@ void WorldGenerator::GenerateMap(
         const std::shared_ptr<ObjectManager>& objectmanager,
         const std::shared_ptr<GameEventHandler>& eventhandler)
 {
+    GreateReferenceMap();
     std::vector<std::shared_ptr<Course::TileBase>> tiles;
 
     for (unsigned int x = 0; x < size_x; ++x)
@@ -48,7 +51,7 @@ void WorldGenerator::GenerateMap(
         }
     }
 
-    //objectmanager->addTiles(tiles);
+    objectmanager->addTiles(tiles);
 
 }
 

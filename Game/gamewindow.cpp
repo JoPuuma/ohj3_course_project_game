@@ -7,6 +7,13 @@
 
 #include "core/playerbase.h"
 
+#include "Core/worldgenerator.hh"
+#include"core/worldgenerator.h"
+#include "Tiles/rock.hh"
+#include "Tiles/sand.hh"
+#include "Tiles/water.hh"
+#include "tiles/forest.h"
+
 #include <QDebug>
 
 
@@ -19,11 +26,8 @@ GameWindow::GameWindow(QWidget *parent,
     scene_(new Game::GameScene(this))
 {
 
-    auto uusi = std::make_shared<Course::PlayerBase>("uusi");
     Omanager_ = std::make_shared<Game::ObjectManager>() ;
-
-    std::shared_ptr<Game::GameEventHandler> GEHandler;
-    handler_ = std::make_shared<Game::GameEventHandler> ();
+    handler_ = std::make_shared<Game::GameEventHandler>();
 
     ui->setupUi(this);
 
@@ -41,6 +45,18 @@ GameWindow::GameWindow(QWidget *parent,
    Game::GameScene* sgs_rawptr = scene_.get();
 
    ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+
+
+
+
+//   Game::WorldGenerator& worldgen = Game::WorldGenerator::getInstance();
+//   worldgen.addConstructor<Game::Rock>('r');
+//   worldgen.addConstructor<Game::Sand>('s');
+//   worldgen.addConstructor<Game::Water>('w');
+//   worldgen.addConstructor<Course::Forest>('f');
+
+//   worldgen.GenerateMap(7,7,Omanager_,handler_);
+
 
 
 }

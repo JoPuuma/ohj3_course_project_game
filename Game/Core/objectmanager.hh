@@ -51,6 +51,7 @@ public:
 
 private:
     std::map<std::string, std::shared_ptr<Game::Player>> players;
+
 };
 
 }// namespace Game
