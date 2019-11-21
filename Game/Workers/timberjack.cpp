@@ -27,6 +27,11 @@ std::string Timberjack::getType() const
     return "Timberjack";
 }
 
+bool Timberjack::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+{
+
+}
+
 void Timberjack::doSpecialAction()
 {
 

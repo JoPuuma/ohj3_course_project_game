@@ -17,6 +17,11 @@ GameScene::GameScene(QWidget* parent,
 
 
 
+}
+
+bool GameScene::event(QEvent *event)
+{
+
 } // class GameScene
 
 } // namespace Game

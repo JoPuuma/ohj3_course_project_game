@@ -28,6 +28,11 @@ std::string Miner::getType() const
     return "Miner";
 }
 
+bool Miner::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+{
+
+}
+
 void Miner::doSpecialAction()
 {
 

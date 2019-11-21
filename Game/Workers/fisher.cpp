@@ -26,6 +26,11 @@ std::string Fisher::getType() const
     return "Fisher";
 }
 
+bool Fisher::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+{
+
+}
+
 void Fisher::doSpecialAction()
 {
 
