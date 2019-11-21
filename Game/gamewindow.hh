@@ -18,8 +18,6 @@ namespace Ui {
 class GameWindow;
 }
 
-//class ObjectManager;
-//class GameEventHandler;
 class Player;
 
 class GameWindow : public QMainWindow
@@ -47,6 +45,9 @@ private:
     std::shared_ptr<Game::ObjectManager> Omanager_ = nullptr;
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
     std::vector<std::shared_ptr<Game::Player>> playerObjs;
+    std::shared_ptr<Game::Player> inTurn = nullptr;
+    unsigned int round_;
+    int maxRounds_;
 };
 
 #endif // GAMEWINDOW_HH

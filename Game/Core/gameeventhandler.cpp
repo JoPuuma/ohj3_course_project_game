@@ -20,8 +20,8 @@ bool GameEventHandler::modifyResources(
 
 }
 
-void GameEventHandler::addPlayer(std::string name){
-   std::shared_ptr<Game::Player> ptr(new Game::Player(name)); // puuttuu resurssit
+void GameEventHandler::addPlayer(std::string name,
+                                 std::shared_ptr<Game::Player> ptr){
     players[name] = ptr;
 }
 

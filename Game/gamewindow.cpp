@@ -15,12 +15,11 @@ GameWindow::GameWindow(QWidget *parent,
                        std::shared_ptr<Game::GameEventHandler> handler) :
     QMainWindow(parent),
     ui(new Ui::GameWindow),
-    handler_(handler){
+    handler_(handler),
+    {
 
-    auto uusi = std::make_shared<Course::PlayerBase>("uusi");
     Omanager_ = std::make_shared<Game::ObjectManager>();
 
-    std::shared_ptr<Game::GameEventHandler> GEHandler;
     handler_ = std::make_shared<Game::GameEventHandler> ();
 
     ui->setupUi(this);
@@ -47,8 +46,11 @@ void GameWindow::receiveData(std::vector<std::string> players,
                              int rounds){
     for(auto &player:players){
         std::shared_ptr<Game::Player> ptr(new Game::Player(player));
+        handler_->addPlayer(player,ptr);
         playerObjs.push_back(ptr);
     }
+    if(roundLimit) maxRounds_ = rounds;
+
 }
 
 
