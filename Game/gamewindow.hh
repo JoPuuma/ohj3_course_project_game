@@ -31,7 +31,16 @@ public:
                         std::shared_ptr<Game::GameEventHandler> handler = {});
     ~GameWindow();
 
-public slots:
+    void setSize(int width, int height);
+    void setScale(int scale);
+
+    void drawItem( std::shared_ptr<Course::GameObject> obj);
+    void removeItem( std::shared_ptr<Course::GameObject> obj);
+    void updateItem( std::shared_ptr<Course::GameObject> obj);
+
+
+
+public slots: 
     void receiveData(std::vector<std::string> p, bool roundLimit, int rounds);
     /*
     void BuildCottage();

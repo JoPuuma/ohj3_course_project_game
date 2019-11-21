@@ -15,10 +15,12 @@ GameWindow::GameWindow(QWidget *parent,
                        std::shared_ptr<Game::GameEventHandler> handler) :
     QMainWindow(parent),
     ui(new Ui::GameWindow),
-    handler_(handler){
+    handler_(handler),
+    scene_(new Game::GameScene(this))
+{
 
     auto uusi = std::make_shared<Course::PlayerBase>("uusi");
-    Omanager_ = std::make_shared<Game::ObjectManager>();
+    Omanager_ = std::make_shared<Game::ObjectManager>() ;
 
     std::shared_ptr<Game::GameEventHandler> GEHandler;
     handler_ = std::make_shared<Game::GameEventHandler> ();
@@ -36,10 +38,40 @@ GameWindow::GameWindow(QWidget *parent,
 
     d.exec();
 
+   Game::GameScene* sgs_rawptr = scene_.get();
+
+   ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+
+
 }
 
 GameWindow::~GameWindow(){
     delete ui;
+}
+
+void GameWindow::setSize(int width, int height)
+{
+    scene_->setSize(width, height);
+}
+
+void GameWindow::setScale(int scale)
+{
+    scene_->setScale(scale);
+}
+
+void GameWindow::drawItem(std::shared_ptr<Course::GameObject> obj)
+{
+    scene_->DrawItem(obj);
+}
+
+void GameWindow::removeItem(std::shared_ptr<Course::GameObject> obj)
+{
+    scene_->RemoveItem(obj);
+}
+
+void GameWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
+{
+    scene_->UpdateItem(obj);
 }
 
 void GameWindow::receiveData(std::vector<std::string> players,
