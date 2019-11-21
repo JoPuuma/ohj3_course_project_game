@@ -38,7 +38,8 @@ public:
     virtual bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
                                  Course::ResourceMap resources);
 
-    void addPlayer(std::string name);
+    void addPlayer(std::string name,
+                   std::shared_ptr<Game::Player> ptr);
 
 private:
     std::map<std::string, std::shared_ptr<Game::Player>> players;
