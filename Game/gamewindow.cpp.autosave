@@ -19,14 +19,12 @@ GameWindow::GameWindow(QWidget *parent,
 <<<<<<< HEAD
     {
 
-    Omanager_ = std::make_shared<Game::ObjectManager>();
+    
 =======
     scene_(new Game::GameScene(this))
 {
 
-    auto uusi = std::make_shared<Course::PlayerBase>("uusi");
-    Omanager_ = std::make_shared<Game::ObjectManager>() ;
->>>>>>> 7d9cf1b262a8c2a4b02ab1d7aba29285f3565d2b
+
 
     handler_ = std::make_shared<Game::GameEventHandler> ();
 
