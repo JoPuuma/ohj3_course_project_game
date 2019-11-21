@@ -24,41 +24,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Tiles/rock.cpp \
-    Tiles/water.cpp \
-    Tiles/sand.cpp \
-    Buildings/mine.cpp \
-    Buildings/fishinghut.cpp \
-    Buildings/cottage.cpp \
-    Workers/miner.cpp \
-    Workers/fisher.cpp \
-    Workers/timberjack.cpp \
-    Core/worldgenerator.cpp \
-    Core/gameeventhandler.cpp \
-    Core/objectmanager.cpp \
-    Core/player.cpp \
-    Graphics/gamescene.cpp \
-    Graphics/mapitem.cpp
+
 
 
 HEADERS += \
         gamelib_global.hh \ 
-    Tiles/rock.hh \
-    Tiles/water.hh \
-    Tiles/sand.hh \
-    Buildings/mine.hh \
-    Buildings/fishinghut.hh \
-    Buildings/cottage.hh \
-    Core/resourcemaps.hh \
-    Workers/miner.hh \
-    Workers/fisher.hh \
-    Workers/timberjack.hh \
-    Core/worldgenerator.hh \
-    Core/gameeventhandler.hh \
-    Core/objectmanager.hh \
-    Core/player.hh \
-    Graphics/gamescene.hh \
-    Graphics/mapitem.hh
+
 
 
 INCLUDEPATH += \
