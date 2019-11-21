@@ -47,7 +47,6 @@ void WorldGenerator::GenerateMap(
 
         }
     }
-
     //objectmanager->addTiles(tiles);
 
 }

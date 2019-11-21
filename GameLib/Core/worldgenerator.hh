@@ -32,8 +32,6 @@ public:
                      const std::shared_ptr<ObjectManager>& ObjectManager,
                      const std::shared_ptr<GameEventHandler>& EventHandler);
 
-    void FindRightTile(unsigned int number_x,
-                       unsigned int number_y) const;
 
     void GreateReferenceMap();
 

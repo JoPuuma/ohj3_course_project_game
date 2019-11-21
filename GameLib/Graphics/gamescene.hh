@@ -26,6 +26,8 @@ public:
 
     ~GameScene() = default;
 
+
+
     void DrawItem( std::shared_ptr<Course::GameObject> obj);
 
     void RemoveItem( std::shared_ptr<Course::GameObject> obj);
