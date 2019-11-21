@@ -9,3 +9,6 @@ SUBDIRS += \
 CourseLib.subdir = Course/CourseLib
 Game.depends = CourseLib
 UnitTests.depends = CourseLib
+
+
+

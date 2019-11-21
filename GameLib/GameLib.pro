@@ -62,11 +62,11 @@ HEADERS += \
 
 
 INCLUDEPATH += \
-    $$PWD/../Course/CourseLib
+    $$PWD/../Course/CourseLib \
     $$PWD/../GameLib
 
 DEPENDPATH += \
-    $$PWD/../Course/CourseLib
+    $$PWD/../Course/CourseLib \
     $$PWD/../GameLib
 
 

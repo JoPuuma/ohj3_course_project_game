@@ -1,11 +1,11 @@
 #include "mapwindow.hh"
 #include "ui_mapwindow.h"
 #include "startdialog.hh"
+//#include "Core/gameeventhandler.hh"
 
 #include "graphics/simplemapitem.h"
 
 #include <math.h>
-
 MapWindow::MapWindow(QWidget *parent,
                      std::shared_ptr<Course::iGameEventHandler> handler):
     QMainWindow(parent),
@@ -14,6 +14,7 @@ MapWindow::MapWindow(QWidget *parent,
     m_simplescene(new Course::SimpleGameScene(this))
 {
     m_ui->setupUi(this);
+
 
     //start dialog
     Dialog d;

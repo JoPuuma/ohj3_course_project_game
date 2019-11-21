@@ -6,7 +6,7 @@
 namespace Game{
 
 
-GameEventHandler::GameEventHandler():Course::iGameEventHandler(){
+GameEventHandler::GameEventHandler(){
 
 }
 
