@@ -68,7 +68,31 @@ void GameScene::UpdateItem(std::shared_ptr<Course::GameObject> obj)
 
 bool GameScene::event(QEvent *event)
 {
+    if(event->type() == QEvent::GraphicsSceneMousePress)
+    {
+        QGraphicsSceneMouseEvent* mouse_event =
+                dynamic_cast<QGraphicsSceneMouseEvent*>(event);
 
+        if ( sceneRect().contains(mouse_event->scenePos())){
+
+            QPointF point = mouse_event->scenePos() / m_scale;
+
+            point.rx() = floor(point.rx());
+            point.ry() = floor(point.ry());
+
+            QGraphicsItem* pressed = itemAt(point * m_scale, QTransform());
+
+            if ( pressed == m_mapBoundRect ){
+                qDebug() << "Click on map area.";
+            }else{
+                qDebug() << "Opressed.";
+                return true;
+            }
+
+        }
+    }
+
+    return false;
 }
 
 } // namespace Game

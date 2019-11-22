@@ -10,12 +10,12 @@
 
 namespace Game {
 
-
-WorldGenerator& WorldGenerator::getInstance()
+WorldGenerator &WorldGenerator::getInstance()
 {
     static WorldGenerator instance;
     return instance;
 }
+
 
 
 template<typename T>
@@ -26,6 +26,8 @@ void WorldGenerator::addConstructor(char n)
         std::shared_ptr<ObjectManager> >;
     m_ctors.insert(std::make_pair(n, ctor));
 }
+
+
 
 void WorldGenerator::GenerateMap(
         unsigned int size_x,

@@ -8,7 +8,7 @@
 #include "Core/gameeventhandler.hh"
 #include "Core/objectmanager.hh"
 #include "tiles/tilebase.h"
-
+#include "core/worldgenerator.h"
 
 
 namespace Game {
@@ -23,13 +23,14 @@ class WorldGenerator
 {
 public:
 
-    static WorldGenerator& getInstance();
+     static WorldGenerator& getInstance();
 
-    // Prevent copy and move construction and assignment.
-    WorldGenerator(const WorldGenerator&) = delete;
-    WorldGenerator& operator=(const WorldGenerator&) = delete;
-    WorldGenerator(WorldGenerator&&) = delete;
-    WorldGenerator& operator=(WorldGenerator&&) = delete;
+
+     WorldGenerator() = default;
+
+     ~WorldGenerator() = default;
+
+
 
     template<typename T>
     void addConstructor(char n);
@@ -45,9 +46,7 @@ public:
 
 private:
 
-    WorldGenerator() = default;
 
-    ~WorldGenerator() = default;
 
     std::vector<std::vector<char>> Referencemap = {};
 

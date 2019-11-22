@@ -23,10 +23,10 @@ GameWindow::GameWindow(QWidget *parent,
     QMainWindow(parent),
     ui(new Ui::GameWindow),
     handler_(handler),
-    scene_(new Game::GameScene(this))
+    scene_(new Game::GameScene(this)),
+    maxRounds_(-1)
 {
-
-    Omanager_ = std::make_shared<Game::ObjectManager>() ;
+    Omanager_ = std::make_shared<Game::ObjectManager>();
     handler_ = std::make_shared<Game::GameEventHandler>();
 
 
@@ -43,6 +43,7 @@ GameWindow::GameWindow(QWidget *parent,
 
     d.exec();
 
+
    Game::GameScene* sgs_rawptr = scene_.get();
 
    ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
@@ -50,15 +51,19 @@ GameWindow::GameWindow(QWidget *parent,
 
 
 
-//   Game::WorldGenerator& worldgen = Game::WorldGenerator::getInstance();
+
+   Game::WorldGenerator& worldgen = Game::WorldGenerator::getInstance();
 //   worldgen.addConstructor<Game::Rock>('r');
 //   worldgen.addConstructor<Game::Sand>('s');
 //   worldgen.addConstructor<Game::Water>('w');
 //   worldgen.addConstructor<Course::Forest>('f');
 
-//   worldgen.GenerateMap(7,7,Omanager_,handler_);
+   worldgen.GenerateMap(7,7,Omanager_,handler_);
 
 
+
+
+    startGame();
 
 }
 
@@ -91,20 +96,37 @@ void GameWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
     scene_->UpdateItem(obj);
 }
 
+void GameWindow::adjustResources()
+{
+    ui->lcdMoney->display(inTurn->resources_[Course::MONEY]);
+    ui->lcdFood->display(inTurn->resources_[Course::FOOD]);
+    ui->lcdWood->display(inTurn->resources_[Course::WOOD]);
+    ui->lcdStone->display(inTurn->resources_[Course::STONE]);
+    ui->lcdOre->display(inTurn->resources_[Course::ORE]);
+}
+
+void GameWindow::startGame()
+{
+    inTurn = playerObjs[0];
+    adjustResources();
+}
+
 void GameWindow::receiveData(std::vector<std::string> players,
                              bool roundLimit,
                              int rounds){
-    for(auto &player:players){
+    // create players
+    for(std::string &player : players){
         std::shared_ptr<Game::Player> ptr(new Game::Player(player));
-        handler_->addPlayer(player,ptr);
-        playerObjs.push_back(ptr);
+        handler_->addPlayer(player,ptr); // to gameEventHandler
+        playerObjs.push_back(ptr); // to gamewindow
     }
     if(roundLimit) maxRounds_ = rounds;
+
 
 }
 
 
 void GameWindow::endTurn()
 {
-
+    qDebug() << "endTurn";
 }
