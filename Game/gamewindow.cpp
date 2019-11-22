@@ -8,8 +8,9 @@
 #include "core/playerbase.h"
 
 #include <QDebug>
+#include <QString>
 
-
+//const using MAX_ROUNDS_NOT_USED = -1;
 
 GameWindow::GameWindow(QWidget *parent,
                        std::shared_ptr<Game::GameEventHandler> handler) :
@@ -17,6 +18,7 @@ GameWindow::GameWindow(QWidget *parent,
     ui(new Ui::GameWindow),
     handler_(handler),
     scene_(new Game::GameScene(this)),
+    round_(1),
     maxRounds_(-1)
 {
     Omanager_ = std::make_shared<Game::ObjectManager>();
@@ -40,6 +42,7 @@ GameWindow::GameWindow(QWidget *parent,
 
    ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
     startGame();
+
 }
 
 GameWindow::~GameWindow(){
@@ -80,28 +83,54 @@ void GameWindow::adjustResources()
     ui->lcdOre->display(inTurn->resources_[Course::ORE]);
 }
 
-void GameWindow::startGame()
+void GameWindow::adjustGameWiew()
 {
-    inTurn = playerObjs[0];
     adjustResources();
+    ui->labelPlayerName->setText( QString::fromStdString(inTurn->getName()) );
+    ui->roundLabel->setText( QString::number(round_) );
 }
 
-void GameWindow::receiveData(std::vector<std::string> players,
-                             bool roundLimit,
-                             int rounds){
+void GameWindow::startGame()
+{
+    inTurn = playerPtrs[0];
+    adjustGameWiew();
+}
+
+void GameWindow::receiveData(const std::vector<std::string>& players,
+                             const bool& roundLimit,
+                             const int& rounds){
     // create players
-    for(std::string &player : players){
-        std::shared_ptr<Game::Player> ptr(new Game::Player(player));
-        handler_->addPlayer(player,ptr); // to gameEventHandler
-        playerObjs.push_back(ptr); // to gamewindow
+    std::shared_ptr<Game::Player> previousPlayerPtr = nullptr;
+    for(const std::string &player : players){
+        // new player
+        std::shared_ptr<Game::Player> ptr =
+                    std::make_shared<Game::Player>(Game::Player(player));
+
+        handler_->addPlayer(player,ptr); // to gameEventHandler        
+        playerPtrs.push_back(ptr); // to gameWindow
+
+        if(previousPlayerPtr != nullptr){
+            previousPlayerPtr->addNextPlayer(ptr);
+        }
+        previousPlayerPtr = ptr;
     }
     if(roundLimit) maxRounds_ = rounds;
-
-
 }
 
 
 void GameWindow::endTurn()
 {
-    qDebug() << "endTurn";
+    if(inTurn->next == nullptr){
+        inTurn = playerPtrs[0];
+        round_++;
+    }else{
+        inTurn = inTurn->next;
+    }
+
+    adjustGameWiew();
+}
+
+bool GameWindow::gameEnd()
+{
+    return round_ == maxRounds_;  // || all tiles in use
 }

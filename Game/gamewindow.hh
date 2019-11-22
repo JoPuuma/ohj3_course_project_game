@@ -18,6 +18,7 @@ namespace Ui {
 class GameWindow;
 }
 
+
 class Player;
 
 class GameWindow : public QMainWindow
@@ -36,12 +37,14 @@ public:
     void removeItem( std::shared_ptr<Course::GameObject> obj);
     void updateItem( std::shared_ptr<Course::GameObject> obj);
     void adjustResources();
+    void adjustGameWiew();
     void startGame();
 
 
 
 public slots: 
-    void receiveData(std::vector<std::string> p, bool roundLimit, int rounds);
+    void receiveData(const std::vector<std::string>& p,
+                     const bool& roundLimit,const int& rounds);
     /*
     void BuildCottage();
     void BuildHQ();
@@ -49,13 +52,14 @@ public slots:
     void BuildFishingHut();
     */
     void endTurn();
+    bool gameEnd();
 
 private:
     Ui::GameWindow *ui;
     std::shared_ptr<Game::GameEventHandler> handler_ = nullptr;
     std::shared_ptr<Game::ObjectManager> Omanager_ = nullptr;
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
-    std::vector<std::shared_ptr<Game::Player>> playerObjs;
+    std::vector<std::shared_ptr<Game::Player>> playerPtrs;
     std::shared_ptr<Game::Player> inTurn = nullptr;
     unsigned int round_;
     int maxRounds_;

@@ -33,9 +33,9 @@
    <widget class="QLabel" name="roundLabel">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>680</x>
       <y>10</y>
-      <width>81</width>
+      <width>41</width>
       <height>20</height>
      </rect>
     </property>
@@ -45,7 +45,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Round 1</string>
+     <string>2</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -427,6 +427,24 @@
     </property>
     <property name="text">
      <string>Train</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="roundLabel_2">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>10</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Round: </string>
     </property>
    </widget>
   </widget>
