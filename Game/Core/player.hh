@@ -20,7 +20,10 @@ class Player: public Course::PlayerBase
 public:
     Player(const std::string& name);
 
+    void addNextPlayer(std::shared_ptr<Game::Player> nextP);
+
     Course::ResourceMap resources_;
+    std::shared_ptr<Game::Player> next = nullptr;
 
 private:
 
