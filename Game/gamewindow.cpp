@@ -7,6 +7,13 @@
 
 #include "core/playerbase.h"
 
+#include "Core/worldgenerator.hh"
+#include"core/worldgenerator.h"
+#include "Tiles/rock.hh"
+#include "Tiles/sand.hh"
+#include "Tiles/water.hh"
+#include "tiles/forest.h"
+
 #include <QDebug>
 #include <QString>
 
@@ -23,6 +30,7 @@ GameWindow::GameWindow(QWidget *parent,
 {
     Omanager_ = std::make_shared<Game::ObjectManager>();
     handler_ = std::make_shared<Game::GameEventHandler>();
+
 
     ui->setupUi(this);
 
@@ -48,6 +56,14 @@ GameWindow::GameWindow(QWidget *parent,
    Game::GameScene* sgs_rawptr = scene_.get();
 
    ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+
+   Game::WorldGenerator& worldgen = Game::WorldGenerator::getInstance();
+   worldgen.addConstructor<Game::Rock>('r');
+   worldgen.addConstructor<Game::Sand>('s');
+   worldgen.addConstructor<Game::Water>('w');
+   worldgen.addConstructor<Course::Forest>('f');
+   worldgen.GenerateMap(7,7,Omanager_,handler_);
+
     startGame();
 
 }
@@ -64,6 +80,11 @@ void GameWindow::setSize(int width, int height)
 void GameWindow::setScale(int scale)
 {
     scene_->setScale(scale);
+}
+
+void GameWindow::resize()
+{
+    scene_->resize();
 }
 
 void GameWindow::drawItem(std::shared_ptr<Course::GameObject> obj)

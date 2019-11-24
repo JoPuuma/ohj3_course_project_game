@@ -3,8 +3,8 @@
 namespace Game {
 
 Rock::Rock(const Course::Coordinate& location,
-           const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
-           const std::shared_ptr<Course::iObjectManager>& objectmanager,
+           const std::shared_ptr<Game::GameEventHandler>& eventhandler,
+           const std::shared_ptr<Game::ObjectManager>& objectmanager,
            const unsigned int& max_build,
            const unsigned int& max_work,
            const Course::ResourceMap& production):
@@ -21,6 +21,12 @@ Rock::Rock(const Course::Coordinate& location,
 std::string Rock::getType() const
 {
     return "Rock";
+}
+
+void Rock::addBuilding(const std::shared_ptr<Course::BuildingBase> &building)
+{
+    TileBase::addBuilding(building);
+    building->addHoldMarkers(1);
 }
 
 } // namescape Game

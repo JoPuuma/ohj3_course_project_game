@@ -3,6 +3,8 @@
 
 #include "tiles/tilebase.h"
 #include "Core/resourcemaps.hh"
+#include "Core/gameeventhandler.hh"
+#include "Core/objectmanager.hh"
 
 namespace Game {
 /**
@@ -23,9 +25,7 @@ namespace Game {
 class Sand : public Course::TileBase
 {
 public:
-    static const unsigned int MAX_BUILDINGS;
-    static const unsigned int MAX_WORKERS;
-    static const Course::ResourceMap BASE_PRODUCTION;
+
     /**
      * @brief Disabled parameterless constructor.
      */
@@ -38,8 +38,8 @@ public:
      * @param eventhandler points to the student's GameEventHandler.
      */
     Sand(const Course::Coordinate& location,
-         const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
-         const std::shared_ptr<Course::iObjectManager>& objectmanager,
+         const std::shared_ptr<Game::GameEventHandler>& eventhandler,
+         const std::shared_ptr<Game::ObjectManager>& objectmanager,
          const unsigned int& max_build = 2,
          const unsigned int& max_work = 3,
          const Course::ResourceMap& production = ConstResourceMap::SAND_BP);
@@ -53,6 +53,8 @@ public:
      * @copydoc GameObject::getType()
      */
     virtual std::string getType() const override;
+
+    void addBuilding(const std::shared_ptr<Course::BuildingBase>& building) override;
 
 }; // class Sand
 
