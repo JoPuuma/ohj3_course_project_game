@@ -22,27 +22,38 @@ Dialog::Dialog(QWidget *parent) :
             this, &Dialog::checkValues);
 }
 
-Dialog::~Dialog(){
+Dialog::~Dialog()
+{
     delete ui;
 }
 
-void Dialog::checkValues(){
+void Dialog::removeEmptyNames()
+{
+    int index = 0;
+    std::vector<int> toBeErased;
+    for(std::string& player:players){
+        player.erase(       // remove whitespace
+          std::remove_if(player.begin(), player.end(), ::isspace),player.end());
+
+        if(player == ""){   // mark empty names
+            toBeErased.insert(toBeErased.begin(),index);
+        }
+        index++;
+    }
+    for(int& i : toBeErased){ // delete empty names
+        players.erase(players.begin() + i);
+    }
+}
+
+void Dialog::checkValues()
+{
     // add names from ui to the vector
     players.push_back(ui->player1Name->text().toStdString());
     players.push_back(ui->player2Name->text().toStdString());
     players.push_back(ui->player3Name->text().toStdString());
     players.push_back(ui->player4Name->text().toStdString());
 
-    int index = 0;
-    for(std::string& player:players){
-        player.erase(       // remove whitespace
-          std::remove_if(player.begin(), player.end(), ::isspace),player.end());
-
-        if(player == ""){   // remove empty names
-            players.erase(players.begin() + index);
-        }
-        index += 1;
-    }
+    removeEmptyNames();
 
     if(players.size() >= 2){
         emit Dialog::sendData(players,

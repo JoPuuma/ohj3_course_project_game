@@ -43,8 +43,6 @@ GameWindow::GameWindow(QWidget *parent,
     ui->lcdStone->setPalette(Qt::black);
     ui->lcdOre->setPalette(Qt::black);
 
-
-
    Game::GameScene* sgs_rawptr = scene_.get();
 
    ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
