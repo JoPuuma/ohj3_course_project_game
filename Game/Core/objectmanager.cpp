@@ -1,6 +1,9 @@
 #include "objectmanager.hh"
-#include "Graphics/gamescene.hh"
+
 #include "gamewindow.hh"
+#include "graphics/simplegamescene.h"
+
+
 
 namespace Game {
 
@@ -14,10 +17,9 @@ ObjectManager::ObjectManager():
 void ObjectManager::addTiles(const std::vector<std::shared_ptr<Course::TileBase> > &tiles)
 {
 
-    for (auto const& tile : tiles) {
-       // Game::GameScene::DrawItem(tile);
-       // Game::GameScene.DrawItem(tile);
-
+    for (auto tile : tiles) {
+        GameScene drawer;
+        drawer.DrawItem(tile);
     }
 }
 

@@ -8,7 +8,7 @@
 #include "Core/gameeventhandler.hh"
 #include "Core/objectmanager.hh"
 #include "tiles/tilebase.h"
-#include "core/worldgenerator.h"
+
 
 
 namespace Game {
@@ -23,17 +23,23 @@ class WorldGenerator
 {
 public:
 
-     static WorldGenerator& getInstance();
+    static WorldGenerator& getInstance();
 
-
-     WorldGenerator() = default;
-
-     ~WorldGenerator() = default;
+    WorldGenerator(const WorldGenerator&) = delete;
+    WorldGenerator& operator=(const WorldGenerator&) = delete;
+    WorldGenerator(WorldGenerator&&) = delete;
+    WorldGenerator& operator=(WorldGenerator&&) = delete;
 
 
 
     template<typename T>
-    void addConstructor(char n);
+    void addConstructor(char n)
+    {
+        TileConstructorPointer ctor = std::make_shared<T, Course::Coordinate,
+                std::shared_ptr<GameEventHandler>,
+                std::shared_ptr<ObjectManager> >;
+        m_ctors.insert(std::make_pair(n, ctor));
+    }
 
     void GenerateMap(unsigned int size_x,
                      unsigned int size_y,
@@ -42,11 +48,15 @@ public:
 
 
 
-    void GreateReferenceMap();
+
 
 private:
 
+    WorldGenerator() = default;
 
+    ~WorldGenerator() = default;
+
+    void GreateReferenceMap();
 
     std::vector<std::vector<char>> Referencemap = {};
 

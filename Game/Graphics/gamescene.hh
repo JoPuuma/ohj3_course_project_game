@@ -7,8 +7,10 @@
 
 #include <map>
 #include <memory>
+#include <vector>
 
 #include "core/gameobject.h"
+#include "tiles/tilebase.h"
 
 namespace Game {
 
@@ -27,15 +29,11 @@ public:
     ~GameScene() = default;
 
     void setSize(int width, int height);
-
     void setScale(int scale);
-
-    void resize();
+    void resize();   
 
     void DrawItem( std::shared_ptr<Course::GameObject> obj);
-
     void RemoveItem( std::shared_ptr<Course::GameObject> obj);
-
     void UpdateItem( std::shared_ptr<Course::GameObject> obj);
 
     virtual bool event(QEvent* event) override;

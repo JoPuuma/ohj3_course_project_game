@@ -10,22 +10,12 @@
 
 namespace Game {
 
-WorldGenerator &WorldGenerator::getInstance()
+WorldGenerator& WorldGenerator::getInstance()
 {
     static WorldGenerator instance;
     return instance;
 }
 
-
-
-template<typename T>
-void WorldGenerator::addConstructor(char n)
-{
-    TileConstructorPointer ctor = std::make_shared<T, Course::Coordinate,
-        std::shared_ptr<GameEventHandler>,
-        std::shared_ptr<ObjectManager> >;
-    m_ctors.insert(std::make_pair(n, ctor));
-}
 
 
 
@@ -47,6 +37,7 @@ void WorldGenerator::GenerateMap(
                 if (ctor.first == Referencemap[x][y])
                 {
                  tiles.push_back(ctor.second(Course::Coordinate(x, y), eventhandler, objectmanager));
+
                 }
             }
 

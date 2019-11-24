@@ -32,10 +32,12 @@ public:
 
     void setSize(int width, int height);
     void setScale(int scale);
+    void resize();
 
     void drawItem( std::shared_ptr<Course::GameObject> obj);
     void removeItem( std::shared_ptr<Course::GameObject> obj);
     void updateItem( std::shared_ptr<Course::GameObject> obj);
+
     void adjustResources();
     void adjustGameWiew();
     void startGame();

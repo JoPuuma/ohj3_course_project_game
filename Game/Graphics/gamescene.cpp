@@ -19,7 +19,6 @@ GameScene::GameScene(QWidget* parent,
     m_height(7),
     m_scale(77)
 {
-
     resize();
 
 }
@@ -48,13 +47,18 @@ void GameScene::resize()
 
     m_mapBoundRect = itemAt(rect.topLeft(), QTransform());
     m_mapBoundRect->setZValue(-1);
+
 }
+
+
 
 void GameScene::DrawItem(std::shared_ptr<Course::GameObject> obj)
 {
+
     MapItem* nItem = new MapItem(obj, m_scale);
     addItem(nItem);
 }
+
 
 void GameScene::RemoveItem(std::shared_ptr<Course::GameObject> obj)
 {
@@ -85,14 +89,17 @@ bool GameScene::event(QEvent *event)
             if ( pressed == m_mapBoundRect ){
                 qDebug() << "Click on map area.";
             }else{
-                qDebug() << "Opressed.";
+                qDebug() << "ObjID: " <<
+                            static_cast<Game::MapItem*>(pressed)
+                            ->getBoundObject()->ID  << " pressed.";
                 return true;
+
             }
 
         }
     }
 
-    return false;
+    return QGraphicsScene::event(event);
 }
 
 } // namespace Game

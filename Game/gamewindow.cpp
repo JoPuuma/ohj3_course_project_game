@@ -50,20 +50,12 @@ GameWindow::GameWindow(QWidget *parent,
 
    ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
 
-
-
-
-
    Game::WorldGenerator& worldgen = Game::WorldGenerator::getInstance();
-//   worldgen.addConstructor<Game::Rock>('r');
-//   worldgen.addConstructor<Game::Sand>('s');
-//   worldgen.addConstructor<Game::Water>('w');
-//   worldgen.addConstructor<Course::Forest>('f');
-
+   worldgen.addConstructor<Game::Rock>('r');
+   worldgen.addConstructor<Game::Sand>('s');
+   worldgen.addConstructor<Game::Water>('w');
+   worldgen.addConstructor<Course::Forest>('f');
    worldgen.GenerateMap(7,7,Omanager_,handler_);
-
-
-
 
     startGame();
 
@@ -81,6 +73,11 @@ void GameWindow::setSize(int width, int height)
 void GameWindow::setScale(int scale)
 {
     scene_->setScale(scale);
+}
+
+void GameWindow::resize()
+{
+    scene_->resize();
 }
 
 void GameWindow::drawItem(std::shared_ptr<Course::GameObject> obj)

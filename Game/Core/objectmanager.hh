@@ -1,12 +1,18 @@
 #ifndef OBJECTMANAGER_HH
 #define OBJECTMANAGER_HH
 #include "interfaces/iobjectmanager.h"
+#include "Graphics/gamescene.hh"
 
 #include<map>
+#include<memory>
+#include<vector>
+
+
 
 namespace Game {
 
 class Player;
+
 
 class ObjectManager: public Course::iObjectManager
 {
