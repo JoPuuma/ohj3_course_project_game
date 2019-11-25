@@ -54,17 +54,14 @@ public slots:
     void BuildFishingHut();
     */
     void endTurn();
-    bool gameEnd();
+
 
 private:
     Ui::GameWindow *ui;
     std::shared_ptr<Game::GameEventHandler> handler_ = nullptr;
     std::shared_ptr<Game::ObjectManager> Omanager_ = nullptr;
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
-    std::vector<std::shared_ptr<Game::Player>> playerPtrs;
-    std::shared_ptr<Game::Player> inTurn = nullptr;
-    unsigned int round_;
-    int maxRounds_;
+    std::shared_ptr<Game::Player> wInTurn = nullptr;
 };
 
 #endif // GAMEWINDOW_HH

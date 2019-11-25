@@ -24,9 +24,7 @@ GameWindow::GameWindow(QWidget *parent,
     QMainWindow(parent),
     ui(new Ui::GameWindow),
     handler_(handler),
-    scene_(new Game::GameScene(this)),
-    round_(1),
-    maxRounds_(-1)
+    scene_(new Game::GameScene(this))
 {
     Omanager_ = std::make_shared<Game::ObjectManager>();
     handler_ = std::make_shared<Game::GameEventHandler>();
@@ -104,61 +102,39 @@ void GameWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
 
 void GameWindow::adjustResources()
 {
-    ui->lcdMoney->display(inTurn->resources_[Course::MONEY]);
-    ui->lcdFood->display(inTurn->resources_[Course::FOOD]);
-    ui->lcdWood->display(inTurn->resources_[Course::WOOD]);
-    ui->lcdStone->display(inTurn->resources_[Course::STONE]);
-    ui->lcdOre->display(inTurn->resources_[Course::ORE]);
+    ui->lcdMoney->display(wInTurn->resources_[Course::MONEY]);
+    ui->lcdFood->display(wInTurn->resources_[Course::FOOD]);
+    ui->lcdWood->display(wInTurn->resources_[Course::WOOD]);
+    ui->lcdStone->display(wInTurn->resources_[Course::STONE]);
+    ui->lcdOre->display(wInTurn->resources_[Course::ORE]);
 }
 
 void GameWindow::adjustGameWiew()
 {
     adjustResources();
-    ui->labelPlayerName->setText( QString::fromStdString(inTurn->getName()) );
-    ui->roundLabel->setText( QString::number(round_) );
+    ui->labelPlayerName->setText( QString::fromStdString(wInTurn->getName()) );
+    ui->roundLabel->setText( QString::number(handler_->getRound()) );
 }
 
 void GameWindow::startGame()
 {
-    inTurn = playerPtrs[0];
+    wInTurn = handler_->currentPlayer();
     adjustGameWiew();
 }
 
 void GameWindow::receiveData(const std::vector<std::string>& players,
                              const bool& roundLimit,
-                             const int& rounds){
-    // create players
-    std::shared_ptr<Game::Player> previousPlayerPtr = nullptr;
-    for(const std::string &player : players){
-        // new player
-        std::shared_ptr<Game::Player> ptr =
-                    std::make_shared<Game::Player>(Game::Player(player));
-
-        handler_->addPlayer(player,ptr); // to gameEventHandler        
-        playerPtrs.push_back(ptr); // to gameWindow
-
-        if(previousPlayerPtr != nullptr){
-            previousPlayerPtr->addNextPlayer(ptr);
-        }
-        previousPlayerPtr = ptr;
-    }
-    if(roundLimit) maxRounds_ = rounds;
+                             const int& rounds)
+{
+    if(roundLimit) handler_->initializeGame(players,rounds);
+    else handler_->initializeGame(players);
 }
 
 
 void GameWindow::endTurn()
 {
-    if(inTurn->next == nullptr){
-        inTurn = playerPtrs[0];
-        round_++;
-    }else{
-        inTurn = inTurn->next;
-    }
-
+    handler_->endTurn();
+    wInTurn = handler_->currentPlayer();
     adjustGameWiew();
 }
 
-bool GameWindow::gameEnd()
-{
-    return round_ == maxRounds_;  // || all tiles in use
-}

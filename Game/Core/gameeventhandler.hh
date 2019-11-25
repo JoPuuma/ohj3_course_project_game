@@ -40,9 +40,19 @@ public:
 
     void addPlayer(std::string name,
                    std::shared_ptr<Game::Player> ptr);
+    void initializeGame(const std::vector<std::string>& players,
+                        const int& rounds = -1);
+    unsigned int getRound();
+    std::shared_ptr<Game::Player> currentPlayer();
+    void endTurn();
+    bool gameEnd();
 
 private:
     std::map<std::string, std::shared_ptr<Game::Player>> players;
+    std::vector<std::shared_ptr<Game::Player>> playerPtrs = {};
+    std::shared_ptr<Game::Player> eInTurn = nullptr;
+    int round_;
+    int maxRound_;
 };
 
 } // namespace Game
