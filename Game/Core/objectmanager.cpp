@@ -8,8 +8,9 @@
 namespace Game {
 
 
-ObjectManager::ObjectManager():
-    Course::iObjectManager()
+ObjectManager::ObjectManager(std::shared_ptr<Game::GameScene> scene):
+    Course::iObjectManager(),
+    gameScene(scene)
 {
 
 }
@@ -18,8 +19,8 @@ void ObjectManager::addTiles(const std::vector<std::shared_ptr<Course::TileBase>
 {
 
     for (auto tile : tiles) {
-        GameScene drawer;
-        drawer.DrawItem(tile);
+
+        gameScene->DrawItem(tile);
     }
 }
 

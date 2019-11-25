@@ -17,7 +17,7 @@ class Player;
 class ObjectManager: public Course::iObjectManager
 {
 public:
-    ObjectManager();
+    ObjectManager(std::shared_ptr<Game::GameScene> scene);
 
     /**
      * @brief Adds new tiles to the ObjectManager.
@@ -57,6 +57,7 @@ public:
 
 private:
     std::map<std::string, std::shared_ptr<Game::Player>> players;
+    std::shared_ptr<Game::GameScene> gameScene = nullptr;
 
 };
 

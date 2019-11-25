@@ -26,7 +26,7 @@ GameWindow::GameWindow(QWidget *parent,
     handler_(handler),
     scene_(new Game::GameScene(this))
 {
-    Omanager_ = std::make_shared<Game::ObjectManager>();
+    Omanager_ = std::make_shared<Game::ObjectManager>(scene_);
     handler_ = std::make_shared<Game::GameEventHandler>();
 
 
