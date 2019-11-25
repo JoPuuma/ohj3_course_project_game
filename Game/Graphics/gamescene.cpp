@@ -39,8 +39,7 @@ void GameScene::setScale(int scale)
 
 void GameScene::resize()
 {
-    QRect rect = QRect( m_width * m_scale / - 2, m_height * m_scale / -2,
-                        m_width * m_scale - 1, m_height * m_scale - 1 );
+    QRect rect = QRect( 0, 0, m_width * m_scale, m_height * m_scale);
 
     addRect(rect, QPen(Qt::black));
     setSceneRect(rect);
@@ -70,6 +69,11 @@ void GameScene::UpdateItem(std::shared_ptr<Course::GameObject> obj)
 
 }
 
+std::shared_ptr<Course::GameObject> GameScene::getCurrentObject()
+{
+    return currentObject;
+}
+
 bool GameScene::event(QEvent *event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress)
@@ -92,14 +96,15 @@ bool GameScene::event(QEvent *event)
                 qDebug() << "ObjID: " <<
                             static_cast<Game::MapItem*>(pressed)
                             ->getBoundObject()->ID  << " pressed.";
+                currentObject = static_cast<Game::MapItem*>(pressed)->getBoundObject();
                 return true;
-
             }
 
         }
     }
 
-    return QGraphicsScene::event(event);
+//    return QGraphicsScene::event(event);
+    return false;
 }
 
 } // namespace Game

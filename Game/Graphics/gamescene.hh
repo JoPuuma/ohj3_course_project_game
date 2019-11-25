@@ -36,6 +36,8 @@ public:
     void RemoveItem( std::shared_ptr<Course::GameObject> obj);
     void UpdateItem( std::shared_ptr<Course::GameObject> obj);
 
+    std::shared_ptr<Course::GameObject>  getCurrentObject();
+
     virtual bool event(QEvent* event) override;
 
 private:
@@ -43,6 +45,7 @@ private:
     int  m_width;
     int m_height;
     int m_scale;
+    std::shared_ptr<Course::GameObject> currentObject = nullptr;
 };
 
 } // namespace Game

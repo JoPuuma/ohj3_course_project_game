@@ -8,11 +8,14 @@
 #include "core/playerbase.h"
 
 #include "Core/worldgenerator.hh"
-#include"core/worldgenerator.h"
 #include "Tiles/rock.hh"
 #include "Tiles/sand.hh"
 #include "Tiles/water.hh"
 #include "tiles/forest.h"
+#include "Buildings/cottage.hh"
+#include "Buildings/fishinghut.hh"
+#include "Buildings/mine.hh"
+#include "tiles/tilebase.h"
 
 #include <QDebug>
 #include <QString>
@@ -38,6 +41,8 @@ GameWindow::GameWindow(QWidget *parent,
     connect(&d, &Dialog::sendData,this, &GameWindow::receiveData);
     connect(ui->buttonEndTurn, &QPushButton::clicked,
             this, &GameWindow::endTurn);
+    connect(ui->buttonBuild, &QPushButton::clicked,
+            this, &GameWindow::build);
 //    connect(ui->buttonCottage, &QPushButton::clicked,
 //            this, &GameWindow::BuildCottage);
 
@@ -49,6 +54,9 @@ GameWindow::GameWindow(QWidget *parent,
     ui->lcdStone->setPalette(Qt::black);
     ui->lcdOre->setPalette(Qt::black);
 
+    ui->comboBox->setItemData(0,"Cottage");
+    //ui->comboBox->setItemData(1,Game::Fishinghut);
+    //ui->comboBox->setItemData(2,Game::Mine);
 
 
    Game::GameScene* sgs_rawptr = scene_.get();
@@ -63,7 +71,6 @@ GameWindow::GameWindow(QWidget *parent,
    worldgen.GenerateMap(7,7,Omanager_,handler_);
 
     startGame();
-
 }
 
 GameWindow::~GameWindow(){
@@ -129,6 +136,15 @@ void GameWindow::receiveData(const std::vector<std::string>& players,
 {
     if(roundLimit) handler_->initializeGame(players,rounds);
     else handler_->initializeGame(players);
+}
+
+void GameWindow::build()
+{
+    Omanager_->createBuilding(scene_->getCurrentObject(),
+                                                 wInTurn,
+                                               Omanager_,
+                                                handler_,
+                             ui->comboBox->currentData().toString().toStdString());
 }
 
 

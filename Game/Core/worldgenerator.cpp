@@ -34,7 +34,7 @@ void WorldGenerator::GenerateMap(
         {
             for (const auto&ctor : m_ctors)
             {
-                if (ctor.first == Referencemap[x][y])
+                if (ctor.first == Referencemap[y][x])
                 {
                  tiles.push_back(ctor.second(Course::Coordinate(x, y), eventhandler, objectmanager));
 

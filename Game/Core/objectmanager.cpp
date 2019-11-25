@@ -17,16 +17,19 @@ ObjectManager::ObjectManager(std::shared_ptr<Game::GameScene> scene):
 
 void ObjectManager::addTiles(const std::vector<std::shared_ptr<Course::TileBase> > &tiles)
 {
-
+    tiles_ = tiles;
     for (auto tile : tiles) {
-
         gameScene->DrawItem(tile);
     }
 }
 
 std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::ObjectId &id)
 {
-
+    for(auto& tile : tiles_){
+        if(tile->ID == id){
+            return tile;
+        }
+    }
 }
 
 std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getTiles(const std::vector<Course::Coordinate> &coordinates)
@@ -41,6 +44,21 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinat
 
 void ObjectManager::addPlayer(std::string name, std::shared_ptr<Game::Player> ptr){
     players[name] = ptr;
+}
+void ObjectManager::createBuilding(std::shared_ptr<Course::GameObject> tile,
+                                   std::shared_ptr<Player> player,
+                                   std::shared_ptr<ObjectManager> &objectmanager,
+                                   std::shared_ptr<GameEventHandler> &eventhandler,
+                                   std::string buildingType)
+{
+    std::shared_ptr<Game::Cottage> buildingPtr =
+                                   std::make_shared<Game::Cottage>(eventhandler,
+                                                        objectmanager,
+                                                        player);
+
+    std::shared_ptr<Course::TileBase> ptr =
+                              std::dynamic_pointer_cast<Course::TileBase>(tile);
+    ptr->addBuilding(buildingPtr);
 }
 
 }//namespace

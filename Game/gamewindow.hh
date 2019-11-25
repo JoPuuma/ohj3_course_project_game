@@ -53,6 +53,7 @@ public slots:
     void BuildMine();
     void BuildFishingHut();
     */
+    void build();
     void endTurn();
 
 
@@ -62,6 +63,7 @@ private:
     std::shared_ptr<Game::ObjectManager> Omanager_ = nullptr;
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
     std::shared_ptr<Game::Player> wInTurn = nullptr;
+    //std::shared_ptr<Course::TileBase> currentTile = nullptr;
 };
 
 #endif // GAMEWINDOW_HH
