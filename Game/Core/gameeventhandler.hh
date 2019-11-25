@@ -12,6 +12,7 @@ namespace Game{
 class GameEventHandler: public Course::iGameEventHandler
 {
 public:
+
     GameEventHandler();
     /**
      * @brief Modify Player's resource. Can be used to both sum or subtract.

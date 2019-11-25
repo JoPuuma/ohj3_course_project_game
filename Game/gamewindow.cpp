@@ -34,7 +34,7 @@ GameWindow::GameWindow(QWidget *parent,
 
     //start dialog
     Dialog d;
-
+    connect(&d, &Dialog::rejected, this, &GameWindow::close);
     connect(&d, &Dialog::sendData,this, &GameWindow::receiveData);
     connect(ui->buttonEndTurn, &QPushButton::clicked,
             this, &GameWindow::endTurn);
@@ -118,6 +118,7 @@ void GameWindow::adjustGameWiew()
 
 void GameWindow::startGame()
 {
+
     wInTurn = handler_->currentPlayer();
     adjustGameWiew();
 }
