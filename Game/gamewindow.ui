@@ -45,7 +45,7 @@
      </font>
     </property>
     <property name="text">
-     <string>2</string>
+     <string>1</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -244,9 +244,9 @@
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>80</y>
+      <y>70</y>
       <width>81</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -258,7 +258,7 @@
      <string>money</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLCDNumber" name="lcdOre">
@@ -399,8 +399,8 @@
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>420</y>
-      <width>71</width>
+      <y>440</y>
+      <width>79</width>
       <height>28</height>
      </rect>
     </property>
@@ -429,7 +429,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>380</y>
+      <y>400</y>
       <width>79</width>
       <height>28</height>
      </rect>
@@ -526,6 +526,136 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="text">
      <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>400</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>food</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>420</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>wood</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>440</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>stone</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>460</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ore</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>380</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>money</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMoneyCost">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>380</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;cost&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelFoodCost">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>400</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;cost&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelWoodCost">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>420</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;cost&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelStoneCost">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>440</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;cost&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelOreCost">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>460</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;cost&gt;</string>
     </property>
    </widget>
   </widget>

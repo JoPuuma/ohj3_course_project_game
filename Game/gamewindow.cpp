@@ -1,13 +1,14 @@
 #include "gamewindow.hh"
 #include "ui_gamewindow.h"
 #include "startdialog.hh"
+
+#include "core/playerbase.h"
 #include "Core/gameeventhandler.hh"
 #include "Core/objectmanager.hh"
 #include "Core/player.hh"
-
-#include "core/playerbase.h"
-
 #include "Core/worldgenerator.hh"
+#include "Core/resourcemaps.hh"
+
 #include "Tiles/rock.hh"
 #include "Tiles/sand.hh"
 #include "Tiles/water.hh"
@@ -20,7 +21,6 @@
 #include <QDebug>
 #include <QString>
 
-//const using MAX_ROUNDS_NOT_USED = -1;
 
 GameWindow::GameWindow(QWidget *parent,
                        std::shared_ptr<Game::GameEventHandler> handler) :
@@ -56,6 +56,7 @@ GameWindow::GameWindow(QWidget *parent,
             this, &GameWindow::currentWorkerTo4);
     connect(ui->buttonWorker5, &QPushButton::clicked,
             this, &GameWindow::currentWorkerTo5);
+
 
 
 
@@ -139,7 +140,6 @@ void GameWindow::adjustGameWiew()
 
 void GameWindow::startGame()
 {
-
     wInTurn = handler_->currentPlayer();
     adjustGameWiew();
 }
@@ -154,7 +154,7 @@ void GameWindow::receiveData(const std::vector<std::string>& players,
 
 void GameWindow::currentWorkerTo1()
 {
-    currentWorker = wInTurn->workers[1];
+    currentWorker = wInTurn->workers[1];  
 }
 
 void GameWindow::currentWorkerTo2()
@@ -187,9 +187,8 @@ void GameWindow::build()
     adjustResources();
 }
 
-void GameWindow::addWorker(int& n)
+void GameWindow::addWorker()
 {
-    qDebug()<<n;
     Omanager_->addWorker(scene_->getCurrentObject(),
                          wInTurn,
                          3);
@@ -201,5 +200,20 @@ void GameWindow::endTurn()
     handler_->endTurn();
     wInTurn = handler_->currentPlayer();
     adjustGameWiew();
+}
+
+void GameWindow::buildChanged()
+{
+    Course::ResourceMap CurretMap = {};
+    std::string buildT = ui->comboBox->currentData().toString().toStdString();
+    if(buildT == "Cottage"){
+        CurretMap = Game::ConstResourceMap::COTTAGE_BUILD_COST;
+    }
+    else if(buildT == "FishingHut"){
+        CurretMap = Game::ConstResourceMap::FISHINGHUT_BUILD_COST;
+    }
+    else if(buildT == "Mine"){
+        CurretMap = Game::ConstResourceMap::MINE_BUILD_COST;
+    }
 }
 

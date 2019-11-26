@@ -42,6 +42,7 @@ public:
     void adjustResources();
     void adjustGameWiew();
     void startGame();
+    void buildChanged();
 
 
 
@@ -55,7 +56,7 @@ public slots:
     void currentWorkerTo5();
 
     void build();
-    void addWorker(int& n);
+    void addWorker();
     void endTurn();
 
 
