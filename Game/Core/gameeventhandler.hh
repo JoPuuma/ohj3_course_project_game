@@ -1,13 +1,17 @@
 #ifndef GAMEEVENTHANDLER_HH
 #define GAMEEVENTHANDLER_HH
 #include <map>
+#include <memory>
 
 #include "interfaces/igameeventhandler.h"
 #include "player.hh"
+#include "Core/objectmanager.hh"
 #include "core/basicresources.h"
 
 
 namespace Game{
+
+class ObjectManager;
 
 class GameEventHandler: public Course::iGameEventHandler
 {
@@ -41,7 +45,13 @@ public:
 
     void addPlayer(std::string name,
                    std::shared_ptr<Game::Player> ptr);
+
+    void addBasicWorkers(std::shared_ptr<Game::GameEventHandler>& eventhandler,
+                         std::shared_ptr<Game::ObjectManager>& objectmanager);
+
     void initializeGame(const std::vector<std::string>& players,
+                        std::shared_ptr<Game::GameEventHandler>& eventhandler,
+                        std::shared_ptr<Game::ObjectManager>& objectmanager,
                         const int& rounds = -1);
     unsigned int getRound();
     std::shared_ptr<Game::Player> currentPlayer();

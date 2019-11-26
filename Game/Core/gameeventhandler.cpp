@@ -2,6 +2,8 @@
 #include "interfaces/igameeventhandler.h"
 #include "core/basicresources.h"
 #include "Core/player.hh"
+#include "workers/basicworker.h"
+
 #include<memory>
 
 namespace Game{
@@ -39,7 +41,23 @@ void GameEventHandler::addPlayer(std::string name,
     players[name] = ptr;
 }
 
+void GameEventHandler::addBasicWorkers(std::shared_ptr<Game::GameEventHandler>& eventhandler,
+                                       std::shared_ptr<Game::ObjectManager>& objectmanager)
+{
+    for (const auto& player : playerPtrs) {
+
+        for (unsigned int i = 1; i < 6; ++i) {
+
+            player->workers[i] = std::make_shared<Course::BasicWorker>(eventhandler,
+                                                                       objectmanager,
+                                                                       player);
+        }
+    }
+}
+
 void GameEventHandler::initializeGame(const std::vector<std::string>& players,
+                                      std::shared_ptr<Game::GameEventHandler>& eventhandler,
+                                      std::shared_ptr<Game::ObjectManager>& objectmanager,
                                       const int& rounds)
 {
     // create players
@@ -47,7 +65,7 @@ void GameEventHandler::initializeGame(const std::vector<std::string>& players,
     for(const std::string &player : players){
         // new player
         std::shared_ptr<Game::Player> ptr =
-                    std::make_shared<Game::Player>(Game::Player(player));
+                    std::make_shared<Game::Player>(Game::Player(player));                   
 
         addPlayer(player,ptr); // TARPEELLINEN?
         playerPtrs.push_back(ptr);
@@ -58,6 +76,7 @@ void GameEventHandler::initializeGame(const std::vector<std::string>& players,
         previousPlayerPtr = ptr;
     }
     eInTurn = playerPtrs[0];
+    addBasicWorkers(eventhandler,objectmanager);
 
     if(rounds != MAX_ROUND_OFF) maxRound_ = rounds;
 }

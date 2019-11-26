@@ -99,7 +99,6 @@ void ObjectManager::addWorker(std::shared_ptr<Course::GameObject> tile,
                               std::string WorkerType)
 {
 
-
 }
 
 }//namespace

@@ -18,6 +18,7 @@
 namespace Game {
 
 class Player;
+class GameEventHandler;
 
 
 class ObjectManager: public Course::iObjectManager
@@ -73,6 +74,8 @@ public:
                    std::shared_ptr<Game::ObjectManager>& objectmanager,
                    std::shared_ptr<Game::GameEventHandler>& eventhandler,
                    std::string WorkerType);
+
+
 
 private:
     std::map<std::string, std::shared_ptr<Game::Player>> players;

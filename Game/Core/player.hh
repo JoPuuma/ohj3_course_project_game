@@ -3,6 +3,9 @@
 
 #include "core/playerbase.h"
 #include "core/basicresources.h"
+#include "workers/workerbase.h"
+
+#include <map>
 
 namespace Game{
 
@@ -24,6 +27,7 @@ public:
 
     Course::ResourceMap resources_;
     std::shared_ptr<Game::Player> next = nullptr;
+    std::map<int,std::shared_ptr<Course::WorkerBase>> workers;
 
 private:
 
