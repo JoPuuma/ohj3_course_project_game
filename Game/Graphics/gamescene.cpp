@@ -96,6 +96,7 @@ bool GameScene::event(QEvent *event)
                 qDebug() << "ObjID: " <<
                             static_cast<Game::MapItem*>(pressed)
                             ->getBoundObject()->ID  << " pressed.";
+
                 currentObject = static_cast<Game::MapItem*>(pressed)->getBoundObject();
                 return true;
             }

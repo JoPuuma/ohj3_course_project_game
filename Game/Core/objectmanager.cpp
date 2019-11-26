@@ -45,19 +45,61 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinat
 void ObjectManager::addPlayer(std::string name, std::shared_ptr<Game::Player> ptr){
     players[name] = ptr;
 }
+
 void ObjectManager::createBuilding(std::shared_ptr<Course::GameObject> tile,
-                                   std::shared_ptr<Player> player,
+                                   std::shared_ptr<Player>& player,
                                    std::shared_ptr<ObjectManager> &objectmanager,
                                    std::shared_ptr<GameEventHandler> &eventhandler,
                                    std::string buildingType)
 {
-    std::shared_ptr<Game::Cottage> buildingPtr =
-                                   std::make_shared<Game::Cottage>(eventhandler,
-                                                        objectmanager,
-                                                        player);
+    std::shared_ptr<Course::BuildingBase> buildingPtr = nullptr;
+
+    if (buildingType == "Cottage") {
+
+        std::shared_ptr<Game::Cottage> buildingPtr =
+                                       std::make_shared<Game::Cottage>(eventhandler,
+                                                            objectmanager,
+                                                            player);
+    }
+    else if (buildingType == "FishingHut") {
+
+        std::shared_ptr<Game::Fishinghut> buildingPtr =
+                                       std::make_shared<Game::Fishinghut>(eventhandler,
+                                                            objectmanager,
+                                                            player);
+    }
+    else if (buildingType == "Mine") {
+
+        std::shared_ptr<Game::Mine> buildingPtr =
+                                       std::make_shared<Game::Mine>(eventhandler,
+                                                            objectmanager,
+                                                            player);
+    }
+    else if (buildingType == "HQ") {
+
+        std::shared_ptr<Course::HeadQuarters> buildingPtr =
+                                       std::make_shared<Course::HeadQuarters>(eventhandler,
+                                                            objectmanager,
+                                                            player);
+    }
+
+    if (eventhandler->modifyResources(player,buildingPtr->BUILD_COST)) {
+
+         std::dynamic_pointer_cast<Course::TileBase>(tile)->addBuilding(buildingPtr);
+    }
+
+}
 
 
-    std::dynamic_pointer_cast<Course::TileBase>(tile)->addBuilding(buildingPtr);
+
+void ObjectManager::addWorker(std::shared_ptr<Course::GameObject> tile,
+                              std::shared_ptr<Player> player,
+                              std::shared_ptr<ObjectManager> &objectmanager,
+                              std::shared_ptr<GameEventHandler> &eventhandler,
+                              std::string WorkerType)
+{
+
+
 }
 
 }//namespace

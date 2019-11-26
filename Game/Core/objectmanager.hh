@@ -7,6 +7,8 @@
 #include "Buildings/cottage.hh"
 #include "Buildings/fishinghut.hh"
 #include "Buildings/mine.hh"
+#include "buildings/headquarters.h"
+
 #include<map>
 #include<memory>
 #include<vector>
@@ -57,12 +59,20 @@ public:
     virtual std::vector<std::shared_ptr<Course::TileBase>> getTiles(
             const std::vector<Course::Coordinate>& coordinates);
 
+
     void addPlayer(std::string name,std::shared_ptr<Game::Player> ptr);
+
     void createBuilding(std::shared_ptr<Course::GameObject> tile,
-                        std::shared_ptr<Game::Player> player,
+                        std::shared_ptr<Game::Player>& player,
                         std::shared_ptr<Game::ObjectManager>& objectmanager,
                         std::shared_ptr<Game::GameEventHandler>& eventhandler,
                         std::string buildingType);
+
+    void addWorker(std::shared_ptr<Course::GameObject> tile,
+                   std::shared_ptr<Game::Player> player,
+                   std::shared_ptr<Game::ObjectManager>& objectmanager,
+                   std::shared_ptr<Game::GameEventHandler>& eventhandler,
+                   std::string WorkerType);
 
 private:
     std::map<std::string, std::shared_ptr<Game::Player>> players;
