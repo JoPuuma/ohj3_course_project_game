@@ -1,6 +1,7 @@
 #include "gameeventhandler.hh"
 #include "interfaces/igameeventhandler.h"
 #include "core/basicresources.h"
+#include "Core/player.hh"
 #include<memory>
 
 namespace Game{
@@ -24,7 +25,13 @@ bool GameEventHandler::modifyResource(
 bool GameEventHandler::modifyResources(
         std::shared_ptr<Course::PlayerBase> player, Course::ResourceMap resources)
 {
-
+    std::shared_ptr<Game::Player> p = std::dynamic_pointer_cast<Game::Player>(player);
+    Course::ResourceMap newResources = Course::mergeResourceMaps(p->resources_, resources);
+    for(const auto& resource : newResources){
+        if(resource.second < 0 ) return false;
+    }
+    p->resources_ = newResources;
+    return true;
 }
 
 void GameEventHandler::addPlayer(std::string name,

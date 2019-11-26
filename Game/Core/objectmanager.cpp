@@ -2,7 +2,7 @@
 
 #include "gamewindow.hh"
 #include "graphics/simplegamescene.h"
-
+#include "Core/player.hh"
 
 
 namespace Game {
@@ -56,9 +56,8 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::GameObject> tile,
                                                         objectmanager,
                                                         player);
 
-    std::shared_ptr<Course::TileBase> ptr =
-                              std::dynamic_pointer_cast<Course::TileBase>(tile);
-    ptr->addBuilding(buildingPtr);
+
+    std::dynamic_pointer_cast<Course::TileBase>(tile)->addBuilding(buildingPtr);
 }
 
 }//namespace

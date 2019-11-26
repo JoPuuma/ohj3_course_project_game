@@ -144,7 +144,7 @@ void GameWindow::build()
                                                  wInTurn,
                                                Omanager_,
                                                 handler_,
-                             ui->comboBox->currentData().toString().toStdString());
+    ui->comboBox->currentData().toString().toStdString());
 }
 
 
