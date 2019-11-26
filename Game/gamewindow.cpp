@@ -134,8 +134,8 @@ void GameWindow::receiveData(const std::vector<std::string>& players,
                              const bool& roundLimit,
                              const int& rounds)
 {
-    if(roundLimit) handler_->initializeGame(players,rounds);
-    else handler_->initializeGame(players);
+    if(roundLimit) handler_->initializeGame(players, handler_, Omanager_, rounds);
+    else handler_->initializeGame(players, handler_, Omanager_);
 }
 
 void GameWindow::build()
