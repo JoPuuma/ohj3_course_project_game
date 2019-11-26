@@ -190,8 +190,7 @@ void GameWindow::build()
 void GameWindow::addWorker()
 {
     Omanager_->addWorker(scene_->getCurrentObject(),
-                         wInTurn,
-                         3);
+                         currentWorker);
 }
 
 
