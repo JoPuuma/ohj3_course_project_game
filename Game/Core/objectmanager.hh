@@ -70,10 +70,8 @@ public:
                         std::string buildingType);
 
     void addWorker(std::shared_ptr<Course::GameObject> tile,
-                   std::shared_ptr<Game::Player> player,
-                   std::shared_ptr<Game::ObjectManager>& objectmanager,
-                   std::shared_ptr<Game::GameEventHandler>& eventhandler,
-                   std::string WorkerType);
+                   std::shared_ptr<Game::Player>& player,
+                   int workerNum);
 
 
 

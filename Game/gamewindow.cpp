@@ -43,8 +43,6 @@ GameWindow::GameWindow(QWidget *parent,
             this, &GameWindow::endTurn);
     connect(ui->buttonBuild, &QPushButton::clicked,
             this, &GameWindow::build);
-//    connect(ui->buttonCottage, &QPushButton::clicked,
-//            this, &GameWindow::BuildCottage);
 
     d.exec();
 
@@ -52,7 +50,7 @@ GameWindow::GameWindow(QWidget *parent,
     ui->lcdFood->setPalette(Qt::black);
     ui->lcdWood->setPalette(Qt::black);
     ui->lcdStone->setPalette(Qt::black);
-    ui->lcdOre->setPalette(Qt::black);
+    ui->lcdOre->setPalette(Qt::black);   
 
     ui->comboBox->setItemData(0,"Cottage");
     ui->comboBox->setItemData(1,"FishingHut");
@@ -152,9 +150,7 @@ void GameWindow::addWorker()
 {
     Omanager_->addWorker(scene_->getCurrentObject(),
                          wInTurn,
-                         Omanager_,
-                         handler_,
-                         "???");
+                         3);
 }
 
 

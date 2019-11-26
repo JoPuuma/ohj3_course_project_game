@@ -89,12 +89,12 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::GameObject> tile,
 
 
 void ObjectManager::addWorker(std::shared_ptr<Course::GameObject> tile,
-                              std::shared_ptr<Player> player,
-                              std::shared_ptr<ObjectManager> &objectmanager,
-                              std::shared_ptr<GameEventHandler> &eventhandler,
-                              std::string WorkerType)
+                              std::shared_ptr<Game::Player>& player,
+                              int workerNum)
 {
+    std::shared_ptr<Course::WorkerBase> worker = player->workers[workerNum];
 
+    std::dynamic_pointer_cast<Course::TileBase>(tile)->addWorker(worker);
 }
 
 }//namespace
