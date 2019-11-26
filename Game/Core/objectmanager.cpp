@@ -89,9 +89,10 @@ void ObjectManager::createHQ(std::shared_ptr<Course::GameObject> tile,
     std::shared_ptr<Course::BuildingBase> buildinPtr =
                                         std::make_shared<Course::HeadQuarters>(eventhandler,
                                                                                objectmanager,
-                                                                               player);
+                                                                                 player);
     std::dynamic_pointer_cast<Course::TileBase>(tile)->addBuilding(buildinPtr);
     tile->setOwner(player);
+    player->addObject(buildinPtr);
 }
 
 
