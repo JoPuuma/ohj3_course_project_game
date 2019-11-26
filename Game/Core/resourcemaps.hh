@@ -45,9 +45,9 @@ const Course::ResourceMap SAND_BP = {
 
 // building cottage
 const Course::ResourceMap COTTAGE_BUILD_COST = {
-    {Course::BasicResource::MONEY, 100},
-    {Course::BasicResource::FOOD, 50},
-    {Course::BasicResource::WOOD, 75},
+    {Course::BasicResource::MONEY, -100},
+    {Course::BasicResource::FOOD, -50},
+    {Course::BasicResource::WOOD, -75},
 };
 const Course::ResourceMap COTTAGE_PRODUCTION = {
     {Course::BasicResource::MONEY, 20},
@@ -56,11 +56,11 @@ const Course::ResourceMap COTTAGE_PRODUCTION = {
 
 // building fishinghut
 const Course::ResourceMap FISHINGHUT_BUILD_COST = {
-    {Course::BasicResource::MONEY, 75},
-    {Course::BasicResource::FOOD, 30},
-    {Course::BasicResource::WOOD, 25},
-    {Course::BasicResource::STONE, 15},
-    {Course::BasicResource::ORE, 10},
+    {Course::BasicResource::MONEY, -75},
+    {Course::BasicResource::FOOD, -30},
+    {Course::BasicResource::WOOD, -25},
+    {Course::BasicResource::STONE, -15},
+    {Course::BasicResource::ORE, -10},
 };
 const Course::ResourceMap FISHINGHUT_PRODUCTION = {
     {Course::BasicResource::MONEY, 10},
@@ -70,10 +70,10 @@ const Course::ResourceMap FISHINGHUT_PRODUCTION = {
 
 // building mine
 const Course::ResourceMap MINE_BUILD_COST = {
-    {Course::BasicResource::MONEY, 100},
-    {Course::BasicResource::FOOD, 30},
-    {Course::BasicResource::WOOD, 10},
-    {Course::BasicResource::STONE, 10},
+    {Course::BasicResource::MONEY, -100},
+    {Course::BasicResource::FOOD, -30},
+    {Course::BasicResource::WOOD, -10},
+    {Course::BasicResource::STONE, -10},
 
 };
 const Course::ResourceMap MINE_PRODUCTION = {
@@ -92,8 +92,8 @@ const Course::ResourceMapDouble MINER_WORKER_EFFICIENCY = {
 };
 
 const Course::ResourceMap MINER_RECRUITMENT_COST = {
-    {Course::BasicResource::MONEY, 25},
-    {Course::BasicResource::FOOD, 15},
+    {Course::BasicResource::MONEY, -25},
+    {Course::BasicResource::FOOD, -15},
 };
 
 // Worker - Fisher
@@ -106,8 +106,8 @@ const Course::ResourceMapDouble FISHER_WORKER_EFFICIENCY = {
 };
 
 const Course::ResourceMap FISHER_RECRUITMENT_COST = {
-    {Course::BasicResource::MONEY, 30},
-    {Course::BasicResource::FOOD, 10},
+    {Course::BasicResource::MONEY, -30},
+    {Course::BasicResource::FOOD, -10},
 };
 
 // Worker - Timberjack
@@ -120,12 +120,12 @@ const Course::ResourceMapDouble TIMBERJACK_WORKER_EFFICIENCY = {
 };
 
 const Course::ResourceMap TIMBERJACK_RECRUITMENT_COST = {
-    {Course::BasicResource::MONEY, 20},
-    {Course::BasicResource::FOOD, 15},
+    {Course::BasicResource::MONEY, -20},
+    {Course::BasicResource::FOOD, -15},
 };
 
-}
-}
+} // namespace ConstResourceMap
+} // namespace Game
 
 
 

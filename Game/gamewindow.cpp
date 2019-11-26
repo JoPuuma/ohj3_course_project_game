@@ -145,7 +145,7 @@ void GameWindow::build()
                                                Omanager_,
                                                 handler_,
     ui->comboBox->currentData().toString().toStdString());
-
+    adjustResources();
 }
 
 void GameWindow::addWorker()

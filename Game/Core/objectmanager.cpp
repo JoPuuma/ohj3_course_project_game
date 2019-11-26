@@ -56,31 +56,27 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::GameObject> tile,
 
     if (buildingType == "Cottage") {
 
-        std::shared_ptr<Game::Cottage> buildingPtr =
-                                       std::make_shared<Game::Cottage>(eventhandler,
-                                                            objectmanager,
-                                                            player);
+        buildingPtr = std::make_shared<Game::Cottage>(eventhandler,
+                                                      objectmanager,
+                                                      player);
     }
     else if (buildingType == "FishingHut") {
+        buildingPtr = std::make_shared<Game::Fishinghut>(eventhandler,
+                                                         objectmanager,
+                                                         player);
 
-        std::shared_ptr<Game::Fishinghut> buildingPtr =
-                                       std::make_shared<Game::Fishinghut>(eventhandler,
-                                                            objectmanager,
-                                                            player);
     }
     else if (buildingType == "Mine") {
+        buildingPtr = std::make_shared<Game::Mine>(eventhandler,
+                                                   objectmanager,
+                                                   player);
 
-        std::shared_ptr<Game::Mine> buildingPtr =
-                                       std::make_shared<Game::Mine>(eventhandler,
-                                                            objectmanager,
-                                                            player);
     }
     else if (buildingType == "HQ") {
+        buildingPtr = std::make_shared<Course::HeadQuarters>(eventhandler,
+                                                 objectmanager,
+                                                 player);
 
-        std::shared_ptr<Course::HeadQuarters> buildingPtr =
-                                       std::make_shared<Course::HeadQuarters>(eventhandler,
-                                                            objectmanager,
-                                                            player);
     }
 
     if (eventhandler->modifyResources(player,buildingPtr->BUILD_COST)) {
