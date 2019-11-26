@@ -55,8 +55,8 @@ GameWindow::GameWindow(QWidget *parent,
     ui->lcdOre->setPalette(Qt::black);
 
     ui->comboBox->setItemData(0,"Cottage");
-    //ui->comboBox->setItemData(1,Game::Fishinghut);
-    //ui->comboBox->setItemData(2,Game::Mine);
+    ui->comboBox->setItemData(1,"FishingHut");
+    ui->comboBox->setItemData(2,"Mine");
 
 
    Game::GameScene* sgs_rawptr = scene_.get();
@@ -144,7 +144,16 @@ void GameWindow::build()
                                                  wInTurn,
                                                Omanager_,
                                                 handler_,
-                             ui->comboBox->currentData().toString().toStdString());
+   ui->comboBox->currentData().toString().toStdString());
+}
+
+void GameWindow::addWorker()
+{
+    Omanager_->addWorker(scene_->getCurrentObject(),
+                         wInTurn,
+                         Omanager_,
+                         handler_,
+                         "???");
 }
 
 

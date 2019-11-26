@@ -14,6 +14,7 @@
 #include "Core/objectmanager.hh"
 #include "Graphics/gamescene.hh"
 
+
 namespace Ui {
 class GameWindow;
 }
@@ -54,6 +55,7 @@ public slots:
     void BuildFishingHut();
     */
     void build();
+    void addWorker();
     void endTurn();
 
 
@@ -66,4 +68,7 @@ private:
     //std::shared_ptr<Course::TileBase> currentTile = nullptr;
 };
 
+
 #endif // GAMEWINDOW_HH
+
+
