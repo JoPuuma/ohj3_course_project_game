@@ -3,9 +3,6 @@
 #include "mapwindow.hh"
 #include <algorithm>
 #include <cctype>
-// poista
-#include <iostream>
-// tämä
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),

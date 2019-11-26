@@ -24,7 +24,8 @@ SOURCES += \
     Core/objectmanager.cpp \
     Core/player.cpp \
     Graphics/gamescene.cpp \
-    Graphics/mapitem.cpp
+    Graphics/mapitem.cpp \
+    traindialog.cpp
 
 
 HEADERS += \
@@ -46,7 +47,8 @@ HEADERS += \
     Core/objectmanager.hh \
     Core/player.hh \
     Graphics/gamescene.hh \
-    Graphics/mapitem.hh
+    Graphics/mapitem.hh \
+    traindialog.hh
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -77,4 +79,5 @@ else:unix: PRE_TARGETDEPS += \
 FORMS += \
     mapwindow.ui \
     startdialog.ui \
-    gamewindow.ui
+    gamewindow.ui \
+    traindialog.ui

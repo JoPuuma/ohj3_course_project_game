@@ -69,9 +69,16 @@ public:
                         std::shared_ptr<Game::GameEventHandler>& eventhandler,
                         std::string buildingType);
 
+    void createHQ(std::shared_ptr<Course::GameObject> tile,
+                  std::shared_ptr<Game::Player>& player,
+                  std::shared_ptr<Game::ObjectManager>& objectmanager,
+                  std::shared_ptr<Game::GameEventHandler>& eventhandler);
+
     void addWorker(std::shared_ptr<Course::GameObject> tile,
-                   std::shared_ptr<Game::Player>& player,
-                   int workerNum);
+                   std::shared_ptr<Course::WorkerBase>& worker);
+
+    void trainWorker(std::shared_ptr<Game::Player>& player,
+                     std::shared_ptr<Course::WorkerBase>& worker);
 
 
 

@@ -187,12 +187,11 @@ void GameWindow::build()
     adjustResources();
 }
 
-void GameWindow::addWorker(int& n)
+void GameWindow::addWorker()
 {
-    qDebug()<<n;
+
     Omanager_->addWorker(scene_->getCurrentObject(),
-                         wInTurn,
-                         3);
+                         currentWorker);
 }
 
 
