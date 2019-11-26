@@ -43,8 +43,8 @@ GameWindow::GameWindow(QWidget *parent,
             this, &GameWindow::endTurn);
     connect(ui->buttonBuild, &QPushButton::clicked,
             this, &GameWindow::build);
-//    connect(ui->buttonCottage, &QPushButton::clicked,
-//            this, &GameWindow::BuildCottage);
+    connect(ui->buttonWorker1, &QPushButton::clicked,
+            this, &GameWindow::currentWorkerTo1);
 
     d.exec();
 
@@ -138,6 +138,31 @@ void GameWindow::receiveData(const std::vector<std::string>& players,
     else handler_->initializeGame(players, handler_, Omanager_);
 }
 
+void GameWindow::currentWorkerTo1()
+{
+    currentWorker = wInTurn->workers[1];
+}
+
+void GameWindow::currentWorkerTo2()
+{
+    currentWorker = wInTurn->workers[2];
+}
+
+void GameWindow::currentWorkerTo3()
+{
+    currentWorker = wInTurn->workers[3];
+}
+
+void GameWindow::currentWorkerTo4()
+{
+    currentWorker = wInTurn->workers[4];
+}
+
+void GameWindow::currentWorkerTo5()
+{
+    currentWorker = wInTurn->workers[5];
+}
+
 void GameWindow::build()
 {
     Omanager_->createBuilding(scene_->getCurrentObject(),
@@ -148,8 +173,9 @@ void GameWindow::build()
     adjustResources();
 }
 
-void GameWindow::addWorker()
+void GameWindow::addWorker(int& n)
 {
+    qDebug()<<n;
     Omanager_->addWorker(scene_->getCurrentObject(),
                          wInTurn,
                          Omanager_,
