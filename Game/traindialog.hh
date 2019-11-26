@@ -15,8 +15,14 @@ public:
     explicit TrainDialog(QWidget *parent = 0);
     ~TrainDialog();
 
+private slots:
+    void setMiner();
+    void setTimberJack();
+    void setFisher();
+
 private:
     Ui::TrainDialog *ui;
+
 };
 
 #endif // TRAINDIALOG_HH

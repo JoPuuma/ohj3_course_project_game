@@ -43,6 +43,7 @@ public:
     void adjustGameWiew();
     void startGame();
     void buildChanged();
+    void setHeadQuarter();
 
 
 

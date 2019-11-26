@@ -69,9 +69,14 @@ GameWindow::GameWindow(QWidget *parent,
     ui->lcdStone->setPalette(Qt::black);
     ui->lcdOre->setPalette(Qt::black);   
 
-    ui->comboBox->setItemData(0,"Cottage");
-    ui->comboBox->setItemData(1,"FishingHut");
-    ui->comboBox->setItemData(2,"Mine");
+    ui->comboBox->addItem("Cottage",0);
+    ui->comboBox->addItem("FishingHut",1);
+    ui->comboBox->addItem("Mine",2);
+
+    ui->comboBox->setItemData(0, "Cottage");
+    ui->comboBox->setItemData(1, "FishingHut");
+    ui->comboBox->setItemData(2, "Mine");
+
 
 
    Game::GameScene* sgs_rawptr = scene_.get();
@@ -142,6 +147,7 @@ void GameWindow::startGame()
 {
     wInTurn = handler_->currentPlayer();
     adjustGameWiew();
+    setHeadQuarter();
 }
 
 void GameWindow::receiveData(const std::vector<std::string>& players,
@@ -179,12 +185,16 @@ void GameWindow::currentWorkerTo5()
 
 void GameWindow::build()
 {
-    Omanager_->createBuilding(scene_->getCurrentObject(),
-                                                 wInTurn,
-                                               Omanager_,
-                                                handler_,
-    ui->comboBox->currentData().toString().toStdString());
-    adjustResources();
+    if(handler_->getRound() == 1 && wInTurn->getObjects().size() == 0) setHeadQuarter();
+
+    else{
+        Omanager_->createBuilding(scene_->getCurrentObject(),
+                                                     wInTurn,
+                                                   Omanager_,
+                                                    handler_,
+        ui->comboBox->currentData().toString().toStdString());
+        adjustResources();
+    }
 }
 
 void GameWindow::addWorker()
@@ -199,6 +209,7 @@ void GameWindow::endTurn()
     handler_->endTurn();
     wInTurn = handler_->currentPlayer();
     adjustGameWiew();
+    if(handler_->getRound() == 1) setHeadQuarter();
 }
 
 void GameWindow::buildChanged()
@@ -214,5 +225,28 @@ void GameWindow::buildChanged()
     else if(buildT == "Mine"){
         CurretMap = Game::ConstResourceMap::MINE_BUILD_COST;
     }
+}
+
+void GameWindow::setHeadQuarter()
+{
+
+    ui->comboBox->setEnabled(false);
+    ui->buttonEndTurn->setEnabled(false);
+    ui->buttonTrain->setEnabled(false);
+    ui->buttonAssign->setEnabled(false);
+    if(scene_->getCurrentObject() != nullptr){
+        Omanager_->createHQ(scene_->getCurrentObject(),
+                                             wInTurn,
+                                           Omanager_,
+                                            handler_);
+        ui->comboBox->setEnabled(true);
+        ui->buttonEndTurn->setEnabled(true);
+        ui->buttonTrain->setEnabled(true);
+        ui->buttonAssign->setEnabled(true);
+    }
+
+
+
+
 }
 

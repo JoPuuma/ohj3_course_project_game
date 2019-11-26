@@ -434,21 +434,9 @@ p, li { white-space: pre-wrap; }
       <height>28</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>Cottage</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Fishinghut</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mine</string>
-     </property>
-    </item>
+    <property name="currentText">
+     <string/>
+    </property>
    </widget>
    <widget class="QPushButton" name="buttonWorker1">
     <property name="geometry">

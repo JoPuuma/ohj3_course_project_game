@@ -39,13 +39,13 @@ public:
     std::shared_ptr<Course::GameObject>  getCurrentObject();
 
     virtual bool event(QEvent* event) override;
+    std::shared_ptr<Course::GameObject> currentObject = nullptr;
 
 private:
     QGraphicsItem* m_mapBoundRect;
     int  m_width;
     int m_height;
     int m_scale;
-    std::shared_ptr<Course::GameObject> currentObject = nullptr;
 };
 
 } // namespace Game
