@@ -1,14 +1,13 @@
 #include "gamewindow.hh"
 #include "ui_gamewindow.h"
 #include "startdialog.hh"
-
-#include "core/playerbase.h"
 #include "Core/gameeventhandler.hh"
 #include "Core/objectmanager.hh"
 #include "Core/player.hh"
-#include "Core/worldgenerator.hh"
-#include "Core/resourcemaps.hh"
 
+#include "core/playerbase.h"
+
+#include "Core/worldgenerator.hh"
 #include "Tiles/rock.hh"
 #include "Tiles/sand.hh"
 #include "Tiles/water.hh"
@@ -21,6 +20,7 @@
 #include <QDebug>
 #include <QString>
 
+//const using MAX_ROUNDS_NOT_USED = -1;
 
 GameWindow::GameWindow(QWidget *parent,
                        std::shared_ptr<Game::GameEventHandler> handler) :
@@ -41,7 +41,7 @@ GameWindow::GameWindow(QWidget *parent,
     connect(&d, &Dialog::sendData,this, &GameWindow::receiveData);
     connect(ui->buttonEndTurn, &QPushButton::clicked,
             this, &GameWindow::endTurn);
-    connect(ui->buttonBuild, &QPushButton::clicked,     
+    connect(ui->buttonBuild, &QPushButton::clicked,
             this, &GameWindow::build);
     connect(ui->buttonAssign, &QPushButton::clicked,
             this, &GameWindow::addWorker);
@@ -59,15 +59,13 @@ GameWindow::GameWindow(QWidget *parent,
 
 
 
-
-
     d.exec();
 
     ui->lcdMoney->setPalette(Qt::black);
     ui->lcdFood->setPalette(Qt::black);
     ui->lcdWood->setPalette(Qt::black);
     ui->lcdStone->setPalette(Qt::black);
-    ui->lcdOre->setPalette(Qt::black);   
+    ui->lcdOre->setPalette(Qt::black);
 
     ui->comboBox->addItem("Cottage",0);
     ui->comboBox->addItem("FishingHut",1);
@@ -145,6 +143,7 @@ void GameWindow::adjustGameWiew()
 
 void GameWindow::startGame()
 {
+
     wInTurn = handler_->currentPlayer();
     adjustGameWiew();
     setHeadQuarter();
@@ -160,7 +159,7 @@ void GameWindow::receiveData(const std::vector<std::string>& players,
 
 void GameWindow::currentWorkerTo1()
 {
-    currentWorker = wInTurn->workers[1];  
+    currentWorker = wInTurn->workers[1];
 }
 
 void GameWindow::currentWorkerTo2()
@@ -199,6 +198,7 @@ void GameWindow::build()
 
 void GameWindow::addWorker()
 {
+
     Omanager_->addWorker(scene_->getCurrentObject(),
                          currentWorker);
 }
