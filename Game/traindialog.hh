@@ -2,6 +2,7 @@
 #define TRAINDIALOG_HH
 
 #include "gamewindow.hh"
+#include "objecttypes.hh"
 #include <QDialog>
 
 namespace Ui {

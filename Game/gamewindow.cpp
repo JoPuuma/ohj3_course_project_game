@@ -1,11 +1,11 @@
 #include "gamewindow.hh"
 #include "ui_gamewindow.h"
 #include "startdialog.hh"
-#include "Core/gameeventhandler.hh"
-#include "Core/objectmanager.hh"
 #include "Core/player.hh"
 #include "traindialog.hh"
 
+#include "Core/objectmanager.hh"
+#include "Core/gameeventhandler.hh"
 #include "core/playerbase.h"
 
 #include "Core/worldgenerator.hh"
@@ -207,7 +207,8 @@ void GameWindow::addWorker()
 {
 
     oManager_->addWorker(scene_->getCurrentObject(),
-                         currentWorker);
+                         wInTurn,
+                         currentWorkerIndex);
 }
 
 
@@ -227,6 +228,8 @@ void GameWindow::trainDialog()
 
 void GameWindow::getTrainigData(WorkerType& type)
 {
+
+    oManager_->trainWorker(wInTurn,oManager_,handler_,type,currentWorkerIndex);
 
 }
 

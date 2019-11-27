@@ -1,5 +1,4 @@
 #include "objectmanager.hh"
-
 #include "gamewindow.hh"
 #include "graphics/simplegamescene.h"
 #include "Core/player.hh"
@@ -105,14 +104,34 @@ void ObjectManager::createHQ(std::shared_ptr<Course::GameObject> tile,
 
 
 void ObjectManager::addWorker(std::shared_ptr<Course::GameObject> tile,
-                              std::shared_ptr<Course::WorkerBase>& worker)
+                              std::shared_ptr<Game::Player>& player,
+                              int workerNumber)
 {
-    std::dynamic_pointer_cast<Course::TileBase>(tile)->addWorker(worker);
+    std::dynamic_pointer_cast<Course::TileBase>(tile)->addWorker(player->workers[workerNumber]);
 }
 
-void ObjectManager::trainWorker(std::shared_ptr<Player>& player,
-                                std::shared_ptr<Course::WorkerBase>& worker)
-{
+void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
+                                std::shared_ptr<Game::ObjectManager>& objectmanager,
+                                std::shared_ptr<Game::GameEventHandler>& eventhandler,
+                                WorkerType& type,
+                                int workerNumber)
+{   
+    if (type == MINER && player->workers[workerNumber]->getType() == "basicWorker") {
+      player->workers[workerNumber] = std::make_shared<Game::Miner>(eventhandler,
+                                              objectmanager,
+                                              player);
+    }
+    else if (type == FISHER && player->workers[workerNumber]->getType() == "basicWorker") {
+        player->workers[workerNumber] = std::make_shared<Game::Fisher>(eventhandler,
+                                               objectmanager,
+                                               player);
+    }
+    else if (type == TIMBERJACK && player->workers[workerNumber]->getType() == "basicWorker") {
+        player->workers[workerNumber] = std::make_shared<Game::Timberjack>(eventhandler,
+                                               objectmanager,
+                                               player);
+    }
+
 
 }
 

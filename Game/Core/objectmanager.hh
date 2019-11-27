@@ -8,6 +8,10 @@
 #include "Buildings/fishinghut.hh"
 #include "Buildings/mine.hh"
 #include "buildings/headquarters.h"
+#include "Workers/miner.hh"
+#include "Workers/fisher.hh"
+#include "Workers/timberjack.hh"
+#include "objecttypes.hh"
 
 #include<map>
 #include<memory>
@@ -75,10 +79,14 @@ public:
                   std::shared_ptr<Game::GameEventHandler>& eventhandler);
 
     void addWorker(std::shared_ptr<Course::GameObject> tile,
-                   std::shared_ptr<Course::WorkerBase>& worker);
+                   std::shared_ptr<Game::Player>& player,
+                   int workerNumber);
 
     void trainWorker(std::shared_ptr<Game::Player>& player,
-                     std::shared_ptr<Course::WorkerBase>& worker);
+                     std::shared_ptr<Game::ObjectManager>& objectmanager,
+                     std::shared_ptr<Game::GameEventHandler>& eventhandler,
+                     WorkerType& type,
+                     int workerNumber);
 
 
 
