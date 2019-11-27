@@ -64,7 +64,6 @@ private:
     std::shared_ptr<Game::ObjectManager> oManager_ = nullptr;
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
     std::shared_ptr<Game::Player> wInTurn = nullptr;
-    std::shared_ptr<Course::WorkerBase> currentWorker= nullptr;
     int currentWorkerIndex;
 };
 

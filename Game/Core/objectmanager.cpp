@@ -49,23 +49,23 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::GameObject> tile,
                                    std::shared_ptr<Game::Player>& player,
                                    std::shared_ptr<Game::ObjectManager>& objectmanager,
                                    std::shared_ptr<Game::GameEventHandler>& eventhandler,
-                                   std::string buildingType)
+                                   BuildingType buildingType)
 {
     std::shared_ptr<Course::BuildingBase> buildingPtr = nullptr;
 
-    if (buildingType == "Cottage") {
+    if (buildingType == COTTAGE) {
 
         buildingPtr = std::make_shared<Game::Cottage>(eventhandler,
                                                       objectmanager,
                                                       player);
     }
-    else if (buildingType == "FishingHut") {
+    else if (buildingType == FISHINGHUT) {
         buildingPtr = std::make_shared<Game::Fishinghut>(eventhandler,
                                                          objectmanager,
                                                          player);
 
     }
-    else if (buildingType == "Mine") {
+    else if (buildingType == MINE) {
         buildingPtr = std::make_shared<Game::Mine>(eventhandler,
                                                    objectmanager,
                                                    player);

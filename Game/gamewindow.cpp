@@ -54,15 +54,15 @@ GameWindow::GameWindow(QWidget *parent,
             this,&GameWindow::trainDialog);
 
     connect(ui->buttonWorker1, &QPushButton::clicked,
-            this,[=](){currentWorkerIndex = 0;});
-    connect(ui->buttonWorker2, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 1;});
-    connect(ui->buttonWorker3, &QPushButton::clicked,
+    connect(ui->buttonWorker2, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 2;});
-    connect(ui->buttonWorker4, &QPushButton::clicked,
+    connect(ui->buttonWorker3, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 3;});
-    connect(ui->buttonWorker5, &QPushButton::clicked,
+    connect(ui->buttonWorker4, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 4;});
+    connect(ui->buttonWorker5, &QPushButton::clicked,
+            this,[=](){currentWorkerIndex = 5;});
 
 
 
@@ -173,7 +173,7 @@ void GameWindow::build()
                                                      wInTurn,
                                                    oManager_,
                                                     handler_,
-        ui->comboBox->currentData().toString().toStdString());
+       static_cast<BuildingType>(ui->comboBox->currentData().toInt()));
         adjustResources();
     }
 }
