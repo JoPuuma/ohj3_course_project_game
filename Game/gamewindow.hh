@@ -50,11 +50,6 @@ public:
 public slots: 
     void receiveData(const std::vector<std::string>& p,
                      const bool& roundLimit,const int& rounds);
-    void currentWorkerTo1();
-    void currentWorkerTo2();
-    void currentWorkerTo3();
-    void currentWorkerTo4();
-    void currentWorkerTo5();
 
     void build();
     void addWorker();
@@ -69,7 +64,6 @@ private:
     std::shared_ptr<Game::ObjectManager> oManager_ = nullptr;
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
     std::shared_ptr<Game::Player> wInTurn = nullptr;
-    std::shared_ptr<Course::WorkerBase> currentWorker= nullptr;
     int currentWorkerIndex;
 };
 

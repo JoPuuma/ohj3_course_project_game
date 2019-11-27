@@ -71,7 +71,7 @@ public:
                         std::shared_ptr<Game::Player>& player,
                         std::shared_ptr<Game::ObjectManager>& objectmanager,
                         std::shared_ptr<Game::GameEventHandler>& eventhandler,
-                        std::string buildingType);
+                        BuildingType buildingType);
 
     void createHQ(std::shared_ptr<Course::GameObject> tile,
                   std::shared_ptr<Game::Player>& player,

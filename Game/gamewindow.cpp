@@ -54,15 +54,15 @@ GameWindow::GameWindow(QWidget *parent,
             this,&GameWindow::trainDialog);
 
     connect(ui->buttonWorker1, &QPushButton::clicked,
-            this,[=](){currentWorkerIndex = 0;});
-    connect(ui->buttonWorker2, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 1;});
-    connect(ui->buttonWorker3, &QPushButton::clicked,
+    connect(ui->buttonWorker2, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 2;});
-    connect(ui->buttonWorker4, &QPushButton::clicked,
+    connect(ui->buttonWorker3, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 3;});
-    connect(ui->buttonWorker5, &QPushButton::clicked,
+    connect(ui->buttonWorker4, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 4;});
+    connect(ui->buttonWorker5, &QPushButton::clicked,
+            this,[=](){currentWorkerIndex = 5;});
 
 
 
@@ -164,31 +164,6 @@ void GameWindow::receiveData(const std::vector<std::string>& players,
     else handler_->initializeGame(players, handler_, oManager_);
 }
 
-void GameWindow::currentWorkerTo1()
-{
-    currentWorker = wInTurn->workers[1];
-}
-
-void GameWindow::currentWorkerTo2()
-{
-    currentWorker = wInTurn->workers[2];
-}
-
-void GameWindow::currentWorkerTo3()
-{
-    currentWorker = wInTurn->workers[3];
-}
-
-void GameWindow::currentWorkerTo4()
-{
-    currentWorker = wInTurn->workers[4];
-}
-
-void GameWindow::currentWorkerTo5()
-{
-    currentWorker = wInTurn->workers[5];
-}
-
 void GameWindow::build()
 {
     if(handler_->getRound() == 0 && wInTurn->getBuildingCount() == 0) setHeadQuarter();
@@ -198,7 +173,7 @@ void GameWindow::build()
                                                      wInTurn,
                                                    oManager_,
                                                     handler_,
-        ui->comboBox->currentData().toString().toStdString());
+       static_cast<BuildingType>(ui->comboBox->currentData().toInt()));
         adjustResources();
     }
 }
