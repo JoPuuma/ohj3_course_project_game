@@ -25,7 +25,8 @@ SOURCES += \
     Core/player.cpp \
     Graphics/gamescene.cpp \
     Graphics/mapitem.cpp \
-    traindialog.cpp
+    traindialog.cpp \
+    Workers/basicworker.cpp
 
 
 HEADERS += \
@@ -48,7 +49,8 @@ HEADERS += \
     Core/player.hh \
     Graphics/gamescene.hh \
     Graphics/mapitem.hh \
-    traindialog.hh
+    traindialog.hh \
+    Workers/basicworker.hh
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
