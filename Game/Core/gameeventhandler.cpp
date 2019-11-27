@@ -12,7 +12,7 @@ const int MAX_ROUND_OFF = -1;
 
 GameEventHandler::GameEventHandler():
     players({}),
-    round_(1),
+    round_(0),  // round zero for adding headquarters
     maxRound_(MAX_ROUND_OFF)
 {
 

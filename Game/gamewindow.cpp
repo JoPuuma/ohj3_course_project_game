@@ -189,7 +189,7 @@ void GameWindow::currentWorkerTo5()
 
 void GameWindow::build()
 {
-    if(handler_->getRound() == 1 && wInTurn->getObjects().size() == 0) setHeadQuarter();
+    if(handler_->getRound() == 0 && wInTurn->getBuildingCount() == 0) setHeadQuarter();
 
     else{
         Omanager_->createBuilding(scene_->getCurrentObject(),
@@ -214,7 +214,7 @@ void GameWindow::endTurn()
     handler_->endTurn();
     wInTurn = handler_->currentPlayer();
     adjustGameWiew();
-    if(handler_->getRound() == 1) setHeadQuarter();
+   // if(handler_->getRound() == 1) setHeadQuarter();
 }
 
 void GameWindow::trainDialog()
@@ -248,23 +248,27 @@ void GameWindow::buildChanged()
 void GameWindow::setHeadQuarter()
 {
 
-    ui->comboBox->setEnabled(false);
-    ui->buttonEndTurn->setEnabled(false);
-    ui->buttonTrain->setEnabled(false);
-    ui->buttonAssign->setEnabled(false);
+    changeEnablers(false);
     if(scene_->getCurrentObject() != nullptr){
         Omanager_->createHQ(scene_->getCurrentObject(),
                                              wInTurn,
                                            Omanager_,
                                             handler_);
-        ui->comboBox->setEnabled(true);
-        ui->buttonEndTurn->setEnabled(true);
-        ui->buttonTrain->setEnabled(true);
-        ui->buttonAssign->setEnabled(true);
+        if(wInTurn->next == nullptr){
+            changeEnablers(true);
+        }
+        handler_->endTurn();
+        wInTurn = handler_->currentPlayer();
+        adjustGameWiew();
+
     }
+}
 
-
-
-
+void GameWindow::changeEnablers(bool b)
+{
+    ui->comboBox->setEnabled(b);
+    ui->buttonEndTurn->setEnabled(b);
+    ui->buttonTrain->setEnabled(b);
+    ui->buttonAssign->setEnabled(b);
 }
 

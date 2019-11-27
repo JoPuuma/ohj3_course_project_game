@@ -26,6 +26,7 @@ public:
 
     void addNextPlayer(std::shared_ptr<Game::Player> nextP);
     void addBuilding(std::shared_ptr<Course::BuildingBase>& building);
+    const unsigned int getBuildingCount();
 
     Course::ResourceMap resources_;
     std::shared_ptr<Game::Player> next = nullptr;

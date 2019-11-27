@@ -57,7 +57,7 @@ public:
     void startGame();
     void buildChanged();
     void setHeadQuarter();
-
+    void changeEnablers(bool b);
 
 
 public slots: 
