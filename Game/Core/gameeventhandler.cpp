@@ -2,7 +2,7 @@
 #include "interfaces/igameeventhandler.h"
 #include "core/basicresources.h"
 #include "Core/player.hh"
-#include "workers/basicworker.h"
+#include "Workers/basicworker.hh"
 
 #include<memory>
 
@@ -48,7 +48,7 @@ void GameEventHandler::addBasicWorkers(std::shared_ptr<Game::GameEventHandler>& 
 
         for (unsigned int i = 1; i < 6; ++i) {
 
-            player->workers[i] = std::make_shared<Course::BasicWorker>(eventhandler,
+            player->workers[i] = std::make_shared<Game::basicWorker>(eventhandler,
                                                                        objectmanager,
                                                                        player);
         }

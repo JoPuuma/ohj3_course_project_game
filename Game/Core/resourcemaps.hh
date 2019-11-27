@@ -82,6 +82,21 @@ const Course::ResourceMap MINE_PRODUCTION = {
     {Course::BasicResource::ORE, 25},
 };
 
+// Worker - basicWorker
+const Course::ResourceMapDouble BW_WORKER_EFFICIENCY = {
+    {Course::BasicResource::MONEY, 1.00},
+    {Course::BasicResource::FOOD, 0.75},
+    {Course::BasicResource::WOOD, 0.50},
+    {Course::BasicResource::STONE, 0.25},
+    {Course::BasicResource::ORE, 0.00},
+};
+
+const Course::ResourceMap BW_RECRUITMENT_COST = {
+    {Course::BasicResource::MONEY, -25},
+    {Course::BasicResource::FOOD, -15},
+};
+
+
 // Worker - Miner
 const Course::ResourceMapDouble MINER_WORKER_EFFICIENCY = {
     {Course::BasicResource::MONEY, 0.50},
