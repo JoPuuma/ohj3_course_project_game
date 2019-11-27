@@ -69,9 +69,9 @@ void GameScene::UpdateItem(std::shared_ptr<Course::GameObject> obj)
 
 }
 
-std::shared_ptr<Course::GameObject> GameScene::getCurrentObject()
+std::shared_ptr<Course::TileBase> GameScene::getCurrentObject()
 {
-    return currentObject;
+    return std::dynamic_pointer_cast<Course::TileBase>(currentObject);
 }
 
 bool GameScene::event(QEvent *event)

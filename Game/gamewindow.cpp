@@ -42,6 +42,7 @@ GameWindow::GameWindow(QWidget *parent,
     connect(&sd, &Dialog::rejected, this, &GameWindow::close);
     connect(&sd, &Dialog::sendData,this, &GameWindow::receiveData);
 
+
     connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
             [=](const QString &text){ adjustBuildingCosts(); });
     connect(ui->buttonEndTurn, &QPushButton::clicked,

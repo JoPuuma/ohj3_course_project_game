@@ -30,7 +30,7 @@ bool GameEventHandler::modifyResources(
     std::shared_ptr<Game::Player> p = std::dynamic_pointer_cast<Game::Player>(player);
     Course::ResourceMap newResources = Course::mergeResourceMaps(p->resources_, resources);
     for(const auto& resource : newResources){
-        if(resource.second < 0 ) return false;
+        if(resource.second < 0 ) return false; //some resource would be negative
     }
     p->resources_ = newResources;
     return true;

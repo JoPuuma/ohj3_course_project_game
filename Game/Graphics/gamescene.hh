@@ -36,7 +36,7 @@ public:
     void RemoveItem( std::shared_ptr<Course::GameObject> obj);
     void UpdateItem( std::shared_ptr<Course::GameObject> obj);
 
-    std::shared_ptr<Course::GameObject>  getCurrentObject();
+    std::shared_ptr<Course::TileBase>  getCurrentObject();
 
     virtual bool event(QEvent* event) override;
     std::shared_ptr<Course::GameObject> currentObject = nullptr;
