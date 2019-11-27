@@ -2,6 +2,7 @@
 #include "gamewindow.hh"
 #include "graphics/simplegamescene.h"
 #include "Core/player.hh"
+#include "Core/resourcemaps.hh"
 
 
 namespace Game {
@@ -78,6 +79,7 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::GameObject> tile,
          tile->setOwner(player);
          buildingPtr->setOwner(player);
          player->addBuilding(buildingPtr);
+         player->addTile(std::dynamic_pointer_cast<Course::TileBase>(tile));
 
     }
 
@@ -97,6 +99,7 @@ void ObjectManager::createHQ(std::shared_ptr<Course::GameObject> tile,
     tile->setOwner(player);
     buildinPtr->setOwner(player);
     player->addBuilding(buildinPtr);
+    player->addTile(std::dynamic_pointer_cast<Course::TileBase>(tile));
     gameScene->currentObject = nullptr;
 
 }
@@ -116,7 +119,8 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
                                 WorkerType& type,
                                 int workerNumber)
 {   
-    if (type == MINER && player->workers[workerNumber]->getType() == "basicWorker") {
+    if (type == MINER && player->workers[workerNumber]->getType() == "basicWorker"
+            && eventhandler->modifyResources(player,ConstResourceMap::MINER_RECRUITMENT_COST)) {
       player->workers[workerNumber] = std::make_shared<Game::Miner>(eventhandler,
                                               objectmanager,
                                               player);

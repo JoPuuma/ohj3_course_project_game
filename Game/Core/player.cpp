@@ -19,6 +19,11 @@ const unsigned int Player::getBuildingCount()
     return buildings.size();
 }
 
+void Player::addTile(std::shared_ptr<Course::TileBase> tile)
+{
+    tiles.push_back(tile);
+}
+
 void Player::addBuilding(std::shared_ptr<Course::BuildingBase> &building)
 {
     buildings.push_back(building);

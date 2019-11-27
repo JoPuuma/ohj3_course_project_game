@@ -27,6 +27,7 @@ public:
     void addNextPlayer(std::shared_ptr<Game::Player> nextP);
     void addBuilding(std::shared_ptr<Course::BuildingBase>& building);
     const unsigned int getBuildingCount();
+    void addTile(std::shared_ptr<Course::TileBase> tile);
 
     Course::ResourceMap resources_;
     std::shared_ptr<Game::Player> next = nullptr;
@@ -34,6 +35,7 @@ public:
 
 private:  
     std::vector<std::shared_ptr<Course::BuildingBase>> buildings;
+    std::vector<std::shared_ptr<Course::TileBase>> tiles;
 };
 
 } // namespace Game
