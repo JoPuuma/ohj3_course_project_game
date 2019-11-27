@@ -96,6 +96,9 @@ void GameEventHandler::endTurn()
     if(eInTurn->next == nullptr){
         eInTurn = playerPtrs[0];
         round_++;
+        for (auto& player : playerPtrs) {
+            player->updateResources();
+        }
     }else{
         eInTurn = eInTurn->next;
     }

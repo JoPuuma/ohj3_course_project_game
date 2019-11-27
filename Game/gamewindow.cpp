@@ -133,6 +133,11 @@ void GameWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
     scene_->UpdateItem(obj);
 }
 
+void GameWindow::drawrect(QRect rect)
+{
+    scene_->drawRect(rect);
+}
+
 void GameWindow::adjustResources()
 {
     ui->lcdMoney->display(wInTurn->resources_[Course::MONEY]);
@@ -175,7 +180,8 @@ void GameWindow::build()
                                                    oManager_,
                                                     handler_,
        static_cast<BuildingType>(ui->comboBox->currentData().toInt()));
-        adjustResources();
+
+      adjustResources();
     }
 }
 
@@ -206,6 +212,7 @@ void GameWindow::getTrainigData(WorkerType& type)
 {
 
     oManager_->trainWorker(wInTurn,oManager_,handler_,type,currentWorkerIndex);
+    adjustResources();
 
 }
 

@@ -107,8 +107,8 @@ const Course::ResourceMapDouble MINER_WORKER_EFFICIENCY = {
 };
 
 const Course::ResourceMap MINER_RECRUITMENT_COST = {
-    {Course::BasicResource::MONEY, -25},
-    {Course::BasicResource::FOOD, -15},
+    {Course::BasicResource::MONEY, -200},
+    {Course::BasicResource::FOOD, -50},
 };
 
 // Worker - Fisher
@@ -121,8 +121,8 @@ const Course::ResourceMapDouble FISHER_WORKER_EFFICIENCY = {
 };
 
 const Course::ResourceMap FISHER_RECRUITMENT_COST = {
-    {Course::BasicResource::MONEY, -30},
-    {Course::BasicResource::FOOD, -10},
+    {Course::BasicResource::MONEY, -150},
+    {Course::BasicResource::FOOD, -50},
 };
 
 // Worker - Timberjack
@@ -135,8 +135,8 @@ const Course::ResourceMapDouble TIMBERJACK_WORKER_EFFICIENCY = {
 };
 
 const Course::ResourceMap TIMBERJACK_RECRUITMENT_COST = {
-    {Course::BasicResource::MONEY, -20},
-    {Course::BasicResource::FOOD, -15},
+    {Course::BasicResource::MONEY, -100},
+    {Course::BasicResource::FOOD, -50},
 };
 
 } // namespace ConstResourceMap

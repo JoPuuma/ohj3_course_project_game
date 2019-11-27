@@ -118,22 +118,30 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
                                 std::shared_ptr<Game::GameEventHandler>& eventhandler,
                                 WorkerType& type,
                                 int workerNumber)
-{   
-    if (type == MINER && player->workers[workerNumber]->getType() == "basicWorker"
-            && eventhandler->modifyResources(player,ConstResourceMap::MINER_RECRUITMENT_COST)) {
+    {
+    if (type == MINER &&
+        player->workers[workerNumber]->getType() == "basicWorker" &&
+        eventhandler->modifyResources(player,ConstResourceMap::MINER_RECRUITMENT_COST)) {
+
       player->workers[workerNumber] = std::make_shared<Game::Miner>(eventhandler,
-                                              objectmanager,
-                                              player);
+                                                                    objectmanager,
+                                                                    player);
     }
-    else if (type == FISHER && player->workers[workerNumber]->getType() == "basicWorker") {
+    else if (type == FISHER &&
+             player->workers[workerNumber]->getType() == "basicWorker" &&
+             eventhandler->modifyResources(player,ConstResourceMap::FISHER_RECRUITMENT_COST)) {
+
         player->workers[workerNumber] = std::make_shared<Game::Fisher>(eventhandler,
-                                               objectmanager,
-                                               player);
+                                                                       objectmanager,
+                                                                       player);
     }
-    else if (type == TIMBERJACK && player->workers[workerNumber]->getType() == "basicWorker") {
+    else if (type == TIMBERJACK &&
+             player->workers[workerNumber]->getType() == "basicWorker" &&
+             eventhandler->modifyResources(player,ConstResourceMap::TIMBERJACK_RECRUITMENT_COST)) {
+
         player->workers[workerNumber] = std::make_shared<Game::Timberjack>(eventhandler,
-                                               objectmanager,
-                                               player);
+                                                                           objectmanager,
+                                                                           player);
     }
 
 

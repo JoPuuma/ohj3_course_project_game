@@ -46,7 +46,6 @@ void GameScene::resize()
 
     m_mapBoundRect = itemAt(rect.topLeft(), QTransform());
     m_mapBoundRect->setZValue(-1);
-
 }
 
 
@@ -56,6 +55,11 @@ void GameScene::DrawItem(std::shared_ptr<Course::GameObject> obj)
 
     MapItem* nItem = new MapItem(obj, m_scale);
     addItem(nItem);
+}
+
+void GameScene::drawRect(QRect rect)
+{
+    addRect(rect,QPen(Qt::red,20));
 }
 
 
@@ -98,6 +102,8 @@ bool GameScene::event(QEvent *event)
                             ->getBoundObject()->ID  << " pressed.";
 
                 currentObject = static_cast<Game::MapItem*>(pressed)->getBoundObject();
+                QRect rect = QRect(0,0,77,77);
+                drawRect(rect);
                 return true;
             }
 
