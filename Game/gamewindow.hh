@@ -19,6 +19,18 @@ namespace Ui {
 class GameWindow;
 }
 
+enum WorkerType {
+    NONE = 0,
+    MINER = 1,
+    TIMBERJACK = 2,
+    FISHER = 3
+};
+enum BuildingType {
+    COTTAGE = 1,
+    MINE = 2,
+    FISHINGHUT = 3,
+    HQ = 4
+};
 
 class Player;
 class TrainDialog;
@@ -61,7 +73,7 @@ public slots:
     void addWorker();
     void endTurn();
     void trainDialog();
-    void getTrainigData(const std::string& workerType);
+    void getTrainigData(WorkerType& type);
 
 
 private:
@@ -71,8 +83,6 @@ private:
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
     std::shared_ptr<Game::Player> wInTurn = nullptr;
     std::shared_ptr<Course::WorkerBase> currentWorker= nullptr;
-    std::shared_ptr<TrainDialog> traindialog = nullptr;
-    //std::shared_ptr<Course::TileBase> currentTile = nullptr;
 };
 
 

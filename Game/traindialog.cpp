@@ -4,7 +4,7 @@
 TrainDialog::TrainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TrainDialog),
-    worker("")
+    worker(WorkerType::NONE)
 {
     ui->setupUi(this);
 
@@ -34,7 +34,7 @@ void TrainDialog::setMiner()
     ui->buttonMiner->setFlat(false);
     ui->buttonTimberJack->setFlat(true);
     ui->buttonFisher->setFlat(true);
-    worker = "Miner";
+    worker = WorkerType::MINER;
 }
 
 void TrainDialog::setTimberJack()
@@ -42,7 +42,7 @@ void TrainDialog::setTimberJack()
     ui->buttonMiner->setFlat(true);
     ui->buttonTimberJack->setFlat(false);
     ui->buttonFisher->setFlat(true);
-    worker = "TimberJack";
+    worker = WorkerType::TIMBERJACK;
 }
 
 void TrainDialog::setFisher()
@@ -50,11 +50,14 @@ void TrainDialog::setFisher()
     ui->buttonMiner->setFlat(true);
     ui->buttonTimberJack->setFlat(true);
     ui->buttonFisher->setFlat(false);
-    worker = "Fisher";
+    worker = WorkerType::FISHER;
 }
 
 void TrainDialog::OkPressed()
 {
-    emit sendData(worker);
-    TrainDialog::done(true);
+    if(worker != WorkerType::NONE){
+        emit sendData(worker);
+        TrainDialog::done(true);
+    }
+
 }

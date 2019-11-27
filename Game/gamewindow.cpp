@@ -224,9 +224,9 @@ void GameWindow::trainDialog()
     td.exec();
 }
 
-void GameWindow::getTrainigData(const std::string &workerType)
+void GameWindow::getTrainigData(WorkerType& type)
 {
-    qDebug() << QString::fromStdString(workerType);
+    qDebug() << QString::number(type);
 }
 
 

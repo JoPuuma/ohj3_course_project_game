@@ -1,6 +1,7 @@
 #ifndef TRAINDIALOG_HH
 #define TRAINDIALOG_HH
 
+#include "gamewindow.hh"
 #include <QDialog>
 
 namespace Ui {
@@ -16,7 +17,7 @@ public:
     ~TrainDialog();
 
 signals:
-    void sendData(const std::string& workerType);
+    void sendData(WorkerType& type);
 
 private slots:
     void setMiner();
@@ -26,7 +27,7 @@ private slots:
 
 private:
     Ui::TrainDialog *ui;
-    std::string worker;
+    WorkerType worker;
 
 };
 
