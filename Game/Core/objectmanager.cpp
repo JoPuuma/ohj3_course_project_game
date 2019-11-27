@@ -47,9 +47,9 @@ void ObjectManager::addPlayer(std::string name, std::shared_ptr<Game::Player> pt
 }
 
 void ObjectManager::createBuilding(std::shared_ptr<Course::GameObject> tile,
-                                   std::shared_ptr<Player>& player,
-                                   std::shared_ptr<ObjectManager> &objectmanager,
-                                   std::shared_ptr<GameEventHandler> &eventhandler,
+                                   std::shared_ptr<Game::Player>& player,
+                                   std::shared_ptr<Game::ObjectManager>& objectmanager,
+                                   std::shared_ptr<Game::GameEventHandler>& eventhandler,
                                    std::string buildingType)
 {
     std::shared_ptr<Course::BuildingBase> buildingPtr = nullptr;
@@ -77,9 +77,13 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::GameObject> tile,
 
          std::dynamic_pointer_cast<Course::TileBase>(tile)->addBuilding(buildingPtr);
          tile->setOwner(player);
+         buildingPtr->setOwner(player);
+         player->addBuilding(buildingPtr);
+
     }
 
 }
+
 
 void ObjectManager::createHQ(std::shared_ptr<Course::GameObject> tile,
                              std::shared_ptr<Game::Player>& player,
@@ -92,7 +96,8 @@ void ObjectManager::createHQ(std::shared_ptr<Course::GameObject> tile,
                                                                                  player);
     std::dynamic_pointer_cast<Course::TileBase>(tile)->addBuilding(buildinPtr);
     tile->setOwner(player);
-    player->addObject(buildinPtr);
+    buildinPtr->setOwner(player);
+    player->addBuilding(buildinPtr);
     gameScene->currentObject = nullptr;
 
 }
