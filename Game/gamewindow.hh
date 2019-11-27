@@ -50,11 +50,6 @@ public:
 public slots: 
     void receiveData(const std::vector<std::string>& p,
                      const bool& roundLimit,const int& rounds);
-    void currentWorkerTo1();
-    void currentWorkerTo2();
-    void currentWorkerTo3();
-    void currentWorkerTo4();
-    void currentWorkerTo5();
 
     void build();
     void addWorker();

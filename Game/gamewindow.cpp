@@ -164,31 +164,6 @@ void GameWindow::receiveData(const std::vector<std::string>& players,
     else handler_->initializeGame(players, handler_, oManager_);
 }
 
-void GameWindow::currentWorkerTo1()
-{
-    currentWorker = wInTurn->workers[1];
-}
-
-void GameWindow::currentWorkerTo2()
-{
-    currentWorker = wInTurn->workers[2];
-}
-
-void GameWindow::currentWorkerTo3()
-{
-    currentWorker = wInTurn->workers[3];
-}
-
-void GameWindow::currentWorkerTo4()
-{
-    currentWorker = wInTurn->workers[4];
-}
-
-void GameWindow::currentWorkerTo5()
-{
-    currentWorker = wInTurn->workers[5];
-}
-
 void GameWindow::build()
 {
     if(handler_->getRound() == 0 && wInTurn->getBuildingCount() == 0) setHeadQuarter();
