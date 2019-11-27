@@ -5,6 +5,7 @@
 #include "core/basicresources.h"
 #include "workers/workerbase.h"
 #include "buildings/buildingbase.h"
+#include "tiles/tilebase.h"
 
 #include <map>
 
@@ -27,7 +28,8 @@ public:
     void addNextPlayer(std::shared_ptr<Game::Player> nextP);
     void addBuilding(std::shared_ptr<Course::BuildingBase>& building);
     const unsigned int getBuildingCount();
-    void addTile(std::shared_ptr<Course::TileBase> tile);
+    void addTile(std::shared_ptr<Course::TileBase>& tile);
+    void updateResources();
 
     Course::ResourceMap resources_;
     std::shared_ptr<Game::Player> next = nullptr;
