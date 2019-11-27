@@ -4,6 +4,7 @@
 #include "core/playerbase.h"
 #include "core/basicresources.h"
 #include "workers/workerbase.h"
+#include "buildings/buildingbase.h"
 
 #include <map>
 
@@ -24,13 +25,14 @@ public:
     Player(const std::string& name);
 
     void addNextPlayer(std::shared_ptr<Game::Player> nextP);
+    void addBuilding(std::shared_ptr<Course::BuildingBase>& building);
 
     Course::ResourceMap resources_;
     std::shared_ptr<Game::Player> next = nullptr;
     std::map<int,std::shared_ptr<Course::WorkerBase>> workers;
 
-private:
-
+private:  
+    std::vector<std::shared_ptr<Course::BuildingBase>> buildings;
 };
 
 } // namespace Game
