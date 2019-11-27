@@ -44,7 +44,7 @@ GameWindow::GameWindow(QWidget *parent,
 
 
     connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
-            [=](const QString &text){ adjustBuildingCosts(); });
+            [=](const QString &text){Q_UNUSED(text);  adjustBuildingCosts(); });
     connect(ui->buttonEndTurn, &QPushButton::clicked,
             this, &GameWindow::endTurn);
     connect(ui->buttonBuild, &QPushButton::clicked,

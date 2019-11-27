@@ -8,6 +8,7 @@ std::map<std::string, QColor> MapItem::c_mapcolors = {};
 MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size):
     m_gameobject(obj), m_scenelocation(m_gameobject->getCoordinatePtr()->asQpoint()), m_size(size)
 {
+
     addNewColor(m_gameobject->getType());
 }
 
@@ -63,9 +64,10 @@ void MapItem::setSize(int size)
 void MapItem::addNewColor(std::string type)
 {
     if ( c_mapcolors.find(type) == c_mapcolors.end() ){
-        std::size_t hash = std::hash<std::string>{}(type);
-        c_mapcolors.insert({type, QColor((hash & 0xFF0000) >> 16, (hash & 0x00FF00 ) >> 8, (hash & 0x0000FF))});
-
+        c_mapcolors["Forest"] = QColor(0x56cd4c);
+        c_mapcolors["Sand"] = QColor(0xf3e33c);
+        c_mapcolors["Rock"] = QColor(0x8d9092);
+        c_mapcolors["Water"] = QColor(0x59b4f1);
     }
 }
 
