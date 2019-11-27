@@ -29,7 +29,6 @@ enum BuildingType {
     COTTAGE = 1,
     MINE = 2,
     FISHINGHUT = 3,
-    HQ = 4
 };
 
 class Player;
@@ -55,7 +54,7 @@ public:
     void adjustResources();
     void adjustGameWiew();
     void startGame();
-    void buildChanged();
+    void adjustBuildingCosts();
     void setHeadQuarter();
     void changeEnablers(bool b);
 
@@ -79,13 +78,14 @@ public slots:
 private:
     Ui::GameWindow *ui;
     std::shared_ptr<Game::GameEventHandler> handler_ = nullptr;
-    std::shared_ptr<Game::ObjectManager> Omanager_ = nullptr;
+    std::shared_ptr<Game::ObjectManager> oManager_ = nullptr;
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
     std::shared_ptr<Game::Player> wInTurn = nullptr;
     std::shared_ptr<Course::WorkerBase> currentWorker= nullptr;
+    int currentWorkerIndex;
 };
 
-
+Q_DECLARE_METATYPE(BuildingType)
 #endif // GAMEWINDOW_HH
 
 

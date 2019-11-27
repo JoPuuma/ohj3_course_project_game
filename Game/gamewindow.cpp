@@ -30,7 +30,7 @@ GameWindow::GameWindow(QWidget *parent,
     scene_(new Game::GameScene(this))
 
 {
-    Omanager_ = std::make_shared<Game::ObjectManager>(scene_);
+    oManager_ = std::make_shared<Game::ObjectManager>(scene_);
     handler_ = std::make_shared<Game::GameEventHandler>();
 
 
@@ -42,6 +42,8 @@ GameWindow::GameWindow(QWidget *parent,
     connect(&sd, &Dialog::rejected, this, &GameWindow::close);
     connect(&sd, &Dialog::sendData,this, &GameWindow::receiveData);
 
+    connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
+            [=](const QString &text){ adjustBuildingCosts(); });
     connect(ui->buttonEndTurn, &QPushButton::clicked,
             this, &GameWindow::endTurn);
     connect(ui->buttonBuild, &QPushButton::clicked,
@@ -52,15 +54,15 @@ GameWindow::GameWindow(QWidget *parent,
             this,&GameWindow::trainDialog);
 
     connect(ui->buttonWorker1, &QPushButton::clicked,
-            this, &GameWindow::currentWorkerTo1);
+            this,[=](){currentWorkerIndex = 0;});
     connect(ui->buttonWorker2, &QPushButton::clicked,
-            this, &GameWindow::currentWorkerTo2);
+            this,[=](){currentWorkerIndex = 1;});
     connect(ui->buttonWorker3, &QPushButton::clicked,
-            this, &GameWindow::currentWorkerTo3);
+            this,[=](){currentWorkerIndex = 2;});
     connect(ui->buttonWorker4, &QPushButton::clicked,
-            this, &GameWindow::currentWorkerTo4);
+            this,[=](){currentWorkerIndex = 3;});
     connect(ui->buttonWorker5, &QPushButton::clicked,
-            this, &GameWindow::currentWorkerTo5);
+            this,[=](){currentWorkerIndex = 4;});
 
 
 
@@ -76,9 +78,9 @@ GameWindow::GameWindow(QWidget *parent,
     ui->comboBox->addItem("FishingHut");
     ui->comboBox->addItem("Mine");
 
-    ui->comboBox->setItemData(0, "Cottage");
-    ui->comboBox->setItemData(1, "FishingHut");
-    ui->comboBox->setItemData(2, "Mine");
+    ui->comboBox->setItemData(0, BuildingType::COTTAGE);
+    ui->comboBox->setItemData(1, BuildingType::FISHINGHUT);
+    ui->comboBox->setItemData(2, BuildingType::MINE);
 
 
 
@@ -91,7 +93,7 @@ GameWindow::GameWindow(QWidget *parent,
    worldgen.addConstructor<Game::Sand>('s');
    worldgen.addConstructor<Game::Water>('w');
    worldgen.addConstructor<Course::Forest>('f');
-   worldgen.GenerateMap(7,7,Omanager_,handler_);
+   worldgen.GenerateMap(7,7,oManager_,handler_);
 
     startGame();
 }
@@ -158,8 +160,8 @@ void GameWindow::receiveData(const std::vector<std::string>& players,
                              const bool& roundLimit,
                              const int& rounds)
 {
-    if(roundLimit) handler_->initializeGame(players, handler_, Omanager_, rounds);
-    else handler_->initializeGame(players, handler_, Omanager_);
+    if(roundLimit) handler_->initializeGame(players, handler_, oManager_, rounds);
+    else handler_->initializeGame(players, handler_, oManager_);
 }
 
 void GameWindow::currentWorkerTo1()
@@ -192,9 +194,9 @@ void GameWindow::build()
     if(handler_->getRound() == 0 && wInTurn->getBuildingCount() == 0) setHeadQuarter();
 
     else{
-        Omanager_->createBuilding(scene_->getCurrentObject(),
+        oManager_->createBuilding(scene_->getCurrentObject(),
                                                      wInTurn,
-                                                   Omanager_,
+                                                   oManager_,
                                                     handler_,
         ui->comboBox->currentData().toString().toStdString());
         adjustResources();
@@ -204,7 +206,7 @@ void GameWindow::build()
 void GameWindow::addWorker()
 {
 
-    Omanager_->addWorker(scene_->getCurrentObject(),
+    oManager_->addWorker(scene_->getCurrentObject(),
                          currentWorker);
 }
 
@@ -214,7 +216,6 @@ void GameWindow::endTurn()
     handler_->endTurn();
     wInTurn = handler_->currentPlayer();
     adjustGameWiew();
-   // if(handler_->getRound() == 1) setHeadQuarter();
 }
 
 void GameWindow::trainDialog()
@@ -226,23 +227,29 @@ void GameWindow::trainDialog()
 
 void GameWindow::getTrainigData(WorkerType& type)
 {
-    qDebug() << QString::number(type);
+
 }
 
 
-void GameWindow::buildChanged()
+void GameWindow::adjustBuildingCosts()
 {
-    Course::ResourceMap CurretMap = {};
-    std::string buildT = ui->comboBox->currentData().toString().toStdString();
-    if(buildT == "Cottage"){
-        CurretMap = Game::ConstResourceMap::COTTAGE_BUILD_COST;
+    Course::ResourceMap CurrentMap = {};
+    BuildingType buildT = static_cast<BuildingType>(ui->comboBox->currentData().toInt());
+    if(buildT == COTTAGE){
+        CurrentMap = Game::ConstResourceMap::COTTAGE_BUILD_COST;
     }
-    else if(buildT == "FishingHut"){
-        CurretMap = Game::ConstResourceMap::FISHINGHUT_BUILD_COST;
+    else if(buildT == FISHINGHUT){
+        CurrentMap = Game::ConstResourceMap::FISHINGHUT_BUILD_COST;
     }
-    else if(buildT == "Mine"){
-        CurretMap = Game::ConstResourceMap::MINE_BUILD_COST;
+    else if(buildT == MINE){
+        CurrentMap = Game::ConstResourceMap::MINE_BUILD_COST;
     }
+    ui->labelMoneyCost->setText(QString::number(-1*CurrentMap[Course::MONEY]));
+    ui->labelFoodCost->setText(QString::number(-1*CurrentMap[Course::FOOD]));
+    ui->labelWoodCost->setText(QString::number(-1*CurrentMap[Course::WOOD]));
+    ui->labelStoneCost->setText(QString::number(-1*CurrentMap[Course::MONEY]));
+    ui->labelOreCost->setText(QString::number(-1*CurrentMap[Course::MONEY]));
+
 }
 
 void GameWindow::setHeadQuarter()
@@ -250,12 +257,13 @@ void GameWindow::setHeadQuarter()
 
     changeEnablers(false);
     if(scene_->getCurrentObject() != nullptr){
-        Omanager_->createHQ(scene_->getCurrentObject(),
+        oManager_->createHQ(scene_->getCurrentObject(),
                                              wInTurn,
-                                           Omanager_,
+                                           oManager_,
                                             handler_);
-        if(wInTurn->next == nullptr){
+        if(wInTurn->next == nullptr){ // true if all players have HQ
             changeEnablers(true);
+            adjustBuildingCosts();
         }
         handler_->endTurn();
         wInTurn = handler_->currentPlayer();
