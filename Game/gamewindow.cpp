@@ -4,6 +4,7 @@
 #include "Core/gameeventhandler.hh"
 #include "Core/objectmanager.hh"
 #include "Core/player.hh"
+#include "traindialog.hh"
 
 #include "core/playerbase.h"
 
@@ -20,7 +21,6 @@
 #include <QDebug>
 #include <QString>
 
-//const using MAX_ROUNDS_NOT_USED = -1;
 
 GameWindow::GameWindow(QWidget *parent,
                        std::shared_ptr<Game::GameEventHandler> handler) :
@@ -28,6 +28,7 @@ GameWindow::GameWindow(QWidget *parent,
     ui(new Ui::GameWindow),
     handler_(handler),
     scene_(new Game::GameScene(this))
+
 {
     Omanager_ = std::make_shared<Game::ObjectManager>(scene_);
     handler_ = std::make_shared<Game::GameEventHandler>();
@@ -35,16 +36,20 @@ GameWindow::GameWindow(QWidget *parent,
 
     ui->setupUi(this);
 
-    //start dialog
-    Dialog d;
-    connect(&d, &Dialog::rejected, this, &GameWindow::close);
-    connect(&d, &Dialog::sendData,this, &GameWindow::receiveData);
+
+    Dialog sd;      //start dialog
+
+    connect(&sd, &Dialog::rejected, this, &GameWindow::close);
+    connect(&sd, &Dialog::sendData,this, &GameWindow::receiveData);
+
     connect(ui->buttonEndTurn, &QPushButton::clicked,
             this, &GameWindow::endTurn);
     connect(ui->buttonBuild, &QPushButton::clicked,
             this, &GameWindow::build);
     connect(ui->buttonAssign, &QPushButton::clicked,
             this, &GameWindow::addWorker);
+    connect(ui->buttonTrain, &QPushButton::clicked,
+            this,&GameWindow::trainDialog);
 
     connect(ui->buttonWorker1, &QPushButton::clicked,
             this, &GameWindow::currentWorkerTo1);
@@ -59,7 +64,7 @@ GameWindow::GameWindow(QWidget *parent,
 
 
 
-    d.exec();
+    sd.exec();
 
     ui->lcdMoney->setPalette(Qt::black);
     ui->lcdFood->setPalette(Qt::black);
@@ -67,9 +72,9 @@ GameWindow::GameWindow(QWidget *parent,
     ui->lcdStone->setPalette(Qt::black);
     ui->lcdOre->setPalette(Qt::black);
 
-    ui->comboBox->addItem("Cottage",0);
-    ui->comboBox->addItem("FishingHut",1);
-    ui->comboBox->addItem("Mine",2);
+    ui->comboBox->addItem("Cottage");
+    ui->comboBox->addItem("FishingHut");
+    ui->comboBox->addItem("Mine");
 
     ui->comboBox->setItemData(0, "Cottage");
     ui->comboBox->setItemData(1, "FishingHut");
@@ -211,6 +216,19 @@ void GameWindow::endTurn()
     adjustGameWiew();
     if(handler_->getRound() == 1) setHeadQuarter();
 }
+
+void GameWindow::trainDialog()
+{
+    TrainDialog td;
+    connect(&td, &TrainDialog::sendData,this,&GameWindow::getTrainigData);
+    td.exec();
+}
+
+void GameWindow::getTrainigData(const std::string &workerType)
+{
+    qDebug() << QString::fromStdString(workerType);
+}
+
 
 void GameWindow::buildChanged()
 {

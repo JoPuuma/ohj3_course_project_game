@@ -15,13 +15,18 @@ public:
     explicit TrainDialog(QWidget *parent = 0);
     ~TrainDialog();
 
+signals:
+    void sendData(const std::string& workerType);
+
 private slots:
     void setMiner();
     void setTimberJack();
     void setFisher();
+    void OkPressed();
 
 private:
     Ui::TrainDialog *ui;
+    std::string worker;
 
 };
 

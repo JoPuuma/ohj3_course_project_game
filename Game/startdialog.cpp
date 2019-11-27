@@ -56,7 +56,7 @@ void Dialog::checkValues()
         emit Dialog::sendData(players,
                               ui->checkBoxUsesMax->isChecked(),
                               ui->spinBoxRounds->value());
-        Dialog::done(1);
+        Dialog::done(true);
     }
     else{
         players.clear();

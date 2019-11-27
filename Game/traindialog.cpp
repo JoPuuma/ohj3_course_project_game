@@ -3,20 +3,25 @@
 
 TrainDialog::TrainDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::TrainDialog)
+    ui(new Ui::TrainDialog),
+    worker("")
 {
     ui->setupUi(this);
 
-//    connect(ui->buttonBox->Ok, &QDialogButtonBox::clicked,
-//            this, &TrainDialog::sendData);
-//    connect(ui->buttonBox->Cancel, &QDialogButtonBox::clicked,
-//            this, &TrainDialog::reject);
-//    connect(ui->buttonMiner, &QPushButton::clicked,
-//            this, &TrainDialog::setMiner);
-//    connect(ui->buttonTimberJack, &QPushButton::clicked,
-//            this, &TrainDialog::setTimberJack);
-//    connect(ui->buttonMiner, &QPushButton::clicked,
-//            this, &TrainDialog::setMiner);
+    connect(ui->buttonOk, &QPushButton::clicked,
+            this, &TrainDialog::OkPressed);
+    connect(ui->buttonCancel, &QPushButton::clicked,
+            this, &TrainDialog::reject);
+
+    connect(ui->buttonMiner, &QPushButton::clicked,
+            this, &TrainDialog::setMiner);
+    connect(ui->buttonTimberJack, &QPushButton::clicked,
+            this, &TrainDialog::setTimberJack);
+    connect(ui->buttonFisher, &QPushButton::clicked,
+            this, &TrainDialog::setFisher);
+
+    ui->buttonCancel->setStyleSheet("background-color: red");
+    ui->buttonOk->setStyleSheet("background-color: green");
 }
 
 TrainDialog::~TrainDialog()
@@ -26,15 +31,30 @@ TrainDialog::~TrainDialog()
 
 void TrainDialog::setMiner()
 {
-
+    ui->buttonMiner->setFlat(false);
+    ui->buttonTimberJack->setFlat(true);
+    ui->buttonFisher->setFlat(true);
+    worker = "Miner";
 }
 
 void TrainDialog::setTimberJack()
 {
-
+    ui->buttonMiner->setFlat(true);
+    ui->buttonTimberJack->setFlat(false);
+    ui->buttonFisher->setFlat(true);
+    worker = "TimberJack";
 }
 
 void TrainDialog::setFisher()
 {
+    ui->buttonMiner->setFlat(true);
+    ui->buttonTimberJack->setFlat(true);
+    ui->buttonFisher->setFlat(false);
+    worker = "Fisher";
+}
 
+void TrainDialog::OkPressed()
+{
+    emit sendData(worker);
+    TrainDialog::done(true);
 }

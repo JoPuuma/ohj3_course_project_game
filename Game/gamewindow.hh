@@ -21,6 +21,7 @@ class GameWindow;
 
 
 class Player;
+class TrainDialog;
 
 class GameWindow : public QMainWindow
 {
@@ -59,6 +60,8 @@ public slots:
     void build();
     void addWorker();
     void endTurn();
+    void trainDialog();
+    void getTrainigData(const std::string& workerType);
 
 
 private:
@@ -68,6 +71,7 @@ private:
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
     std::shared_ptr<Game::Player> wInTurn = nullptr;
     std::shared_ptr<Course::WorkerBase> currentWorker= nullptr;
+    std::shared_ptr<TrainDialog> traindialog = nullptr;
     //std::shared_ptr<Course::TileBase> currentTile = nullptr;
 };
 
