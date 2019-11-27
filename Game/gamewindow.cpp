@@ -1,11 +1,11 @@
 #include "gamewindow.hh"
 #include "ui_gamewindow.h"
 #include "startdialog.hh"
-#include "Core/gameeventhandler.hh"
-#include "Core/objectmanager.hh"
 #include "Core/player.hh"
 #include "traindialog.hh"
 
+#include "Core/objectmanager.hh"
+#include "Core/gameeventhandler.hh"
 #include "core/playerbase.h"
 
 #include "Core/worldgenerator.hh"
@@ -227,6 +227,7 @@ void GameWindow::trainDialog()
 void GameWindow::getTrainigData(WorkerType& type)
 {
     qDebug() << QString::number(type);
+    Omanager_->trainWorker(currentWorker,type,wInTurn,Omanager_,handler_);
 }
 
 

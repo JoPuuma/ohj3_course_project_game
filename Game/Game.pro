@@ -50,7 +50,8 @@ HEADERS += \
     Graphics/gamescene.hh \
     Graphics/mapitem.hh \
     traindialog.hh \
-    Workers/basicworker.hh
+    Workers/basicworker.hh \
+    objecttypes.hh
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib

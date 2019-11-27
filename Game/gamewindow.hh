@@ -9,28 +9,15 @@
 #include <QDebug>
 #include <map>
 #include<memory>
-
 #include "Core/gameeventhandler.hh"
 #include "Core/objectmanager.hh"
 #include "Graphics/gamescene.hh"
+#include "objecttypes.hh"
 
 
 namespace Ui {
 class GameWindow;
 }
-
-enum WorkerType {
-    NONE = 0,
-    MINER = 1,
-    TIMBERJACK = 2,
-    FISHER = 3
-};
-enum BuildingType {
-    COTTAGE = 1,
-    MINE = 2,
-    FISHINGHUT = 3,
-    HQ = 4
-};
 
 class Player;
 class TrainDialog;
