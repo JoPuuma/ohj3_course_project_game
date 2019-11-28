@@ -24,6 +24,11 @@ void Player::addTile(std::shared_ptr<Course::TileBase>& tile)
     tiles.push_back(tile);
 }
 
+std::vector<std::shared_ptr<Course::TileBase>> Player::getTiles()
+{
+    return tiles;
+}
+
 void Player::updateResources()
 {
     for (auto& tile : tiles) {

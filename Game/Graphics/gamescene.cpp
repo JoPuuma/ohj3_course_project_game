@@ -57,12 +57,6 @@ void GameScene::DrawItem(std::shared_ptr<Course::GameObject> obj)
     addItem(nItem);
 }
 
-void GameScene::drawRect(QRect rect)
-{
-    addRect(rect,QPen(Qt::red,20));
-}
-
-
 void GameScene::RemoveItem(std::shared_ptr<Course::GameObject> obj)
 {
 
@@ -102,8 +96,7 @@ bool GameScene::event(QEvent *event)
                             ->getBoundObject()->ID  << " pressed.";
 
                 currentObject = static_cast<Game::MapItem*>(pressed)->getBoundObject();
-                QRect rect = QRect(0,0,77,77);
-                drawRect(rect);
+
                 return true;
             }
 

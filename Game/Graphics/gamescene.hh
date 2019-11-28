@@ -33,7 +33,6 @@ public:
     void resize();   
 
     void DrawItem( std::shared_ptr<Course::GameObject> obj);
-    void drawRect(QRect rect);
     void RemoveItem( std::shared_ptr<Course::GameObject> obj);
     void UpdateItem( std::shared_ptr<Course::GameObject> obj);
 

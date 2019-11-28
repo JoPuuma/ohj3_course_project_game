@@ -40,7 +40,7 @@ public:
     Sand(const Course::Coordinate& location,
          const std::shared_ptr<Game::GameEventHandler>& eventhandler,
          const std::shared_ptr<Game::ObjectManager>& objectmanager,
-         const unsigned int& max_build = 2,
+         const unsigned int& max_build = 1,
          const unsigned int& max_work = 3,
          const Course::ResourceMap& production = ConstResourceMap::SAND_BP);
 

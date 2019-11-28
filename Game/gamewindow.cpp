@@ -65,8 +65,6 @@ GameWindow::GameWindow(QWidget *parent,
     connect(ui->buttonWorker5, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 5;});
 
-
-
     sd.exec();
 
     ui->lcdMoney->setPalette(Qt::black);
@@ -133,11 +131,6 @@ void GameWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
     scene_->UpdateItem(obj);
 }
 
-void GameWindow::drawrect(QRect rect)
-{
-    scene_->drawRect(rect);
-}
-
 void GameWindow::adjustResources()
 {
     ui->lcdMoney->display(wInTurn->resources_[Course::MONEY]);
@@ -180,7 +173,6 @@ void GameWindow::build()
                                                    oManager_,
                                                     handler_,
        static_cast<BuildingType>(ui->comboBox->currentData().toInt()));
-
       adjustResources();
     }
 }
@@ -247,14 +239,16 @@ void GameWindow::setHeadQuarter()
                                              wInTurn,
                                            oManager_,
                                             handler_);
-        if(wInTurn->next == nullptr){ // true if all players have HQ
-            changeEnablers(true);
-            adjustBuildingCosts();
-        }
-        handler_->endTurn();
-        wInTurn = handler_->currentPlayer();
-        adjustGameWiew();
+       if (wInTurn->getBuildingCount() > 0) {
 
+            if(wInTurn->next == nullptr){ // true if all players have HQ
+                changeEnablers(true);
+                adjustBuildingCosts();
+            }
+                handler_->endTurn();
+                wInTurn = handler_->currentPlayer();
+                adjustGameWiew();
+         }
     }
 }
 
@@ -264,5 +258,10 @@ void GameWindow::changeEnablers(bool b)
     ui->buttonEndTurn->setEnabled(b);
     ui->buttonTrain->setEnabled(b);
     ui->buttonAssign->setEnabled(b);
+}
+
+void GameWindow::textBrowserEdit(std::string text)
+{
+    ui->textBrowser->setText(QString::fromStdString(text));
 }
 
