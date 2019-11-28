@@ -3,7 +3,8 @@
 #include "graphics/simplegamescene.h"
 #include "Core/player.hh"
 #include "Core/resourcemaps.hh"
-
+#include "core/coordinate.h"
+#include "exceptions/illegalaction.h"
 
 namespace Game {
 
@@ -52,37 +53,72 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
                                    std::shared_ptr<Game::GameEventHandler>& eventhandler,
                                    BuildingType buildingType)
 {
-    std::shared_ptr<Course::BuildingBase> buildingPtr = nullptr;
+    if ( canBuild(tile,player)) {
 
-    if (buildingType == COTTAGE) {
+        std::shared_ptr<Course::BuildingBase> buildingPtr = nullptr;
 
-        buildingPtr = std::make_shared<Game::Cottage>(eventhandler,
-                                                      objectmanager,
-                                                      player);
+        if (buildingType == COTTAGE) {
+
+            buildingPtr = std::make_shared<Game::Cottage>(eventhandler,
+                                                          objectmanager,
+                                                          player);
+        }
+        else if (buildingType == FISHINGHUT) {
+            buildingPtr = std::make_shared<Game::Fishinghut>(eventhandler,
+                                                             objectmanager,
+                                                             player);
+
+        }
+        else if (buildingType == MINE) {
+            buildingPtr = std::make_shared<Game::Mine>(eventhandler,
+                                                       objectmanager,
+                                                       player);
+
+        }
+
+
+        try {
+             eventhandler->modifyResources(player,buildingPtr->BUILD_COST);
+             tile->addBuilding(buildingPtr);
+             tile->setOwner(player);
+             buildingPtr->setOwner(player);
+             player->addBuilding(buildingPtr);
+             player->addTile(tile);
+
+        }
+        catch(std::exception& e) {
+
+            qDebug() << e.what();
+        }
+
+
     }
-    else if (buildingType == FISHINGHUT) {
-        buildingPtr = std::make_shared<Game::Fishinghut>(eventhandler,
-                                                         objectmanager,
-                                                         player);
+}
 
+bool ObjectManager::canBuild(std::shared_ptr<Course::TileBase> tile,
+                             std::shared_ptr<Game::Player>& player)
+{
+    if (tile->getOwner() == player || tile->getOwner() == nullptr) {
+
+        std::vector<Course::Coordinate> neighbourVector;
+        std::vector<std::shared_ptr<Course::TileBase>> playerTiles;
+
+        neighbourVector =  tile->getCoordinate().neighbours(1);
+        playerTiles = player->getTiles();
+        for (auto neighbour : neighbourVector) {
+
+            for (auto tile : playerTiles) {
+
+                if (tile->getCoordinate().x() == neighbour.x() &&
+                    tile->getCoordinate().y() == neighbour.y()) {
+
+                    return true;
+                }
+            }
+        }
+        return false;
     }
-    else if (buildingType == MINE) {
-        buildingPtr = std::make_shared<Game::Mine>(eventhandler,
-                                                   objectmanager,
-                                                   player);
-
-    }
-    //if(buildingPtr->canBePlacedOnTile())
-    if (eventhandler->modifyResources(player,buildingPtr->BUILD_COST)) {
-
-         tile->addBuilding(buildingPtr);
-         tile->setOwner(player);
-         buildingPtr->setOwner(player);
-         player->addBuilding(buildingPtr);
-         player->addTile(tile);
-
-    }
-
+    return false;
 }
 
 
@@ -94,13 +130,20 @@ void ObjectManager::createHQ(std::shared_ptr<Course::TileBase> tile,
     std::shared_ptr<Course::BuildingBase> buildinPtr =
                                         std::make_shared<Course::HeadQuarters>(eventhandler,
                                                                                objectmanager,
-                                                                                 player);
-    tile->addBuilding(buildinPtr);
-    tile->setOwner(player);
-    buildinPtr->setOwner(player);
-    player->addBuilding(buildinPtr);
-    player->addTile(tile);
-    gameScene->currentObject = nullptr;
+                                                                               player);
+    try {
+        tile->addBuilding(buildinPtr);
+        tile->setOwner(player);
+        buildinPtr->setOwner(player);
+        player->addBuilding(buildinPtr);
+        player->addTile(tile);
+        gameScene->currentObject = nullptr;
+     }
+    catch(std::exception& e) {
+        e.what();
+        qDebug() << "test";
+
+    }
 
 }
 
@@ -110,7 +153,13 @@ void ObjectManager::addWorker(std::shared_ptr<Course::TileBase> tile,
                               std::shared_ptr<Game::Player>& player,
                               int workerNumber)
 {
+    try {
     tile->addWorker(player->workers[workerNumber]);
+    }
+    catch(std::exception& e){
+       e.what();
+        qDebug() << "test";
+    }
 }
 
 void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,

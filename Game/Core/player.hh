@@ -26,11 +26,14 @@ public:
     Player(const std::string& name);
 
     void addNextPlayer(std::shared_ptr<Game::Player> nextP);
+
     void addBuilding(std::shared_ptr<Course::BuildingBase>& building);
     const unsigned int getBuildingCount();
+
     void addTile(std::shared_ptr<Course::TileBase>& tile);
-    void updateResources();
     std::vector<std::shared_ptr<Course::TileBase>> getTiles();
+
+    void updateResources();
 
     Course::ResourceMap resources_;
     std::shared_ptr<Game::Player> next = nullptr;

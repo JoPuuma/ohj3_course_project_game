@@ -24,8 +24,10 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     if ( m_gameobject->getType() == "" ){
         // Draw different types in different shapes
     }
+
     QPen pen(Qt::white,2);
     painter->setPen(pen);
+
     painter->drawRect(boundingRect());
 
 }

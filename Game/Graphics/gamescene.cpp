@@ -60,6 +60,7 @@ void GameScene::DrawItem(std::shared_ptr<Course::GameObject> obj)
     mapItems[obj->ID] = nItem;
 }
 
+
 void GameScene::drawRect(QRect rect)
 {
     QPen pen(Qt::red, 2);
@@ -68,6 +69,7 @@ void GameScene::drawRect(QRect rect)
     //rectPtr->setZValue(10);
     painter_->drawRect(rect);
 }
+
 
 
 void GameScene::RemoveItem(std::shared_ptr<Course::GameObject> obj)
@@ -104,9 +106,9 @@ bool GameScene::event(QEvent *event)
             if ( pressed == m_mapBoundRect ){
                 qDebug() << "Click on map area.";
             }else{
-//                qDebug() << "ObjID: " <<
-//                            static_cast<Game::MapItem*>(pressed)
-//                            ->getBoundObject()->ID  << " pressed.";
+                qDebug() << "ObjID: " <<
+                            static_cast<Game::MapItem*>(pressed)
+                            ->getBoundObject()->ID  << " pressed.";
 
                 currentObject = static_cast<Game::MapItem*>(pressed)->getBoundObject();
                 //drawRect(QRect(point.rx(),point.ry(),77,77));
