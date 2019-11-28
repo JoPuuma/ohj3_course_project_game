@@ -77,18 +77,22 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
         }
 
 
-        try {
-             eventhandler->modifyResources(player,buildingPtr->BUILD_COST);
+        try {        
              tile->addBuilding(buildingPtr);
-             tile->setOwner(player);
-             buildingPtr->setOwner(player);
-             player->addBuilding(buildingPtr);
-             player->addTile(tile);
 
+             if (eventhandler->modifyResources(player,buildingPtr->BUILD_COST)) {
+                 tile->setOwner(player);
+                 buildingPtr->setOwner(player);
+                 player->addBuilding(buildingPtr);
+                 player->addTile(tile);
+               }
+             else {
+                 tile->removeBuilding(buildingPtr);
+             }
         }
         catch(std::exception& e) {
 
-            qDebug() << e.what();
+            qDebug() << "can't add building";
         }
 
 
@@ -141,7 +145,7 @@ void ObjectManager::createHQ(std::shared_ptr<Course::TileBase> tile,
      }
     catch(std::exception& e) {
         e.what();
-        qDebug() << "test";
+        qDebug() << "can't place HQ";
 
     }
 
@@ -157,8 +161,8 @@ void ObjectManager::addWorker(std::shared_ptr<Course::TileBase> tile,
     tile->addWorker(player->workers[workerNumber]);
     }
     catch(std::exception& e){
-       e.what();
-        qDebug() << "test";
+
+        qDebug() << "can't add worker";
     }
 }
 

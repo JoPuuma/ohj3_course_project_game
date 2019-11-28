@@ -21,17 +21,20 @@
 #include <QDebug>
 #include <QString>
 
+const int NONVALUE = -1;
 
 GameWindow::GameWindow(QWidget *parent,
                        std::shared_ptr<Game::GameEventHandler> handler) :
     QMainWindow(parent),
     ui(new Ui::GameWindow),
     handler_(handler),
-    scene_(new Game::GameScene(this))
+    scene_(new Game::GameScene(this)),
+    currentWorkerIndex(NONVALUE)
 
 {
     oManager_ = std::make_shared<Game::ObjectManager>(scene_);
     handler_ = std::make_shared<Game::GameEventHandler>();
+
 
 
     ui->setupUi(this);
@@ -179,10 +182,14 @@ void GameWindow::build()
 
 void GameWindow::addWorker()
 {
-
+    if (currentWorkerIndex != NONVALUE) {
     oManager_->addWorker(scene_->getCurrentObject(),
                          wInTurn,
                          currentWorkerIndex);
+    }
+    else {
+        textBrowserEdit("Choose worker");
+    }
 }
 
 
@@ -202,10 +209,13 @@ void GameWindow::trainDialog()
 
 void GameWindow::getTrainigData(WorkerType& type)
 {
-
+    if( currentWorkerIndex != NONVALUE) {
     oManager_->trainWorker(wInTurn,oManager_,handler_,type,currentWorkerIndex);
     adjustResources();
-
+    }
+    else {
+        textBrowserEdit("Choose worker");
+    }
 }
 
 
