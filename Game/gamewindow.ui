@@ -448,7 +448,16 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>46</width>
+      <height>70</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+S</string>
     </property>
    </widget>
    <widget class="QPushButton" name="buttonAssign">
@@ -474,7 +483,13 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>46</width>
+      <height>70</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="buttonWorker3">
@@ -487,7 +502,13 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>46</width>
+      <height>70</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="buttonWorker4">
@@ -500,7 +521,13 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>46</width>
+      <height>70</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="buttonWorker5">
@@ -513,7 +540,13 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>46</width>
+      <height>70</height>
+     </size>
     </property>
    </widget>
    <widget class="QLabel" name="label_11">

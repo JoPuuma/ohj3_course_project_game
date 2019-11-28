@@ -1,2 +1,10 @@
 <!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource>
+        <file>images/basicWorker.jpg</file>
+        <file>images/cottage.jpg</file>
+        <file>images/fishingHut.jpg</file>
+        <file>images/mine.jpg</file>
+        <file>images/miner.jpg</file>
+    </qresource>
+</RCC>
