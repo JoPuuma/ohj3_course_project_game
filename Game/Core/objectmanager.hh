@@ -87,7 +87,7 @@ public:
                      std::shared_ptr<Game::GameEventHandler>& eventhandler,
                      WorkerType& type,
                      int workerNumber);
-
+    std::vector<std::shared_ptr<Course::TileBase>> getTiles();
 
 
 private:

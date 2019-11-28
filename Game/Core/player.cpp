@@ -31,6 +31,11 @@ void Player::updateResources()
     }
 }
 
+std::vector<std::shared_ptr<Course::TileBase> > Player::getTiles()
+{
+    return tiles;
+}
+
 void Player::addBuilding(std::shared_ptr<Course::BuildingBase> &building)
 {
     buildings.push_back(building);

@@ -104,12 +104,54 @@ void GameEventHandler::endTurn()
     }
 }
 
-bool GameEventHandler::gameEnd()
+
+bool GameEventHandler::gameEnd(std::shared_ptr<GameEventHandler> &eventhandler,
+                               std::shared_ptr<ObjectManager> &objectmanager)
 {
     if(maxRound_ == MAX_ROUND_OFF){
-        return true; // all tiles in use
+        if(round_ >= 200) return true;
+        for(auto& tile : objectmanager->getTiles()){
+            if(tile->getOwner() == nullptr) return false;
+        }
+        return true;
     }
-    else return round_ >= maxRound_;
+    else{
+        for(auto& tile : objectmanager->getTiles()){
+            if(tile->getOwner() == nullptr) return false;
+        }
+        return round_ == maxRound_;
+    }
 }
+
+unsigned int GameEventHandler::determineWinner()
+{
+    std::map<unsigned int, std::string> playerResources;
+    for(auto& player : playerPtrs){
+        unsigned int amount = 0;
+        // tiles and buildings
+        for(auto& tile : player->getTiles()){
+            if(tile->getType() == "Sand"){
+                amount += 30;
+                amount += tile->getBuildingCount() * 300;
+            }else if(tile->getType() == "Forest"){
+                amount += 50;
+                amount += tile->getBuildingCount() * 400;
+            }else if(tile->getType() == "Rock"){
+                amount += 80;
+                amount += tile->getBuildingCount() *  500;
+            }else if(tile->getType() == "Water"){
+                amount += 80;
+                amount += tile->getBuildingCount() *  500;
+            }
+        }
+        // basic resources
+        for(auto& resource : player->resources_){
+            amount += resource.second;
+        }
+        playerResources[amount] = player->getName();
+    }
+    return playerResources.rbegin()->first;
+}
+
 
 } // namespace Game

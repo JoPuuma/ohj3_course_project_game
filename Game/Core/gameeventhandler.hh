@@ -56,7 +56,9 @@ public:
     unsigned int getRound();
     std::shared_ptr<Game::Player> currentPlayer();
     void endTurn();
-    bool gameEnd();
+    bool gameEnd(std::shared_ptr<Game::GameEventHandler>& eventhandler,
+                 std::shared_ptr<Game::ObjectManager>& objectmanager);
+    unsigned int determineWinner();
 
 private:
     std::map<std::string, std::shared_ptr<Game::Player>> players;

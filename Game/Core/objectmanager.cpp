@@ -147,4 +147,9 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
 
 }
 
+std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getTiles()
+{
+    return tiles_;
+}
+
 }//namespace

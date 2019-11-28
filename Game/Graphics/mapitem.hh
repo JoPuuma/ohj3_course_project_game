@@ -23,6 +23,7 @@ public:
                    const QStyleOptionGraphicsItem *option,
                    QWidget *widget);
 
+
      const std::shared_ptr<Course::GameObject> &getBoundObject();
 
       void updateLoc();
@@ -32,6 +33,8 @@ public:
       int getSize() const;
 
       void setSize(int size);
+
+      void setPen(QColor color);
 
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;

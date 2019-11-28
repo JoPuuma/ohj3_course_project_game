@@ -30,6 +30,7 @@ public:
     const unsigned int getBuildingCount();
     void addTile(std::shared_ptr<Course::TileBase>& tile);
     void updateResources();
+    std::vector<std::shared_ptr<Course::TileBase>> getTiles();
 
     Course::ResourceMap resources_;
     std::shared_ptr<Game::Player> next = nullptr;

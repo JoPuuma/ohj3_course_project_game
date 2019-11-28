@@ -14,6 +14,7 @@
 
 namespace Game {
 
+class MapItem;
 
 class GameScene : public QGraphicsScene
 {
@@ -43,10 +44,13 @@ public:
     std::shared_ptr<Course::GameObject> currentObject = nullptr;
 
 private:
+    std::shared_ptr<QPainter> painter_ = nullptr;
     QGraphicsItem* m_mapBoundRect;
     int  m_width;
     int m_height;
     int m_scale;
+    std::map<unsigned int, MapItem*> mapItems;
+    QGraphicsRectItem* rectPtr;
 
 };
 
