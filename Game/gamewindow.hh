@@ -45,6 +45,7 @@ public:
     void setHeadQuarter();
     void changeEnablers(bool b);
     void textBrowserEdit(std::string text);
+    void setImages();
 
 
 public slots: 

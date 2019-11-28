@@ -26,7 +26,7 @@ SOURCES += \
     Graphics/gamescene.cpp \
     Graphics/mapitem.cpp \
     traindialog.cpp \
-    Workers/basicworker.cpp
+    Workers/basicworker.cpp \
 
 
 HEADERS += \
@@ -51,7 +51,8 @@ HEADERS += \
     Graphics/mapitem.hh \
     traindialog.hh \
     Workers/basicworker.hh \
-    objecttypes.hh
+    objecttypes.hh \
+
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -84,3 +85,14 @@ FORMS += \
     startdialog.ui \
     gamewindow.ui \
     traindialog.ui
+
+DISTFILES += \
+    images/projektikuvat.zip \
+    images/basicWorker.jpg \
+    images/cottage.jpg \
+    images/fishingHut.jpg \
+    images/mine.jpg \
+    images/miner.jpg
+
+RESOURCES += \
+    image.qrc

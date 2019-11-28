@@ -20,6 +20,8 @@
 
 #include <QDebug>
 #include <QString>
+#include <QPixmap>
+#include <QIcon>
 
 const int NONVALUE = -1;
 
@@ -68,6 +70,8 @@ GameWindow::GameWindow(QWidget *parent,
     connect(ui->buttonWorker5, &QPushButton::clicked,
             this,[=](){currentWorkerIndex = 5;});
 
+
+
     sd.exec();
 
     ui->lcdMoney->setPalette(Qt::black);
@@ -96,7 +100,7 @@ GameWindow::GameWindow(QWidget *parent,
    worldgen.addConstructor<Game::Water>('w');
    worldgen.addConstructor<Course::Forest>('f');
    worldgen.GenerateMap(7,7,oManager_,handler_);
-
+    setImages();
     startGame();
 }
 
@@ -273,5 +277,21 @@ void GameWindow::changeEnablers(bool b)
 void GameWindow::textBrowserEdit(std::string text)
 {
     ui->textBrowser->setText(QString::fromStdString(text));
+}
+
+void GameWindow::setImages()
+{
+
+    ui->buttonWorker1->setIcon(QIcon(":/images/basicWorker.jpg"));
+    ui->buttonWorker2->setIcon(QIcon(":/images/basicWorker.jpg"));
+    ui->buttonWorker3->setIcon(QIcon(":/images/basicWorker.jpg"));
+    ui->buttonWorker4->setIcon(QIcon(":/images/basicWorker.jpg"));
+    ui->buttonWorker5->setIcon(QIcon(":/images/basicWorker.jpg"));
+    ui->buttonWorker1->setFlat(true);
+    ui->buttonWorker2->setFlat(true);
+    ui->buttonWorker3->setFlat(true);
+    ui->buttonWorker4->setFlat(true);
+    ui->buttonWorker5->setFlat(true);
+
 }
 
