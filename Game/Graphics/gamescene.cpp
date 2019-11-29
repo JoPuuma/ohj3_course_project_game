@@ -20,7 +20,7 @@ GameScene::GameScene(QWidget* parent,
     m_scale(77)
 {
     resize();
-    QRect rect = QRect( 77, 0, m_scale, m_scale);
+    QRect rect = QRect( 0, 0, m_scale, m_scale);
     rectPtr = addRect(rect, QPen(Qt::red,4));
     rectPtr->setZValue(10);
 
@@ -94,6 +94,8 @@ bool GameScene::event(QEvent *event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress)
     {
+        rectPtr->setPos(QPoint(25*m_scale,25*m_scale));
+
         QGraphicsSceneMouseEvent* mouse_event =
                 dynamic_cast<QGraphicsSceneMouseEvent*>(event);
 
@@ -109,12 +111,12 @@ bool GameScene::event(QEvent *event)
             if ( pressed == m_mapBoundRect ){
                 qDebug() << "Click on map area.";
             }else{
-                qDebug() << "ObjID: " <<
-                            static_cast<Game::MapItem*>(pressed)
-                            ->getBoundObject()->ID  << " pressed.";
-                qDebug() << "location: " << rectPtr->pos();
+//                qDebug() << "ObjID: " <<
+//                            static_cast<Game::MapItem*>(pressed)
+//                            ->getBoundObject()->ID  << " pressed.";
+//                qDebug() << "location: " << rectPtr->pos();
                 rectPtr->setPos(QPoint(point.rx()*m_scale,point.ry()*m_scale));
-                qDebug() << "location: " << rectPtr->pos();
+//                qDebug() << "location: " << rectPtr->pos();
 
                 currentObject = static_cast<Game::MapItem*>(pressed)->getBoundObject();
 
@@ -124,8 +126,8 @@ bool GameScene::event(QEvent *event)
         }
     }
 
-//    return QGraphicsScene::event(event);
-    return false;
+    return QGraphicsScene::event(event);
+    //return false;
 }
 
 
