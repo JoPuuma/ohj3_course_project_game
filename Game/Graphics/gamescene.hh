@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QDebug>
+#include <QPainter>
 
 #include <map>
 #include <memory>
@@ -32,7 +33,7 @@ public:
     void setSize(int width, int height);
     void setScale(int scale);
     void resize();   
-    void drawRect(QRect rect);
+    void drawRect(QRectF rect);
 
 
     void DrawItem( std::shared_ptr<Course::GameObject> obj);
@@ -42,16 +43,17 @@ public:
     std::shared_ptr<Course::TileBase>  getCurrentObject();
 
     virtual bool event(QEvent* event) override;
+
     std::shared_ptr<Course::GameObject> currentObject = nullptr;
 
 private:
-    std::shared_ptr<QPainter> painter_ = nullptr;
+    QPainter* painter_;
     QGraphicsItem* m_mapBoundRect;
     int  m_width;
     int m_height;
     int m_scale;
     std::map<unsigned int, MapItem*> mapItems;
-    QGraphicsRectItem* rectPtr;
+    QGraphicsItem* rectPtr;
 
 };
 

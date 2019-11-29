@@ -43,6 +43,8 @@ private:
 
     static std::map<std::string, QColor> c_mapcolors;
     static void addNewColor(std::string type);
+    bool currentActivated = false;
+    QPainter* painter_;
 };
 
 }

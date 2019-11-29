@@ -20,6 +20,9 @@ GameScene::GameScene(QWidget* parent,
     m_scale(77)
 {
     resize();
+    QRect rect = QRect( 77, 0, m_scale, m_scale);
+    rectPtr = addRect(rect, QPen(Qt::red,4));
+    rectPtr->setZValue(10);
 
 }
 
@@ -46,7 +49,6 @@ void GameScene::resize()
 
     m_mapBoundRect = itemAt(rect.topLeft(), QTransform());
     m_mapBoundRect->setZValue(-1);
-   // painter_ = std::make_shared<QPainter>();
 }
 
 
@@ -55,19 +57,20 @@ void GameScene::DrawItem(std::shared_ptr<Course::GameObject> obj)
 {
 
     MapItem* nItem = new MapItem(obj, m_scale);
-    nItem->setZValue(1);
+    nItem->setZValue(-1);
     addItem(nItem);
     mapItems[obj->ID] = nItem;
 }
 
 
-void GameScene::drawRect(QRect rect)
+void GameScene::drawRect(QRectF rect)
 {
-    QPen pen(Qt::red, 2);
-    painter_->setPen(pen);
-    //rectPtr = addRect(rect, pen);
-    //rectPtr->setZValue(10);
-    painter_->drawRect(rect);
+    QPen pen(Qt::red, 10);
+    //painter_->setPen(pen);
+
+    addRect(QRect(0,0,200,200), pen);
+
+
 }
 
 
@@ -109,9 +112,11 @@ bool GameScene::event(QEvent *event)
                 qDebug() << "ObjID: " <<
                             static_cast<Game::MapItem*>(pressed)
                             ->getBoundObject()->ID  << " pressed.";
+                qDebug() << "location: " << rectPtr->pos();
+                rectPtr->setPos(QPoint(point.rx()*m_scale,point.ry()*m_scale));
+                qDebug() << "location: " << rectPtr->pos();
 
                 currentObject = static_cast<Game::MapItem*>(pressed)->getBoundObject();
-                //drawRect(QRect(point.rx(),point.ry(),77,77));
 
                 return true;
             }
@@ -122,5 +127,7 @@ bool GameScene::event(QEvent *event)
 //    return QGraphicsScene::event(event);
     return false;
 }
+
+
 
 } // namespace Game
