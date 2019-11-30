@@ -85,6 +85,7 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
                  buildingPtr->setOwner(player);
                  player->addBuilding(buildingPtr);
                  player->addTile(tile);
+                 gameScene->drawBuilding(buildingPtr);
                }
              else {
                  tile->removeBuilding(buildingPtr);

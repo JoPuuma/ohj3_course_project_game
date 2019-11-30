@@ -37,6 +37,11 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
 }
 
+QPointF MapItem::getPoint()
+{
+    return QPointF(m_gameobject->getCoordinatePtr()->x() * m_size, m_gameobject->getCoordinatePtr()->y() * m_size);
+}
+
 const std::shared_ptr<Course::GameObject> &MapItem::getBoundObject()
 {
     return m_gameobject;

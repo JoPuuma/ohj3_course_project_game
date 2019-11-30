@@ -443,7 +443,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>560</x>
       <y>250</y>
-      <width>46</width>
+      <width>40</width>
       <height>70</height>
      </rect>
     </property>
@@ -478,7 +478,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>606</x>
       <y>250</y>
-      <width>46</width>
+      <width>40</width>
       <height>70</height>
      </rect>
     </property>
@@ -497,7 +497,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>652</x>
       <y>250</y>
-      <width>46</width>
+      <width>40</width>
       <height>70</height>
      </rect>
     </property>
@@ -514,9 +514,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="buttonWorker4">
     <property name="geometry">
      <rect>
-      <x>696</x>
+      <x>700</x>
       <y>250</y>
-      <width>46</width>
+      <width>40</width>
       <height>70</height>
      </rect>
     </property>
@@ -533,9 +533,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="buttonWorker5">
     <property name="geometry">
      <rect>
-      <x>742</x>
+      <x>750</x>
       <y>250</y>
-      <width>46</width>
+      <width>40</width>
       <height>70</height>
      </rect>
     </property>

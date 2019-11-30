@@ -23,7 +23,7 @@ public:
                    const QStyleOptionGraphicsItem *option,
                    QWidget *widget);
 
-
+     QPointF getPoint() ;
      const std::shared_ptr<Course::GameObject> &getBoundObject();
 
       void updateLoc();

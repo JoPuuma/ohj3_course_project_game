@@ -42,6 +42,7 @@ public:
     void adjustGameWiew();
     void startGame();
     void adjustBuildingCosts();
+    void adjustRightWorkers();
     void setHeadQuarter();
     void changeEnablers(bool b);
     void textBrowserEdit(std::string text);

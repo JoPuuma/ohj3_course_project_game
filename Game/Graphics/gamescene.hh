@@ -39,6 +39,7 @@ public:
     void DrawItem( std::shared_ptr<Course::GameObject> obj);
     void RemoveItem( std::shared_ptr<Course::GameObject> obj);
     void UpdateItem( std::shared_ptr<Course::GameObject> obj);
+    void drawBuilding(std::shared_ptr<Course::GameObject> obj);
 
     std::shared_ptr<Course::TileBase>  getCurrentObject();
 

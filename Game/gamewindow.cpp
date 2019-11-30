@@ -100,6 +100,7 @@ GameWindow::GameWindow(QWidget *parent,
    worldgen.addConstructor<Game::Water>('w');
    worldgen.addConstructor<Course::Forest>('f');
    worldgen.GenerateMap(7,7,oManager_,handler_);
+
     setImages();
     startGame();
 }
@@ -150,6 +151,7 @@ void GameWindow::adjustResources()
 void GameWindow::adjustGameWiew()
 {
     adjustResources();
+    adjustRightWorkers();
     ui->labelPlayerName->setText( QString::fromStdString(wInTurn->getName()) );
     ui->roundLabel->setText( QString::number(handler_->getRound()) );
 }
@@ -202,6 +204,7 @@ void GameWindow::endTurn()
     handler_->endTurn();
     wInTurn = handler_->currentPlayer();
     adjustGameWiew();
+
 }
 
 void GameWindow::trainDialog()
@@ -216,6 +219,7 @@ void GameWindow::getTrainigData(WorkerType& type)
     if( currentWorkerIndex != NONVALUE) {
     oManager_->trainWorker(wInTurn,oManager_,handler_,type,currentWorkerIndex);
     adjustResources();
+    adjustRightWorkers();
     }
     else {
         textBrowserEdit("Choose worker");
@@ -241,6 +245,39 @@ void GameWindow::adjustBuildingCosts()
     ui->labelWoodCost->setText(QString::number(-1*CurrentMap[Course::WOOD]));
     ui->labelStoneCost->setText(QString::number(-1*CurrentMap[Course::MONEY]));
     ui->labelOreCost->setText(QString::number(-1*CurrentMap[Course::MONEY]));
+
+}
+
+void GameWindow::adjustRightWorkers()
+{
+
+    for (unsigned int i = 1; i < 6; ++i) {
+
+        if (wInTurn->workers[i]->getType() == "Miner") {
+
+            if (i == 1) {ui->buttonWorker1->setIcon(QIcon(":/images/miner.jpg"));}
+            else if (i == 2) {ui->buttonWorker2->setIcon(QIcon(":/images/miner.jpg"));}
+            else if (i == 3) {ui->buttonWorker3->setIcon(QIcon(":/images/miner.jpg"));}
+            else if (i == 4) {ui->buttonWorker4->setIcon(QIcon(":/images/miner.jpg"));}
+            else if (i == 5) {ui->buttonWorker5->setIcon(QIcon(":/images/miner.jpg"));}
+
+        }
+        else if (wInTurn->workers[i]->getType() == "Fisher") {
+
+        }
+        else if (wInTurn->workers[i]->getType() == "Timberjack") {
+
+        }
+        else {
+
+            if (i == 1) {ui->buttonWorker1->setIcon(QIcon(":/images/basicWorker.jpg"));}
+            else if (i == 2) {ui->buttonWorker2->setIcon(QIcon(":/images/basicWorker.jpg"));}
+            else if (i == 3) {ui->buttonWorker3->setIcon(QIcon(":/images/basicWorker.jpg"));}
+            else if (i == 4) {ui->buttonWorker4->setIcon(QIcon(":/images/basicWorker.jpg"));}
+            else if (i == 5) {ui->buttonWorker5->setIcon(QIcon(":/images/basicWorker.jpg"));}
+
+        }
+    }
 
 }
 
@@ -292,6 +329,7 @@ void GameWindow::setImages()
     ui->buttonWorker3->setFlat(true);
     ui->buttonWorker4->setFlat(true);
     ui->buttonWorker5->setFlat(true);
+
 
 }
 

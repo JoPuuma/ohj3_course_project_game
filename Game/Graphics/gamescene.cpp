@@ -85,6 +85,28 @@ void GameScene::UpdateItem(std::shared_ptr<Course::GameObject> obj)
 
 }
 
+void GameScene::drawBuilding(std::shared_ptr<Course::GameObject> obj)
+{
+    if (obj->getType() == "Cottage") {
+        QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/cottage.jpg") );
+        pm->setPos(rectPtr->pos());
+        pm->setScale(0.05);
+    }
+
+    else if (obj->getType() == "Fishinghut") {
+        QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/fishingHut.jpg") );
+        pm->setPos(rectPtr->pos());
+        pm->setScale(0.07);
+    }
+
+    else if (obj->getType() == "Mine") {
+        QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/mine.jpg") );
+        pm->setPos(rectPtr->pos());
+        pm->setScale(0.2);
+    }
+
+}
+
 std::shared_ptr<Course::TileBase> GameScene::getCurrentObject()
 {
     return std::dynamic_pointer_cast<Course::TileBase>(currentObject);
@@ -118,7 +140,13 @@ bool GameScene::event(QEvent *event)
                 rectPtr->setPos(QPoint(point.rx()*m_scale,point.ry()*m_scale));
 //                qDebug() << "location: " << rectPtr->pos();
 
-                currentObject = static_cast<Game::MapItem*>(pressed)->getBoundObject();
+                for (const auto &item : mapItems) {
+
+                    if (item.second->getPoint() == rectPtr->pos()){
+                        currentObject = static_cast<Game::MapItem*>(item.second)->getBoundObject();
+                    }
+                }
+
 
                 return true;
             }
