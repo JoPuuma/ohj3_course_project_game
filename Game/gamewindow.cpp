@@ -22,6 +22,7 @@
 #include <QString>
 #include <QPixmap>
 #include <QIcon>
+#include <QMessageBox>
 
 const int NONVALUE = -1;
 
@@ -109,16 +110,6 @@ GameWindow::~GameWindow(){
     delete ui;
 }
 
-void GameWindow::setSize(int width, int height)
-{
-    scene_->setSize(width, height);
-}
-
-void GameWindow::setScale(int scale)
-{
-    scene_->setScale(scale);
-}
-
 void GameWindow::resize()
 {
     scene_->resize();
@@ -127,11 +118,6 @@ void GameWindow::resize()
 void GameWindow::drawItem(std::shared_ptr<Course::GameObject> obj)
 {
     scene_->DrawItem(obj);
-}
-
-void GameWindow::removeItem(std::shared_ptr<Course::GameObject> obj)
-{
-    scene_->RemoveItem(obj);
 }
 
 void GameWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
@@ -183,6 +169,7 @@ void GameWindow::build()
                                                     handler_,
        static_cast<BuildingType>(ui->comboBox->currentData().toInt()));
       adjustResources();
+      maxMovesReached();
     }
 }
 
@@ -203,7 +190,17 @@ void GameWindow::endTurn()
 {
     handler_->endTurn();
     wInTurn = handler_->currentPlayer();
+    handler_->maxMoves = 0;
+    ui->buttonBuild->setEnabled(true);
+    ui->buttonTrain->setEnabled(true);
     adjustGameWiew();
+
+    if (handler_->gameEnd(handler_,oManager_)) {
+       std::string winner = handler_->determineWinner();
+       QMessageBox::information(this, tr("Game over !"),tr("The winner is : ")+
+                                tr(winner.c_str()));
+       close();
+    }
 
 }
 
@@ -220,6 +217,7 @@ void GameWindow::getTrainigData(WorkerType& type)
     oManager_->trainWorker(wInTurn,oManager_,handler_,type,currentWorkerIndex);
     adjustResources();
     adjustRightWorkers();
+    maxMovesReached();
     }
     else {
         textBrowserEdit("Choose worker");
@@ -243,8 +241,8 @@ void GameWindow::adjustBuildingCosts()
     ui->labelMoneyCost->setText(QString::number(-1*CurrentMap[Course::MONEY]));
     ui->labelFoodCost->setText(QString::number(-1*CurrentMap[Course::FOOD]));
     ui->labelWoodCost->setText(QString::number(-1*CurrentMap[Course::WOOD]));
-    ui->labelStoneCost->setText(QString::number(-1*CurrentMap[Course::MONEY]));
-    ui->labelOreCost->setText(QString::number(-1*CurrentMap[Course::MONEY]));
+    ui->labelStoneCost->setText(QString::number(-1*CurrentMap[Course::STONE]));
+    ui->labelOreCost->setText(QString::number(-1*CurrentMap[Course::ORE]));
 
 }
 
@@ -255,11 +253,11 @@ void GameWindow::adjustRightWorkers()
 
         if (wInTurn->workers[i]->getType() == "Miner") {
 
-            if (i == 1) {ui->buttonWorker1->setIcon(QIcon(":/images/miner.jpg"));}
-            else if (i == 2) {ui->buttonWorker2->setIcon(QIcon(":/images/miner.jpg"));}
-            else if (i == 3) {ui->buttonWorker3->setIcon(QIcon(":/images/miner.jpg"));}
-            else if (i == 4) {ui->buttonWorker4->setIcon(QIcon(":/images/miner.jpg"));}
-            else if (i == 5) {ui->buttonWorker5->setIcon(QIcon(":/images/miner.jpg"));}
+            if (i == 1) ui->buttonWorker1->setIcon(QIcon(":/images/miner.jpg"));
+            else if (i == 2) ui->buttonWorker2->setIcon(QIcon(":/images/miner.jpg"));
+            else if (i == 3) ui->buttonWorker3->setIcon(QIcon(":/images/miner.jpg"));
+            else if (i == 4) ui->buttonWorker4->setIcon(QIcon(":/images/miner.jpg"));
+            else if (i == 5) ui->buttonWorker5->setIcon(QIcon(":/images/miner.jpg"));
 
         }
         else if (wInTurn->workers[i]->getType() == "Fisher") {
@@ -270,11 +268,11 @@ void GameWindow::adjustRightWorkers()
         }
         else {
 
-            if (i == 1) {ui->buttonWorker1->setIcon(QIcon(":/images/basicWorker.jpg"));}
-            else if (i == 2) {ui->buttonWorker2->setIcon(QIcon(":/images/basicWorker.jpg"));}
-            else if (i == 3) {ui->buttonWorker3->setIcon(QIcon(":/images/basicWorker.jpg"));}
-            else if (i == 4) {ui->buttonWorker4->setIcon(QIcon(":/images/basicWorker.jpg"));}
-            else if (i == 5) {ui->buttonWorker5->setIcon(QIcon(":/images/basicWorker.jpg"));}
+            if (i == 1) ui->buttonWorker1->setIcon(QIcon(":/images/basicWorker.jpg"));
+            else if (i == 2) ui->buttonWorker2->setIcon(QIcon(":/images/basicWorker.jpg"));
+            else if (i == 3) ui->buttonWorker3->setIcon(QIcon(":/images/basicWorker.jpg"));
+            else if (i == 4) ui->buttonWorker4->setIcon(QIcon(":/images/basicWorker.jpg"));
+            else if (i == 5) ui->buttonWorker5->setIcon(QIcon(":/images/basicWorker.jpg"));
 
         }
     }
@@ -330,6 +328,15 @@ void GameWindow::setImages()
     ui->buttonWorker4->setFlat(true);
     ui->buttonWorker5->setFlat(true);
 
+
+}
+
+void GameWindow::maxMovesReached()
+{
+    if (handler_->maxMoves == 3) {
+        ui->buttonBuild->setEnabled(false);
+        ui->buttonTrain->setEnabled(false);
+    }
 
 }
 

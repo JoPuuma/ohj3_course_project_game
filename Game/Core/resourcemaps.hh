@@ -48,6 +48,8 @@ const Course::ResourceMap COTTAGE_BUILD_COST = {
     {Course::BasicResource::MONEY, -100},
     {Course::BasicResource::FOOD, -50},
     {Course::BasicResource::WOOD, -75},
+    {Course::BasicResource::STONE, -25},
+    {Course::BasicResource::ORE, -5},
 };
 const Course::ResourceMap COTTAGE_PRODUCTION = {
     {Course::BasicResource::MONEY, 20},
@@ -74,6 +76,7 @@ const Course::ResourceMap MINE_BUILD_COST = {
     {Course::BasicResource::FOOD, -30},
     {Course::BasicResource::WOOD, -10},
     {Course::BasicResource::STONE, -10},
+    {Course::BasicResource::ORE, -10},
 
 };
 const Course::ResourceMap MINE_PRODUCTION = {

@@ -21,23 +21,17 @@ class GameScene : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    GameScene(QWidget* qt_parent = nullptr,
-              int width = 7,
-              int height = 7,
-              int scale = 78
-            );
+    GameScene(QWidget* qt_parent = nullptr);
 
 
     ~GameScene() = default;
 
-    void setSize(int width, int height);
-    void setScale(int scale);
+
     void resize();   
-    void drawRect(QRectF rect);
+    void drawRect();
 
 
     void DrawItem( std::shared_ptr<Course::GameObject> obj);
-    void RemoveItem( std::shared_ptr<Course::GameObject> obj);
     void UpdateItem( std::shared_ptr<Course::GameObject> obj);
     void drawBuilding(std::shared_ptr<Course::GameObject> obj);
 

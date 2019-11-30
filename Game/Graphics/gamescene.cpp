@@ -9,10 +9,7 @@
 namespace Game {
 
 
-GameScene::GameScene(QWidget* parent,
-                     int width,
-                     int height,
-                     int scale):
+GameScene::GameScene(QWidget* parent):
     QGraphicsScene(parent),
     m_mapBoundRect(nullptr),
     m_width(7),
@@ -24,20 +21,6 @@ GameScene::GameScene(QWidget* parent,
     rectPtr = addRect(rect, QPen(Qt::red,4));
     rectPtr->setZValue(10);
 
-}
-
-void GameScene::setSize(int width, int height)
-{
-    m_width = width;
-
-    m_height = height;
-
-
-}
-
-void GameScene::setScale(int scale)
-{
-    m_scale = scale;
 }
 
 void GameScene::resize()
@@ -63,7 +46,7 @@ void GameScene::DrawItem(std::shared_ptr<Course::GameObject> obj)
 }
 
 
-void GameScene::drawRect(QRectF rect)
+void GameScene::drawRect()
 {
     QPen pen(Qt::red, 10);
     //painter_->setPen(pen);
@@ -73,12 +56,6 @@ void GameScene::drawRect(QRectF rect)
 
 }
 
-
-
-void GameScene::RemoveItem(std::shared_ptr<Course::GameObject> obj)
-{
-
-}
 
 void GameScene::UpdateItem(std::shared_ptr<Course::GameObject> obj)
 {

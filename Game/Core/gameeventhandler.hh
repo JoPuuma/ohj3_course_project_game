@@ -58,7 +58,9 @@ public:
     void endTurn();
     bool gameEnd(std::shared_ptr<Game::GameEventHandler>& eventhandler,
                  std::shared_ptr<Game::ObjectManager>& objectmanager);
-    unsigned int determineWinner();
+    std::string determineWinner();
+
+    int maxMoves = 0;
 
 private:
     std::map<std::string, std::shared_ptr<Game::Player>> players;

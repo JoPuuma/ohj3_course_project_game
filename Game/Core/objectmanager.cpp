@@ -56,47 +56,54 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
     if ( canBuild(tile,player)) {
 
         std::shared_ptr<Course::BuildingBase> buildingPtr = nullptr;
+        bool suitableTile = false;
 
-        if (buildingType == COTTAGE) {
+        if (buildingType == COTTAGE && tile->getType() != "Water") {
 
             buildingPtr = std::make_shared<Game::Cottage>(eventhandler,
                                                           objectmanager,
                                                           player);
+            suitableTile = true;
         }
-        else if (buildingType == FISHINGHUT) {
+        else if (buildingType == FISHINGHUT && tile->getType() == "Water") {
             buildingPtr = std::make_shared<Game::Fishinghut>(eventhandler,
                                                              objectmanager,
                                                              player);
+            suitableTile = true;
 
         }
-        else if (buildingType == MINE) {
+        else if (buildingType == MINE && tile->getType() == "Rock") {
             buildingPtr = std::make_shared<Game::Mine>(eventhandler,
                                                        objectmanager,
                                                        player);
+            suitableTile = true;
 
         }
 
+        if (suitableTile) {
+            try {
+                 tile->addBuilding(buildingPtr);
 
-        try {        
-             tile->addBuilding(buildingPtr);
+                 if (eventhandler->modifyResources(player,buildingPtr->BUILD_COST)) {
+                     tile->setOwner(player);
+                     buildingPtr->setOwner(player);
+                     player->addBuilding(buildingPtr);
+                     player->addTile(tile);
+                     gameScene->drawBuilding(buildingPtr);
+                     eventhandler->maxMoves += 1;
 
-             if (eventhandler->modifyResources(player,buildingPtr->BUILD_COST)) {
-                 tile->setOwner(player);
-                 buildingPtr->setOwner(player);
-                 player->addBuilding(buildingPtr);
-                 player->addTile(tile);
-                 gameScene->drawBuilding(buildingPtr);
-               }
-             else {
-                 tile->removeBuilding(buildingPtr);
-             }
+                   }
+                 else {
+                     tile->removeBuilding(buildingPtr);
+                 }
+            }
+            catch(std::exception& e) {
+
+                qDebug() << "can't add building";
+            }
+
+
         }
-        catch(std::exception& e) {
-
-            qDebug() << "can't add building";
-        }
-
-
     }
 }
 
@@ -180,6 +187,8 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
       player->workers[workerNumber] = std::make_shared<Game::Miner>(eventhandler,
                                                                     objectmanager,
                                                                     player);
+
+      eventhandler->maxMoves += 1;
     }
     else if (type == FISHER &&
              player->workers[workerNumber]->getType() == "basicWorker" &&
@@ -188,6 +197,7 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
         player->workers[workerNumber] = std::make_shared<Game::Fisher>(eventhandler,
                                                                        objectmanager,
                                                                        player);
+        eventhandler->maxMoves += 1;
     }
     else if (type == TIMBERJACK &&
              player->workers[workerNumber]->getType() == "basicWorker" &&
@@ -196,6 +206,7 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
         player->workers[workerNumber] = std::make_shared<Game::Timberjack>(eventhandler,
                                                                            objectmanager,
                                                                            player);
+        eventhandler->maxMoves += 1;
     }
 
 

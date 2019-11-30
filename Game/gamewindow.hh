@@ -31,12 +31,9 @@ public:
                         std::shared_ptr<Game::GameEventHandler> handler = {});
     ~GameWindow();
 
-    void setSize(int width, int height);
-    void setScale(int scale);
     void resize();
 
     void drawItem( std::shared_ptr<Course::GameObject> obj);
-    void removeItem( std::shared_ptr<Course::GameObject> obj);
     void updateItem( std::shared_ptr<Course::GameObject> obj);
     void adjustResources();
     void adjustGameWiew();
@@ -47,6 +44,7 @@ public:
     void changeEnablers(bool b);
     void textBrowserEdit(std::string text);
     void setImages();
+    void maxMovesReached();
 
 
 public slots: 
@@ -58,7 +56,6 @@ public slots:
     void endTurn();
     void trainDialog();
     void getTrainigData(WorkerType& type);
-
 
 private:
     Ui::GameWindow *ui;

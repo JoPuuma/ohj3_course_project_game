@@ -109,21 +109,26 @@ bool GameEventHandler::gameEnd(std::shared_ptr<GameEventHandler> &eventhandler,
                                std::shared_ptr<ObjectManager> &objectmanager)
 {
     if(maxRound_ == MAX_ROUND_OFF){
-        if(round_ >= 200) return true;
+        if(round_ >= 201) return true;
         for(auto& tile : objectmanager->getTiles()){
             if(tile->getOwner() == nullptr) return false;
         }
-        return true;
+        if (eInTurn->next == nullptr) return true;
+
     }
     else{
+        if (round_ == maxRound_ +1) return true;
+
         for(auto& tile : objectmanager->getTiles()){
             if(tile->getOwner() == nullptr) return false;
+
         }
-        return round_ == maxRound_;
+       if (eInTurn->next == nullptr) return true;
+
     }
 }
 
-unsigned int GameEventHandler::determineWinner()
+std::string GameEventHandler::determineWinner()
 {
     std::map<unsigned int, std::string> playerResources;
     for(auto& player : playerPtrs){
@@ -150,7 +155,7 @@ unsigned int GameEventHandler::determineWinner()
         }
         playerResources[amount] = player->getName();
     }
-    return playerResources.rbegin()->first;
+    return playerResources.rbegin()->second;
 }
 
 
