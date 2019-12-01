@@ -23,12 +23,13 @@ const Course::ResourceMap BASE_PLAYER_RESOURCE = {
 class Player: public Course::PlayerBase
 {
 public:
-    Player(const std::string& name);
+    Player(const std::string& name, const int& color);
 
     void addNextPlayer(std::shared_ptr<Game::Player> nextP);
 
     void addBuilding(std::shared_ptr<Course::BuildingBase>& building);
     int getBuildingCount();
+    int getColor();
 
     void addTile(std::shared_ptr<Course::TileBase>& tile);
     std::vector<std::shared_ptr<Course::TileBase>> getTiles();
@@ -42,6 +43,7 @@ public:
 private:  
     std::vector<std::shared_ptr<Course::BuildingBase>> buildings;
     std::vector<std::shared_ptr<Course::TileBase>> tiles;
+    int color_;
 };
 
 } // namespace Game

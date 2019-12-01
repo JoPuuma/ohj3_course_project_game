@@ -20,20 +20,12 @@ QRectF MapItem::boundingRect() const
 void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option); Q_UNUSED( widget );
-    painter_ = painter;
-    painter_->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
-    if ( m_gameobject->getType() == "" ){
+    painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
 
-    }
     QPen whitePen(Qt::white,2);
-    QPen redPen(Qt::red, 20);
-    if(currentActivated){
-        painter->setPen(redPen);
-    }else{
-        painter->setPen(whitePen);
-    }
+    painter->setPen(whitePen);
 
-    painter_->drawRect(boundingRect());
+    painter->drawRect(boundingRect());
 
 }
 
@@ -72,15 +64,6 @@ void MapItem::setSize(int size)
     if ( size > 0 && size <= 500 ){
         m_size = size;
     }
-}
-
-void MapItem::setPen(QColor color)
-{
-    currentActivated = true;
-    update(boundingRect());
-    update();
-    this->update();
-
 }
 
 

@@ -90,6 +90,7 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
                      player->addBuilding(buildingPtr);
                      player->addTile(tile);
                      gameScene->drawBuilding(buildingPtr);
+                     gameScene->addPen(tile,player->getColor());
                      eventhandler->maxMoves += 1;
 
                    }
@@ -160,6 +161,9 @@ void ObjectManager::createHQ(std::shared_ptr<Course::TileBase> tile,
             player->addBuilding(buildinPtr);
             player->addTile(tile);
             gameScene->currentObject = nullptr;
+            gameScene->drawBuilding(buildinPtr);
+            gameScene->addPen(tile,player->getColor());
+
          }
         catch(std::exception& e) {
             e.what();

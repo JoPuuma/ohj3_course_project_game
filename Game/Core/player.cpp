@@ -2,9 +2,10 @@
 
 namespace Game{
 
-Player::Player(const std::string& name):
+Player::Player(const std::string& name, const int& color):
     Course::PlayerBase(name),
-    resources_(BASE_PLAYER_RESOURCE)
+    resources_(BASE_PLAYER_RESOURCE),
+    color_(color)
 {
 
 }
@@ -19,9 +20,15 @@ int Player::getBuildingCount()
     return buildings.size();
 }
 
+int Player::getColor()
+{
+    return color_;
+}
+
 void Player::addTile(std::shared_ptr<Course::TileBase>& tile)
 {
     tiles.push_back(tile);
+
 }
 
 std::vector<std::shared_ptr<Course::TileBase>> Player::getTiles()

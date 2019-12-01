@@ -92,7 +92,15 @@ DISTFILES += \
     images/cottage.jpg \
     images/fishingHut.jpg \
     images/mine.jpg \
-    images/miner.jpg
+    images/miner.jpg \
+    images/miner.jpg \
+    images/timberJack.jpg \
+    images/cottage.jpg \
+    images/basicWorker.jpg \
+    images/fisher.jpg \
+    images/fishingHut.jpg \
+    images/mine.jpg \
+    images/HQ.jpg
 
 RESOURCES += \
     image.qrc

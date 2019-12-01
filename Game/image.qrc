@@ -6,5 +6,8 @@
         <file>images/fishingHut.jpg</file>
         <file>images/mine.jpg</file>
         <file>images/miner.jpg</file>
+        <file>images/timberJack.jpg</file>
+        <file>images/fisher.jpg</file>
+        <file>images/HQ.jpg</file>
     </qresource>
 </RCC>

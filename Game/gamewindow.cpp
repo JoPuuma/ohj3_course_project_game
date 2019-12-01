@@ -261,10 +261,18 @@ void GameWindow::adjustRightWorkers()
 
         }
         else if (wInTurn->workers[i]->getType() == "Fisher") {
-
+            if (i == 1) ui->buttonWorker1->setIcon(QIcon(":/images/fisher.jpg"));
+            else if (i == 2) ui->buttonWorker2->setIcon(QIcon(":/images/fisher.jpg"));
+            else if (i == 3) ui->buttonWorker3->setIcon(QIcon(":/images/fisher.jpg"));
+            else if (i == 4) ui->buttonWorker4->setIcon(QIcon(":/images/fisher.jpg"));
+            else if (i == 5) ui->buttonWorker5->setIcon(QIcon(":/images/fisher.jpg"));
         }
         else if (wInTurn->workers[i]->getType() == "Timberjack") {
-
+            if (i == 1) ui->buttonWorker1->setIcon(QIcon(":/images/timberJack.jpg"));
+            else if (i == 2) ui->buttonWorker2->setIcon(QIcon(":/images/timberJack.jpg"));
+            else if (i == 3) ui->buttonWorker3->setIcon(QIcon(":/images/timberJack.jpg"));
+            else if (i == 4) ui->buttonWorker4->setIcon(QIcon(":/images/timberJack.jpg"));
+            else if (i == 5) ui->buttonWorker5->setIcon(QIcon(":/images/timberJack.jpg"));
         }
         else {
 
