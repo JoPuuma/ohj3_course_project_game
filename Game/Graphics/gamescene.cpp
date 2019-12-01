@@ -68,18 +68,42 @@ void GameScene::drawBuilding(std::shared_ptr<Course::GameObject> obj)
         QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/cottage.jpg") );
         pm->setPos(rectPtr->pos());
         pm->setScale(0.05);
+        pm->setZValue(1);
     }
 
     else if (obj->getType() == "Fishinghut") {
         QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/fishingHut.jpg") );
         pm->setPos(rectPtr->pos());
         pm->setScale(0.07);
+        pm->setZValue(1);
     }
 
     else if (obj->getType() == "Mine") {
         QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/mine.jpg") );
         pm->setPos(rectPtr->pos());
         pm->setScale(0.2);
+        pm->setZValue(1);
+    }
+
+}
+
+void GameScene::drawWorker(std::shared_ptr<Course::GameObject> obj)
+{
+    std::map<unsigned int, QGraphicsPixmapItem*>::iterator id;
+    id = workers.find(obj->ID);
+
+    if (id != workers.end()) {
+        workers[obj->ID]->setPos(rectPtr->pos());
+    }
+    else {
+
+        if (obj->getType() == "basicWorker") {
+            QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/basicWorker.jpg") );
+            pm->setPos(rectPtr->pos());
+            pm->setScale(0.05);
+            pm->setZValue(10);
+            workers[obj->ID] = pm;
+        }
     }
 
 }

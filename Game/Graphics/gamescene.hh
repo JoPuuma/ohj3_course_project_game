@@ -34,6 +34,7 @@ public:
     void DrawItem( std::shared_ptr<Course::GameObject> obj);
     void UpdateItem( std::shared_ptr<Course::GameObject> obj);
     void drawBuilding(std::shared_ptr<Course::GameObject> obj);
+    void drawWorker(std::shared_ptr<Course::GameObject> obj);
 
     std::shared_ptr<Course::TileBase>  getCurrentObject();
 
@@ -48,6 +49,7 @@ private:
     int m_height;
     int m_scale;
     std::map<unsigned int, MapItem*> mapItems;
+    std::map<unsigned int, QGraphicsPixmapItem*> workers;
     QGraphicsItem* rectPtr;
 
 };

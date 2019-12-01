@@ -176,12 +176,26 @@ void ObjectManager::addWorker(std::shared_ptr<Course::TileBase> tile,
                               std::shared_ptr<Game::Player>& player,
                               int workerNumber)
 {
-    try {
-    tile->addWorker(player->workers[workerNumber]);
-    }
-    catch(std::exception& e){
+    std::shared_ptr<Course::TileBase> oldTile =
+                player->workers[workerNumber]->currentLocationTile();
 
-        qDebug() << "can't add worker";
+
+    if (oldTile != tile) {
+
+        try {
+
+            if (oldTile != nullptr) {
+                oldTile->removeWorker(player->workers[workerNumber]);
+            }
+
+            tile->addWorker(player->workers[workerNumber]);
+            gameScene->drawWorker(player->workers[workerNumber]);
+
+            }
+            catch(std::exception& e){
+
+                qDebug() << "can't add worker";
+            }
     }
 }
 
