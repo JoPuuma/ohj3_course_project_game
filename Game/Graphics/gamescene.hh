@@ -35,6 +35,7 @@ public:
     void UpdateItem( std::shared_ptr<Course::GameObject> obj);
     void drawBuilding(std::shared_ptr<Course::GameObject> obj);
     void drawWorker(std::shared_ptr<Course::GameObject> obj);
+    void addPen(std::shared_ptr<Course::GameObject> obj, int color);
 
     std::shared_ptr<Course::TileBase>  getCurrentObject();
 
@@ -43,7 +44,6 @@ public:
     std::shared_ptr<Course::GameObject> currentObject = nullptr;
 
 private:
-    QPainter* painter_;
     QGraphicsItem* m_mapBoundRect;
     int  m_width;
     int m_height;

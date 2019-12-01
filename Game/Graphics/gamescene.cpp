@@ -18,7 +18,7 @@ GameScene::GameScene(QWidget* parent):
 {
     resize();
     QRect rect = QRect( 0, 0, m_scale, m_scale);
-    rectPtr = addRect(rect, QPen(Qt::red,4));
+    rectPtr = addRect(rect, QPen(Qt::red,2));
     rectPtr->setZValue(10);
 
 }
@@ -49,7 +49,6 @@ void GameScene::DrawItem(std::shared_ptr<Course::GameObject> obj)
 void GameScene::drawRect()
 {
     QPen pen(Qt::red, 10);
-    //painter_->setPen(pen);
 
     addRect(QRect(0,0,200,200), pen);
 
@@ -78,14 +77,20 @@ void GameScene::drawBuilding(std::shared_ptr<Course::GameObject> obj)
     else if (obj->getType() == "Fishinghut") {
         QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/fishingHut.jpg") );
         pm->setPos(rectPtr->pos());
-        pm->setScale(0.07);
+        pm->setScale(0.1);
         pm->setZValue(1);
     }
 
     else if (obj->getType() == "Mine") {
         QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/mine.jpg") );
         pm->setPos(rectPtr->pos());
-        pm->setScale(0.2);
+        pm->setScale(0.1);
+        pm->setZValue(1);
+    }
+    else if(obj->getType() == "HeadQuarters"){
+        QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/HQ.jpg") );
+        pm->setPos(rectPtr->pos());
+        pm->setScale(0.35);
         pm->setZValue(1);
     }
 
@@ -119,6 +124,13 @@ void GameScene::drawWorker(std::shared_ptr<Course::GameObject> obj)
         }
     }
 
+}
+
+void GameScene::addPen(std::shared_ptr<Course::GameObject> obj, int color)
+{
+    QPoint point = QPoint(obj->getCoordinate().x()*m_scale,obj->getCoordinate().y()*m_scale);
+    QRect rect = QRect(point, QSize(m_scale, m_scale));
+    addRect(rect, QPen(QColor(color),4));
 }
 
 std::shared_ptr<Course::TileBase> GameScene::getCurrentObject()

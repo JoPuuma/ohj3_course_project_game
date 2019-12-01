@@ -11,9 +11,9 @@ namespace Game{
 const int MAX_ROUND_OFF = -1;
 
 GameEventHandler::GameEventHandler():
-    players({}),
     round_(0),  // round zero for adding headquarters
-    maxRound_(MAX_ROUND_OFF)
+    maxRound_(MAX_ROUND_OFF),
+    playerColors({0x009DA4,0xf57b42,0xd633ce,0x3336d6})
 {
 
 }
@@ -36,10 +36,7 @@ bool GameEventHandler::modifyResources(
     return true;
 }
 
-void GameEventHandler::addPlayer(std::string name,
-                                 std::shared_ptr<Game::Player> ptr){
-    players[name] = ptr;
-}
+
 
 void GameEventHandler::addBasicWorkers(std::shared_ptr<Game::GameEventHandler>& eventhandler,
                                        std::shared_ptr<Game::ObjectManager>& objectmanager)
@@ -60,20 +57,21 @@ void GameEventHandler::initializeGame(const std::vector<std::string>& players,
                                       std::shared_ptr<Game::ObjectManager>& objectmanager,
                                       const int& rounds)
 {
+    int i = 0;
     // create players
     std::shared_ptr<Game::Player> previousPlayerPtr = nullptr;
     for(const std::string &player : players){
         // new player
         std::shared_ptr<Game::Player> ptr =
-                    std::make_shared<Game::Player>(Game::Player(player));                   
+                    std::make_shared<Game::Player>(Game::Player(player,playerColors[i]));
 
-        addPlayer(player,ptr); // TARPEELLINEN?
         playerPtrs.push_back(ptr);
 
         if(previousPlayerPtr != nullptr){
             previousPlayerPtr->addNextPlayer(ptr);
         }
         previousPlayerPtr = ptr;
+        ++i;
     }
     eInTurn = playerPtrs[0];
     addBasicWorkers(eventhandler,objectmanager);

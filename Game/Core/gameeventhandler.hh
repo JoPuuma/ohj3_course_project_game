@@ -43,8 +43,6 @@ public:
     virtual bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
                                  Course::ResourceMap resources);
 
-    void addPlayer(std::string name,
-                   std::shared_ptr<Game::Player> ptr);
 
     void addBasicWorkers(std::shared_ptr<Game::GameEventHandler>& eventhandler,
                          std::shared_ptr<Game::ObjectManager>& objectmanager);
@@ -62,11 +60,11 @@ public:
     int maxMoves = 0;
 
 private:
-    std::map<std::string, std::shared_ptr<Game::Player>> players;
     std::vector<std::shared_ptr<Game::Player>> playerPtrs = {};
     std::shared_ptr<Game::Player> eInTurn = nullptr;
     int round_;
     int maxRound_;
+    std::vector<int> playerColors;
 };
 
 } // namespace Game
