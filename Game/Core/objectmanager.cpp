@@ -205,32 +205,48 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
                                 WorkerType& type,
                                 int workerNumber)
     {
+
+
+    std::shared_ptr<Course::TileBase> oldTile =
+                  player->workers[workerNumber]->currentLocationTile();
+
     if (type == MINER &&
         player->workers[workerNumber]->getType() == "basicWorker" &&
         eventhandler->modifyResources(player,ConstResourceMap::MINER_RECRUITMENT_COST)) {
 
-      player->workers[workerNumber] = std::make_shared<Game::Miner>(eventhandler,
-                                                                    objectmanager,
-                                                                    player);
+          oldTile->removeWorker(player->workers[workerNumber]);
 
-      eventhandler->maxMoves += 1;
+          player->workers[workerNumber] = std::make_shared<Game::Miner>(eventhandler,
+                                                                        objectmanager,
+                                                                        player);
+          oldTile->addWorker( player->workers[workerNumber]);
+          gameScene->UpdateItem(player->workers[workerNumber]);
+          eventhandler->maxMoves += 1;
     }
     else if (type == FISHER &&
              player->workers[workerNumber]->getType() == "basicWorker" &&
              eventhandler->modifyResources(player,ConstResourceMap::FISHER_RECRUITMENT_COST)) {
 
+        oldTile->removeWorker(player->workers[workerNumber]);
+
         player->workers[workerNumber] = std::make_shared<Game::Fisher>(eventhandler,
                                                                        objectmanager,
                                                                        player);
+        oldTile->addWorker( player->workers[workerNumber]);
+        gameScene->UpdateItem(player->workers[workerNumber]);
         eventhandler->maxMoves += 1;
     }
     else if (type == TIMBERJACK &&
              player->workers[workerNumber]->getType() == "basicWorker" &&
              eventhandler->modifyResources(player,ConstResourceMap::TIMBERJACK_RECRUITMENT_COST)) {
 
+        oldTile->removeWorker(player->workers[workerNumber]);
+
         player->workers[workerNumber] = std::make_shared<Game::Timberjack>(eventhandler,
                                                                            objectmanager,
                                                                            player);
+        oldTile->addWorker( player->workers[workerNumber]);
+        gameScene->UpdateItem(player->workers[workerNumber]);
         eventhandler->maxMoves += 1;
     }
 

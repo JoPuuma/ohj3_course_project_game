@@ -59,7 +59,11 @@ void GameScene::drawRect()
 
 void GameScene::UpdateItem(std::shared_ptr<Course::GameObject> obj)
 {
-
+//    if (obj->getType() == "Miner") {
+//        workers[obj->ID] = addPixmap( QPixmap(":/images/miner.jpg") );
+//        workers[obj->ID]->setScale(0.01);
+//        workers[obj->ID]->setZValue(10);
+//   }
 }
 
 void GameScene::drawBuilding(std::shared_ptr<Course::GameObject> obj)
@@ -93,16 +97,25 @@ void GameScene::drawWorker(std::shared_ptr<Course::GameObject> obj)
     id = workers.find(obj->ID);
 
     if (id != workers.end()) {
+
         workers[obj->ID]->setPos(rectPtr->pos());
     }
     else {
 
         if (obj->getType() == "basicWorker") {
-            QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/basicWorker.jpg") );
-            pm->setPos(rectPtr->pos());
-            pm->setScale(0.05);
-            pm->setZValue(10);
-            workers[obj->ID] = pm;
+            workers[obj->ID] = addPixmap( QPixmap(":/images/basicWorker.jpg") );
+            workers[obj->ID]->setPos(rectPtr->pos());
+            workers[obj->ID]->setScale(0.05);
+            workers[obj->ID]->setZValue(10);
+
+        }
+
+        else  if (obj->getType() == "Miner") {
+            workers[obj->ID] = addPixmap( QPixmap(":/images/miner.jpg") );
+            workers[obj->ID]->setPos(rectPtr->pos());
+            workers[obj->ID]->setScale(0.01);
+            workers[obj->ID]->setZValue(10);
+
         }
     }
 
