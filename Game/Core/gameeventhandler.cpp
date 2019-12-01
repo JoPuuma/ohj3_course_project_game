@@ -21,7 +21,9 @@ GameEventHandler::GameEventHandler():
 bool GameEventHandler::modifyResource(
         std::shared_ptr<Course::PlayerBase> player, Course::BasicResource resource, int amount)
 {
+    std::shared_ptr<Game::Player> p = std::dynamic_pointer_cast<Game::Player>(player);
 
+    return true;
 }
 
 bool GameEventHandler::modifyResources(
