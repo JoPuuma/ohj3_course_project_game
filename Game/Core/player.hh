@@ -28,7 +28,7 @@ public:
     void addNextPlayer(std::shared_ptr<Game::Player> nextP);
 
     void addBuilding(std::shared_ptr<Course::BuildingBase>& building);
-    const unsigned int getBuildingCount();
+    int getBuildingCount();
 
     void addTile(std::shared_ptr<Course::TileBase>& tile);
     std::vector<std::shared_ptr<Course::TileBase>> getTiles();

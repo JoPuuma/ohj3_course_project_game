@@ -14,7 +14,7 @@ void Player::addNextPlayer(std::shared_ptr<Player> nextP)
     next = nextP;
 }
 
-const unsigned int Player::getBuildingCount()
+int Player::getBuildingCount()
 {
     return buildings.size();
 }

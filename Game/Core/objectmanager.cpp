@@ -139,22 +139,33 @@ void ObjectManager::createHQ(std::shared_ptr<Course::TileBase> tile,
                              std::shared_ptr<Game::ObjectManager>& objectmanager,
                              std::shared_ptr<Game::GameEventHandler>& eventhandler)
 {
-    std::shared_ptr<Course::BuildingBase> buildinPtr =
-                                        std::make_shared<Course::HeadQuarters>(eventhandler,
-                                                                               objectmanager,
-                                                                               player);
-    try {
-        tile->addBuilding(buildinPtr);
-        tile->setOwner(player);
-        buildinPtr->setOwner(player);
-        player->addBuilding(buildinPtr);
-        player->addTile(tile);
-        gameScene->currentObject = nullptr;
-     }
-    catch(std::exception& e) {
-        e.what();
-        qDebug() << "can't place HQ";
 
+    std::shared_ptr<Course::BuildingBase> buildinPtr = nullptr;
+    bool suitableTile = false;
+
+        if (tile->getType() != "Water") {
+
+             buildinPtr = std::make_shared<Course::HeadQuarters>(eventhandler,
+                                                                 objectmanager,
+                                                                 player);
+            suitableTile = true;
+    }
+
+    if (suitableTile) {
+
+        try {
+            tile->addBuilding(buildinPtr);
+            tile->setOwner(player);
+            buildinPtr->setOwner(player);
+            player->addBuilding(buildinPtr);
+            player->addTile(tile);
+            gameScene->currentObject = nullptr;
+         }
+        catch(std::exception& e) {
+            e.what();
+            qDebug() << "can't place HQ";
+
+        }
     }
 
 }
