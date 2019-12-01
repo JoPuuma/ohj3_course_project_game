@@ -56,8 +56,7 @@ public:
     unsigned int getRound();
     std::shared_ptr<Game::Player> currentPlayer();
     void endTurn();
-    bool gameEnd(std::shared_ptr<Game::GameEventHandler>& eventhandler,
-                 std::shared_ptr<Game::ObjectManager>& objectmanager);
+    bool gameEnd(std::shared_ptr<Game::ObjectManager>& objectmanager);
     std::string determineWinner();
 
     int maxMoves = 0;

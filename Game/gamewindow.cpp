@@ -195,7 +195,7 @@ void GameWindow::endTurn()
     ui->buttonTrain->setEnabled(true);
     adjustGameWiew();
 
-    if (handler_->gameEnd(handler_,oManager_)) {
+    if (handler_->gameEnd(oManager_)) {
        std::string winner = handler_->determineWinner();
        QMessageBox::information(this, tr("Game over !"),tr("The winner is : ")+
                                 tr(winner.c_str()));

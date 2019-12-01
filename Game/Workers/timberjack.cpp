@@ -1,4 +1,5 @@
 #include "timberjack.hh"
+#include "tiles/tilebase.h"
 #include "interfaces/igameeventhandler.h"
 #include "interfaces/iobjectmanager.h"
 
@@ -29,7 +30,8 @@ std::string Timberjack::getType() const
 
 bool Timberjack::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
 {
-
+    return target->getOwner() == getOwner() and
+            WorkerBase::canBePlacedOnTile(target);
 }
 
 void Timberjack::doSpecialAction()

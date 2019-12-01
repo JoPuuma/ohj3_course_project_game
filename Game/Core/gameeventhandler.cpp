@@ -105,8 +105,7 @@ void GameEventHandler::endTurn()
 }
 
 
-bool GameEventHandler::gameEnd(std::shared_ptr<GameEventHandler> &eventhandler,
-                               std::shared_ptr<ObjectManager> &objectmanager)
+bool GameEventHandler::gameEnd(std::shared_ptr<ObjectManager> &objectmanager)
 {
     if(maxRound_ == MAX_ROUND_OFF){
         if(round_ >= 201) return true;
@@ -126,6 +125,7 @@ bool GameEventHandler::gameEnd(std::shared_ptr<GameEventHandler> &eventhandler,
        if (eInTurn->next == nullptr) return true;
 
     }
+    return false;
 }
 
 std::string GameEventHandler::determineWinner()
