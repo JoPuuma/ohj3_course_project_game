@@ -1,6 +1,5 @@
 #include "objectmanager.hh"
 #include "gamewindow.hh"
-#include "graphics/simplegamescene.h"
 #include "Core/player.hh"
 #include "Core/resourcemaps.hh"
 #include "core/coordinate.h"
