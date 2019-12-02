@@ -47,10 +47,6 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinat
     return nullptr;
 }
 
-void ObjectManager::addPlayer(std::string name, std::shared_ptr<Game::Player> ptr){
-    players[name] = ptr;
-}
-
 void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
                                    std::shared_ptr<Game::Player>& player,
                                    std::shared_ptr<Game::ObjectManager>& objectmanager,

@@ -63,7 +63,7 @@ void GameEventHandler::initializeGame(const std::vector<std::string>& players,
     for(const std::string &player : players){
         // new player
         std::shared_ptr<Game::Player> ptr =
-                    std::make_shared<Game::Player>(Game::Player(player,playerColors[i]));
+           std::make_shared<Game::Player>(Game::Player(player,playerColors[i]));
 
         playerPtrs.push_back(ptr);
 
