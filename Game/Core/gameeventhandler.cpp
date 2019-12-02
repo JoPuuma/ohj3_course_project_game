@@ -8,7 +8,6 @@
 
 namespace Game{
 
-const int MAX_ROUND_OFF = -1;
 
 GameEventHandler::GameEventHandler():
     round_(0),  // round zero for adding headquarters
@@ -21,8 +20,7 @@ GameEventHandler::GameEventHandler():
 bool GameEventHandler::modifyResource(
         std::shared_ptr<Course::PlayerBase> player, Course::BasicResource resource, int amount)
 {
-    std::shared_ptr<Game::Player> p = std::dynamic_pointer_cast<Game::Player>(player);
-
+    Q_UNUSED(player);  Q_UNUSED(resource);  Q_UNUSED(amount);
     return true;
 }
 
@@ -155,7 +153,7 @@ std::string GameEventHandler::determineWinner()
         }
         playerResources[amount] = player->getName();
     }
-    return playerResources.rbegin()->second;
+    return playerResources.rbegin()->second; // greatest int is first one in map
 }
 
 

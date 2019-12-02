@@ -31,16 +31,20 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::ObjectId 
             return tile;
         }
     }
+    return nullptr;
 }
 
 std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getTiles(const std::vector<Course::Coordinate> &coordinates)
 {
-
+    Q_UNUSED(coordinates);
+    std::vector<std::shared_ptr<Course::TileBase> >v;
+    return v;
 }
 
 std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinate &coordinate)
 {
-
+    Q_UNUSED(coordinate);
+    return nullptr;
 }
 
 void ObjectManager::addPlayer(std::string name, std::shared_ptr<Game::Player> ptr){
