@@ -18,7 +18,7 @@ class ObjectManager;
 class GameEventHandler: public Course::iGameEventHandler
 {
 public:
-    const int MAX_ROUND_OFF = -1;
+    const int MAX_ROUND_OFF = -1; // default value for max round
 
     GameEventHandler();
     /**
@@ -58,8 +58,9 @@ public:
      * @param players: player names as strings
      * @param eventhandler
      * @param objectmanager
-     * @param rounds: contains max round value. Not in use by default.
-     * /pre - players length two or over
+     * @param rounds: contain max round value. Not in use by default.
+     * @pre players length two or over
+     * @post exeption guarantee: basic
      */
     void initializeGame(const std::vector<std::string>& players,
                         std::shared_ptr<Game::GameEventHandler>& eventhandler,
@@ -68,19 +69,20 @@ public:
     /**
      * @brief getRound
      * @return current round number
-     * exeption guarantee: no-throw
+     * @post exeption guarantee: no-throw
      */
     unsigned int getRound();
 
     /**
      * @brief currentPlayer
      * @return pointer to the player who is in turn
-     * exeption guarantee: no-throw
+     * @post exeption guarantee: no-throw
      */
     std::shared_ptr<Game::Player> currentPlayer();
 
     /**
      * @brief Handles turn changing
+     * @post exeption guarantee: no-throw
      */
     void endTurn();
 
@@ -88,7 +90,7 @@ public:
      * @brief gameEnd
      * @param objectmanager
      * @return
-     * true - max rounds played or all tiles have owner or played over 200 rounds
+     * True - max rounds played or all tiles have owner or played over 200 rounds
      */
     bool gameEnd(std::shared_ptr<Game::ObjectManager>& objectmanager);
 
@@ -99,14 +101,14 @@ public:
     std::string determineWinner();
 
     /**
-     * @brief Count of moves per one turn
+     * @brief number of moves per one turn
      */
     int maxMoves = 0;
 
 private:
     std::vector<std::shared_ptr<Game::Player>> playerPtrs = {};
-    std::shared_ptr<Game::Player> eInTurn = nullptr;
-    int round_;         // current round
+    std::shared_ptr<Game::Player> eInTurn = nullptr; // current player
+    int round_; // current round
     int maxRound_;
     std::vector<int> playerColors;
 };
