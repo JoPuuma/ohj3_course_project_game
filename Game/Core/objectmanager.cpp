@@ -66,6 +66,7 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
             suitableTile = true;
         }
         else if (buildingType == FISHINGHUT && tile->getType() == "Water") {
+
             buildingPtr = std::make_shared<Game::Fishinghut>(eventhandler,
                                                              objectmanager,
                                                              player);
@@ -73,6 +74,7 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
 
         }
         else if (buildingType == MINE && tile->getType() == "Rock") {
+
             buildingPtr = std::make_shared<Game::Mine>(eventhandler,
                                                        objectmanager,
                                                        player);
@@ -84,7 +86,9 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
             try {
                  tile->addBuilding(buildingPtr);
 
+                 // player needs to have resources to make building.
                  if (eventhandler->modifyResources(player,buildingPtr->BUILD_COST)) {
+
                      tile->setOwner(player);
                      buildingPtr->setOwner(player);
                      player->addBuilding(buildingPtr);
@@ -102,7 +106,6 @@ void ObjectManager::createBuilding(std::shared_ptr<Course::TileBase> tile,
 
                 qDebug() << "can't add building";
             }
-
 
         }
     }
@@ -122,6 +125,7 @@ bool ObjectManager::canBuild(std::shared_ptr<Course::TileBase> tile,
 
             for (auto tile : playerTiles) {
 
+                // player needs to own atleast one tile around new tile.
                 if (tile->getCoordinate().x() == neighbour.x() &&
                     tile->getCoordinate().y() == neighbour.y()) {
 
@@ -160,13 +164,14 @@ void ObjectManager::createHQ(std::shared_ptr<Course::TileBase> tile,
             buildinPtr->setOwner(player);
             player->addBuilding(buildinPtr);
             player->addTile(tile);
+
             gameScene->currentObject = nullptr;
             gameScene->drawBuilding(buildinPtr);
             gameScene->addPen(tile,player->getColor());
 
          }
         catch(std::exception& e) {
-            e.what();
+
             qDebug() << "can't place HQ";
 
         }
@@ -178,16 +183,16 @@ void ObjectManager::addWorker(std::shared_ptr<Course::TileBase> tile,
                               std::shared_ptr<Game::Player>& player,
                               int workerNumber)
 {
-    std::shared_ptr<Course::TileBase> oldTile =
+    std::shared_ptr<Course::TileBase> previousTile =
                 player->workers[workerNumber]->currentLocationTile();
 
-
-    if (oldTile != tile) {
+    // can't add worker to same tile multiple times.
+    if (previousTile != tile) {
 
         try {
 
-            if (oldTile != nullptr) {
-                oldTile->removeWorker(player->workers[workerNumber]);
+            if (previousTile != nullptr) {
+                previousTile->removeWorker(player->workers[workerNumber]);
             }
 
             tile->addWorker(player->workers[workerNumber]);
@@ -210,21 +215,23 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
 
      unsigned int oldID = player->workers[workerNumber]->ID;
 
-    std::shared_ptr<Course::TileBase> oldTile =
+    std::shared_ptr<Course::TileBase> Tile =
                   player->workers[workerNumber]->currentLocationTile();
 
     if (type == MINER &&
         player->workers[workerNumber]->getType() == "basicWorker" &&
         eventhandler->modifyResources(player,ConstResourceMap::MINER_RECRUITMENT_COST)) {
 
-        if (oldTile != nullptr) {
-          oldTile->removeWorker(player->workers[workerNumber]);
+        // remove basicWorker from the tile
+        if (Tile != nullptr) {
+          Tile->removeWorker(player->workers[workerNumber]);
         }
           player->workers[workerNumber] = std::make_shared<Game::Miner>(eventhandler,
                                                                         objectmanager,
                                                                         player);
-          if (oldTile != nullptr) {
-          oldTile->addWorker( player->workers[workerNumber]);
+          // add new worker to the tile
+          if (Tile != nullptr) {
+          Tile->addWorker( player->workers[workerNumber]);
           }
           gameScene->UpdateItem(player->workers[workerNumber], oldID);
           eventhandler->maxMoves += 1;
@@ -233,14 +240,14 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
              player->workers[workerNumber]->getType() == "basicWorker" &&
              eventhandler->modifyResources(player,ConstResourceMap::FISHER_RECRUITMENT_COST)) {
 
-        if (oldTile != nullptr) {
-          oldTile->removeWorker(player->workers[workerNumber]);
+        if (Tile != nullptr) {
+          Tile->removeWorker(player->workers[workerNumber]);
         }
         player->workers[workerNumber] = std::make_shared<Game::Fisher>(eventhandler,
                                                                        objectmanager,
                                                                        player);
-        if (oldTile != nullptr) {
-        oldTile->addWorker( player->workers[workerNumber]);
+        if (Tile != nullptr) {
+        Tile->addWorker( player->workers[workerNumber]);
         }
         gameScene->UpdateItem(player->workers[workerNumber], oldID);
         eventhandler->maxMoves += 1;
@@ -249,14 +256,14 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
              player->workers[workerNumber]->getType() == "basicWorker" &&
              eventhandler->modifyResources(player,ConstResourceMap::TIMBERJACK_RECRUITMENT_COST)) {
 
-        if (oldTile != nullptr) {
-          oldTile->removeWorker(player->workers[workerNumber]);
+        if (Tile != nullptr) {
+          Tile->removeWorker(player->workers[workerNumber]);
         }
         player->workers[workerNumber] = std::make_shared<Game::Timberjack>(eventhandler,
                                                                            objectmanager,
                                                                          player);
-        if (oldTile != nullptr) {
-        oldTile->addWorker( player->workers[workerNumber]);
+        if (Tile != nullptr) {
+        Tile->addWorker( player->workers[workerNumber]);
         }
         gameScene->UpdateItem(player->workers[workerNumber], oldID);
         eventhandler->maxMoves += 1;

@@ -20,20 +20,59 @@ const Course::ResourceMap BASE_PLAYER_RESOURCE = {
     {Course::BasicResource::ORE, 100}
 };
 
+/**
+ * @brief The Player class represents Player in the game.
+ */
 class Player: public Course::PlayerBase
 {
 public:
+
+    /**
+     * @brief Constructor of the class.
+     * @param name player's name.
+     * @param color player's color to mark own tiles.
+     */
     Player(const std::string& name, const int& color);
 
+    /**
+     * @brief addNextPlayer
+     * @param nextP pointer to next player
+     */
     void addNextPlayer(std::shared_ptr<Game::Player> nextP);
 
+    /**
+     * @brief add new building to the player.
+     * @param building shared ptr to the building.
+     */
     void addBuilding(std::shared_ptr<Course::BuildingBase>& building);
+
+    /**
+     * @brief getBuildingCount
+     * @return number of buildings.
+     */
     int getBuildingCount();
+
+    /**
+     * @brief getColor
+     * @return player's own color.
+     */
     int getColor();
 
+    /**
+     * @brief add new tile to the player.
+     * @param tile shared ptr to the tile.
+     */
     void addTile(std::shared_ptr<Course::TileBase>& tile);
+
+    /**
+     * @brief getTiles
+     * @return vector of player's own tiles.
+     */
     std::vector<std::shared_ptr<Course::TileBase>> getTiles();
 
+    /**
+     * @brief update resources from player's own tiles.
+     */
     void updateResources();
 
     Course::ResourceMap resources_;

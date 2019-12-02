@@ -51,6 +51,7 @@ void GameScene::UpdateItem(std::shared_ptr<Course::GameObject> obj, unsigned int
 {
     std::map<unsigned int, QGraphicsPixmapItem*>::iterator ID = workers.find(oldID);
 
+    // update image to worker if it is already putted to the gamescene.
     if (ID != workers.end()) {
 
       QGraphicsPixmapItem* value = ID->second;
@@ -119,6 +120,7 @@ void GameScene::drawWorker(std::shared_ptr<Course::GameObject> obj, unsigned int
     std::map<unsigned int, QGraphicsPixmapItem*>::iterator id;
     id = workers.find(obj->ID);
 
+    // if the workers is added first time to the gamescene.
     if (id == workers.end()) {
 
         if (obj->getType() == "basicWorker") {
@@ -147,6 +149,7 @@ void GameScene::drawWorker(std::shared_ptr<Course::GameObject> obj, unsigned int
 
         workers[obj->ID]->setZValue(10);
     }
+    // set worker to new position.
     workers[obj->ID]->setPos(rectPtr->pos().rx() + 50 ,
                              rectPtr->pos().y() + ((workerNumber -1) * 12));
 
@@ -185,20 +188,16 @@ bool GameScene::event(QEvent *event)
             if ( pressed == m_mapBoundRect ){
                 qDebug() << "Click on map area.";
             }else{
-//                qDebug() << "ObjID: " <<
-//                            static_cast<Game::MapItem*>(pressed)
-//                            ->getBoundObject()->ID  << " pressed.";
-//                qDebug() << "location: " << rectPtr->pos();
+
                 rectPtr->setPos(QPoint(point.rx()*m_scale,point.ry()*m_scale));
-//                qDebug() << "location: " << rectPtr->pos();
 
                 for (const auto &item : mapItems) {
 
+                    // find tile object from the point which is clicked.
                     if (item.second->getPoint() == rectPtr->pos()){
                         currentObject = static_cast<Game::MapItem*>(item.second)->getBoundObject();
                     }
                 }
-
 
                 return true;
             }
@@ -207,7 +206,7 @@ bool GameScene::event(QEvent *event)
     }
 
     return QGraphicsScene::event(event);
-    //return false;
+
 }
 
 

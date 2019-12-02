@@ -22,6 +22,7 @@ class GameWindow;
 class Player;
 class TrainDialog;
 
+
 class GameWindow : public QMainWindow
 {
     Q_OBJECT
@@ -32,16 +33,57 @@ public:
     ~GameWindow();
 
     void resize();
-
     void drawItem( std::shared_ptr<Course::GameObject> obj);
+
+    /**
+     * @brief adjust updated resources to GameView
+     */
     void adjustResources();
+
+    /**
+     * @brief adjust GameWiew:
+     *  resources
+     * workers
+     * player
+     * turn
+     */
     void adjustGameWiew();
+
+    /**
+     * @brief starts the Game
+     */
     void startGame();
+
+    /**
+     * @brief adjust BuildingCosts when player chooses building
+     */
     void adjustBuildingCosts();
+
+    /**
+     * @brief adjust RightWorkers when player train workers
+     * or it's another player's turn
+     */
     void adjustRightWorkers();
+
+    /**
+     * @brief set HeadQuarter when player chooses tile
+     */
     void setHeadQuarter();
+
+    /**
+     * @brief change buttons to disabled when it is round 0
+     * @param b
+     */
     void changeEnablers(bool b);
+
+    /**
+     * @brief set worker buttons Image to basicWorker
+     */
     void setImages();
+
+    /**
+     * @brief  if player reaches maxMoves disable 'build' and 'train' buttons
+     */
     void maxMovesReached();
 
 
@@ -55,20 +97,28 @@ public slots:
     void receiveData(const std::vector<std::string>& p,
                      const bool& roundLimit,const int& rounds);
     /**
-     * @brief build building when build button pressed
+     * @brief build building when 'build' button is pressed
      */
     void build();
+
+    /**
+     * @brief add worker to the tile when 'assign'  button is pressed
+     */
     void addWorker();
+
+    /**
+     * @brief ends Turn when 'end turn' button is pressed
+     */
     void endTurn();
     /**
-     * @brief display train dialog when train button pressed
+     * @brief display train dialog when 'train' button is pressed
      */
     void trainDialog();
     /**
      * @brief receive data from train dialog
      * @param type: WorkerType, new worker type
      */
-    void getTrainigData(WorkerType& type);
+    void getTrainingData(WorkerType& type);
 
 private:
     Ui::GameWindow *ui;

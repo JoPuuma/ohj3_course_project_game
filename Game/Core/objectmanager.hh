@@ -66,30 +66,83 @@ public:
     virtual std::vector<std::shared_ptr<Course::TileBase>> getTiles(
             const std::vector<Course::Coordinate>& coordinates);
 
-
+    /**
+     * @brief create a new building to the tile.
+     *
+     * add building's and tile's ownership to player and add them to
+     * player's databases.
+     *
+     * @param tile shared_ptr to the tile
+     * @param player shared_ptr to the player
+     * @param objectmanager shared_ptr to the objectManager
+     * @param eventhandler shared_ptr to the gameEventhandler
+     * @param buildingType value to right building type.
+     */
     void createBuilding(std::shared_ptr<Course::TileBase> tile,
                         std::shared_ptr<Game::Player>& player,
                         std::shared_ptr<Game::ObjectManager>& objectmanager,
                         std::shared_ptr<Game::GameEventHandler>& eventhandler,
                         BuildingType buildingType);
 
+    /**
+     * @brief checks if the building can be built in the tile
+     *
+     * @param tile shared_ptr to the tile
+     * @param player shared_ptr to the player
+     * @return true: can build.
+     * False: can't build
+     */
     bool canBuild(std::shared_ptr<Course::TileBase> tile,
                   std::shared_ptr<Game::Player>& player);
 
+    /**
+     * @brief creates HQ to the tile.
+     *
+     * add HQ's and tile's ownership to the player and add them to
+     * player's databases
+     *
+     * @param tile shared_ptr to the tile
+     * @param player shared_ptr to the player
+     * @param objectmanager shared_ptr to the objectManager
+     * @param eventhandler shared_ptr to the gameEventhandler
+     */
     void createHQ(std::shared_ptr<Course::TileBase> tile,
                   std::shared_ptr<Game::Player>& player,
                   std::shared_ptr<Game::ObjectManager>& objectmanager,
                   std::shared_ptr<Game::GameEventHandler>& eventhandler);
 
+    /**
+     * @brief add worker to the tile.
+     * and remove it from previous tile (if not first time adding).
+     *
+     * @param tile shared_ptr to the tile
+     * @param player shared_ptr to the player
+     * @param workerNumber tells the right worker
+     */
     void addWorker(std::shared_ptr<Course::TileBase> tile,
                    std::shared_ptr<Game::Player>& player,
                    int workerNumber);
 
+    /**
+     * @brief train basicWorker to miner, fisher or timberjack
+     * update new worker to player's worker database
+     *
+     * @param player shared_ptr to the player
+     * @param objectmanager shared_ptr to the objectManager
+     * @param eventhandler shared_ptr to the gameEventhandler
+     * @param type which kind of worker to train
+     * @param workerNumber tells the right worker
+     */
     void trainWorker(std::shared_ptr<Game::Player>& player,
                      std::shared_ptr<Game::ObjectManager>& objectmanager,
                      std::shared_ptr<Game::GameEventHandler>& eventhandler,
                      WorkerType& type,
                      int workerNumber);
+
+    /**
+     * @brief getTiles
+     * @return vector of all tiles
+     */
     std::vector<std::shared_ptr<Course::TileBase>> getTiles();
 
 

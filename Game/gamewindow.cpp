@@ -39,15 +39,12 @@ GameWindow::GameWindow(QWidget *parent,
     handler_ = std::make_shared<Game::GameEventHandler>();
 
 
-
     ui->setupUi(this);
-
 
     Dialog sd;      //start dialog
 
     connect(&sd, &Dialog::rejected, this, &GameWindow::close);
     connect(&sd, &Dialog::sendData,this, &GameWindow::receiveData);
-
 
     connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
             [=](const QString &text){Q_UNUSED(text);  adjustBuildingCosts(); });
@@ -72,7 +69,6 @@ GameWindow::GameWindow(QWidget *parent,
             this,[=](){currentWorkerIndex = 5;});
 
 
-
     sd.exec();
 
     ui->lcdMoney->setPalette(Qt::black);
@@ -90,10 +86,9 @@ GameWindow::GameWindow(QWidget *parent,
     ui->comboBox->setItemData(2, BuildingType::MINE);
 
 
-
    Game::GameScene* sgs_rawptr = scene_.get();
-
    ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+
 
    Game::WorldGenerator& worldgen = Game::WorldGenerator::getInstance();
    worldgen.addConstructor<Game::Rock>('r');
@@ -199,11 +194,11 @@ void GameWindow::endTurn()
 void GameWindow::trainDialog()
 {
     TrainDialog td;
-    connect(&td, &TrainDialog::sendData,this,&GameWindow::getTrainigData);
+    connect(&td, &TrainDialog::sendData,this,&GameWindow::getTrainingData);
     td.exec();
 }
 
-void GameWindow::getTrainigData(WorkerType& type)
+void GameWindow::getTrainingData(WorkerType& type)
 {
     if( currentWorkerIndex != NONVALUE) {
     oManager_->trainWorker(wInTurn,oManager_,handler_,type,currentWorkerIndex);
@@ -319,7 +314,6 @@ void GameWindow::setImages()
     ui->buttonWorker3->setFlat(true);
     ui->buttonWorker4->setFlat(true);
     ui->buttonWorker5->setFlat(true);
-
 
 }
 
