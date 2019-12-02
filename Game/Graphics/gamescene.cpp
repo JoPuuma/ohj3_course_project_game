@@ -77,14 +77,14 @@ void GameScene::drawBuilding(std::shared_ptr<Course::GameObject> obj)
     else if (obj->getType() == "Fishinghut") {
         QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/fishingHut.jpg") );
         pm->setPos(rectPtr->pos());
-        pm->setScale(0.1);
+        pm->setScale(0.08);
         pm->setZValue(1);
     }
 
     else if (obj->getType() == "Mine") {
         QGraphicsPixmapItem *pm = addPixmap( QPixmap(":/images/mine.jpg") );
         pm->setPos(rectPtr->pos());
-        pm->setScale(0.1);
+        pm->setScale(0.08);
         pm->setZValue(1);
     }
     else if(obj->getType() == "HeadQuarters"){
@@ -119,6 +119,22 @@ void GameScene::drawWorker(std::shared_ptr<Course::GameObject> obj)
             workers[obj->ID] = addPixmap( QPixmap(":/images/miner.jpg") );
             workers[obj->ID]->setPos(rectPtr->pos());
             workers[obj->ID]->setScale(0.01);
+            workers[obj->ID]->setZValue(10);
+
+        }
+
+        else  if (obj->getType() == "Fisher") {
+            workers[obj->ID] = addPixmap( QPixmap(":/images/fisher.jpg") );
+            workers[obj->ID]->setPos(rectPtr->pos());
+            workers[obj->ID]->setScale(0.07);
+            workers[obj->ID]->setZValue(10);
+
+        }
+
+        else  if (obj->getType() == "Timberjack") {
+            workers[obj->ID] = addPixmap( QPixmap(":/images/timberJack.jpg") );
+            workers[obj->ID]->setPos(rectPtr->pos());
+            workers[obj->ID]->setScale(0.07);
             workers[obj->ID]->setZValue(10);
 
         }
