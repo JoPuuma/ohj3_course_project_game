@@ -48,13 +48,28 @@ public:
 
 
 public slots: 
+    /**
+     * @brief Receive data from start dialog
+     * @param p: vector, player names
+     * @param roundLimit: bool, true if user uses roundlimit
+     * @param rounds: int, if roundLimit is true rounds contains the round number
+     */
     void receiveData(const std::vector<std::string>& p,
                      const bool& roundLimit,const int& rounds);
-
+    /**
+     * @brief build building when build button pressed
+     */
     void build();
     void addWorker();
     void endTurn();
+    /**
+     * @brief display train dialog when train button pressed
+     */
     void trainDialog();
+    /**
+     * @brief receive data from train dialog
+     * @param type: WorkerType, new worker type
+     */
     void getTrainigData(WorkerType& type);
 
 private:
@@ -62,8 +77,8 @@ private:
     std::shared_ptr<Game::GameEventHandler> handler_ = nullptr;
     std::shared_ptr<Game::ObjectManager> oManager_ = nullptr;
     std::shared_ptr<Game::GameScene> scene_ = nullptr;
-    std::shared_ptr<Game::Player> wInTurn = nullptr;
-    int currentWorkerIndex;
+    std::shared_ptr<Game::Player> wInTurn = nullptr; // current player
+    int currentWorkerIndex; // from 1 to 5
 };
 
 Q_DECLARE_METATYPE(BuildingType)

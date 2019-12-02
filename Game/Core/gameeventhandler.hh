@@ -12,7 +12,9 @@
 namespace Game{
 
 class ObjectManager;
-
+/**
+ * @brief The GameEventHandler class
+ */
 class GameEventHandler: public Course::iGameEventHandler
 {
 public:
@@ -43,26 +45,52 @@ public:
     virtual bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
                                  Course::ResourceMap resources);
 
-
+    /**
+     * @brief Creates five basic workers for all players
+     * @param eventhandler
+     * @param objectmanager
+     */
     void addBasicWorkers(std::shared_ptr<Game::GameEventHandler>& eventhandler,
                          std::shared_ptr<Game::ObjectManager>& objectmanager);
-
+    /**
+     * @brief initializeGame
+     * @param players
+     * @param eventhandler
+     * @param objectmanager
+     * @param rounds
+     */
     void initializeGame(const std::vector<std::string>& players,
                         std::shared_ptr<Game::GameEventHandler>& eventhandler,
                         std::shared_ptr<Game::ObjectManager>& objectmanager,
                         const int& rounds = -1);
     unsigned int getRound();
+
     std::shared_ptr<Game::Player> currentPlayer();
+
     void endTurn();
+
+    /**
+     * @brief gameEnd
+     * @param objectmanager
+     * @return
+     */
     bool gameEnd(std::shared_ptr<Game::ObjectManager>& objectmanager);
+
+    /**
+     * @brief determineWinner
+     * @return name of the winner
+     */
     std::string determineWinner();
 
+    /**
+     * @brief Count of moves per one turn
+     */
     int maxMoves = 0;
 
 private:
     std::vector<std::shared_ptr<Game::Player>> playerPtrs = {};
     std::shared_ptr<Game::Player> eInTurn = nullptr;
-    int round_;
+    int round_;         // current round
     int maxRound_;
     std::vector<int> playerColors;
 };
