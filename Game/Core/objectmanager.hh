@@ -24,7 +24,9 @@ namespace Game {
 class Player;
 class GameEventHandler;
 
-
+/**
+ * @brief The ObjectManager class
+ */
 class ObjectManager: public Course::iObjectManager
 {
 public:
@@ -64,7 +66,11 @@ public:
     virtual std::vector<std::shared_ptr<Course::TileBase>> getTiles(
             const std::vector<Course::Coordinate>& coordinates);
 
-
+    /**
+     * @brief addPlayer
+     * @param name
+     * @param ptr
+     */
     void addPlayer(std::string name,std::shared_ptr<Game::Player> ptr);
 
     void createBuilding(std::shared_ptr<Course::TileBase> tile,

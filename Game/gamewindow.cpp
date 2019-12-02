@@ -120,11 +120,6 @@ void GameWindow::drawItem(std::shared_ptr<Course::GameObject> obj)
     scene_->DrawItem(obj);
 }
 
-void GameWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
-{
-    scene_->UpdateItem(obj);
-}
-
 void GameWindow::adjustResources()
 {
     ui->lcdMoney->display(wInTurn->resources_[Course::MONEY]);

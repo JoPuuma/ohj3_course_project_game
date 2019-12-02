@@ -28,13 +28,11 @@ public:
 
 
     void resize();   
-    void drawRect();
-
 
     void DrawItem( std::shared_ptr<Course::GameObject> obj);
-    void UpdateItem( std::shared_ptr<Course::GameObject> obj);
+    void UpdateItem( std::shared_ptr<Course::GameObject> obj, unsigned int oldID);
     void drawBuilding(std::shared_ptr<Course::GameObject> obj);
-    void drawWorker(std::shared_ptr<Course::GameObject> obj);
+    void drawWorker(std::shared_ptr<Course::GameObject> obj, unsigned int workerNumber);
     void addPen(std::shared_ptr<Course::GameObject> obj, int color);
 
     std::shared_ptr<Course::TileBase>  getCurrentObject();

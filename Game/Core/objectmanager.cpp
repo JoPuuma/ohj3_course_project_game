@@ -174,8 +174,6 @@ void ObjectManager::createHQ(std::shared_ptr<Course::TileBase> tile,
 
 }
 
-
-
 void ObjectManager::addWorker(std::shared_ptr<Course::TileBase> tile,
                               std::shared_ptr<Game::Player>& player,
                               int workerNumber)
@@ -193,7 +191,7 @@ void ObjectManager::addWorker(std::shared_ptr<Course::TileBase> tile,
             }
 
             tile->addWorker(player->workers[workerNumber]);
-            gameScene->drawWorker(player->workers[workerNumber]);
+            gameScene->drawWorker(player->workers[workerNumber], workerNumber);
 
             }
             catch(std::exception& e){
@@ -210,6 +208,7 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
                                 int workerNumber)
     {
 
+     unsigned int oldID = player->workers[workerNumber]->ID;
 
     std::shared_ptr<Course::TileBase> oldTile =
                   player->workers[workerNumber]->currentLocationTile();
@@ -227,7 +226,7 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
           if (oldTile != nullptr) {
           oldTile->addWorker( player->workers[workerNumber]);
           }
-          gameScene->UpdateItem(player->workers[workerNumber]);
+          gameScene->UpdateItem(player->workers[workerNumber], oldID);
           eventhandler->maxMoves += 1;
     }
     else if (type == FISHER &&
@@ -243,7 +242,7 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
         if (oldTile != nullptr) {
         oldTile->addWorker( player->workers[workerNumber]);
         }
-        gameScene->UpdateItem(player->workers[workerNumber]);
+        gameScene->UpdateItem(player->workers[workerNumber], oldID);
         eventhandler->maxMoves += 1;
     }
     else if (type == TIMBERJACK &&
@@ -259,7 +258,7 @@ void ObjectManager::trainWorker(std::shared_ptr<Game::Player>& player,
         if (oldTile != nullptr) {
         oldTile->addWorker( player->workers[workerNumber]);
         }
-        gameScene->UpdateItem(player->workers[workerNumber]);
+        gameScene->UpdateItem(player->workers[workerNumber], oldID);
         eventhandler->maxMoves += 1;
     }
 

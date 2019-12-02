@@ -5,6 +5,7 @@
 #include "QGraphicsSceneMouseEvent"
 
 #include "math.h"
+#include "map"
 
 namespace Game {
 
@@ -46,23 +47,40 @@ void GameScene::DrawItem(std::shared_ptr<Course::GameObject> obj)
 }
 
 
-void GameScene::drawRect()
+void GameScene::UpdateItem(std::shared_ptr<Course::GameObject> obj, unsigned int oldID)
 {
-    QPen pen(Qt::red, 10);
+    std::map<unsigned int, QGraphicsPixmapItem*>::iterator ID = workers.find(oldID);
 
-    addRect(QRect(0,0,200,200), pen);
+    if (ID != workers.end()) {
 
+      QGraphicsPixmapItem* value = ID->second;
+      workers.erase(ID);
+      workers[obj->ID] = value;
 
-}
+      if (obj->getType() == "Miner") {
 
+          workers[obj->ID]->setPixmap( QPixmap(":/images/miner.jpg") );
+          workers[obj->ID]->setScale(0.01);
+          workers[obj->ID]->setZValue(10);
 
-void GameScene::UpdateItem(std::shared_ptr<Course::GameObject> obj)
-{
-//    if (obj->getType() == "Miner") {
-//        workers[obj->ID] = addPixmap( QPixmap(":/images/miner.jpg") );
-//        workers[obj->ID]->setScale(0.01);
-//        workers[obj->ID]->setZValue(10);
-//   }
+     }
+
+      else  if (obj->getType() == "Fisher") {
+          workers[obj->ID]->setPixmap( QPixmap(":/images/fisher.jpg") );
+          workers[obj->ID]->setScale(0.07);
+          workers[obj->ID]->setZValue(10);
+
+      }
+
+      else  if (obj->getType() == "Timberjack") {
+          workers[obj->ID]->setPixmap( QPixmap(":/images/timberJack.jpg") );
+          workers[obj->ID]->setScale(0.07);
+          workers[obj->ID]->setZValue(10);
+
+      }
+
+    }
+
 }
 
 void GameScene::drawBuilding(std::shared_ptr<Course::GameObject> obj)
@@ -96,49 +114,40 @@ void GameScene::drawBuilding(std::shared_ptr<Course::GameObject> obj)
 
 }
 
-void GameScene::drawWorker(std::shared_ptr<Course::GameObject> obj)
+void GameScene::drawWorker(std::shared_ptr<Course::GameObject> obj, unsigned int workerNumber)
 {
     std::map<unsigned int, QGraphicsPixmapItem*>::iterator id;
     id = workers.find(obj->ID);
 
-    if (id != workers.end()) {
-
-        workers[obj->ID]->setPos(rectPtr->pos());
-    }
-    else {
+    if (id == workers.end()) {
 
         if (obj->getType() == "basicWorker") {
             workers[obj->ID] = addPixmap( QPixmap(":/images/basicWorker.jpg") );
-            workers[obj->ID]->setPos(rectPtr->pos());
             workers[obj->ID]->setScale(0.05);
-            workers[obj->ID]->setZValue(10);
 
         }
 
         else  if (obj->getType() == "Miner") {
             workers[obj->ID] = addPixmap( QPixmap(":/images/miner.jpg") );
-            workers[obj->ID]->setPos(rectPtr->pos());
             workers[obj->ID]->setScale(0.01);
-            workers[obj->ID]->setZValue(10);
 
         }
 
         else  if (obj->getType() == "Fisher") {
             workers[obj->ID] = addPixmap( QPixmap(":/images/fisher.jpg") );
-            workers[obj->ID]->setPos(rectPtr->pos());
             workers[obj->ID]->setScale(0.07);
-            workers[obj->ID]->setZValue(10);
 
         }
 
         else  if (obj->getType() == "Timberjack") {
             workers[obj->ID] = addPixmap( QPixmap(":/images/timberJack.jpg") );
-            workers[obj->ID]->setPos(rectPtr->pos());
             workers[obj->ID]->setScale(0.07);
-            workers[obj->ID]->setZValue(10);
 
         }
+
+        workers[obj->ID]->setZValue(10);
     }
+    workers[obj->ID]->setPos(rectPtr->pos().rx(), rectPtr->pos().y() + ((workerNumber -1) * 12));
 
 }
 
