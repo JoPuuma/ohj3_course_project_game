@@ -8,7 +8,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
 #include <map>
-#include<memory>
+#include <memory>
 #include "Core/gameeventhandler.hh"
 #include "Core/objectmanager.hh"
 #include "Graphics/gamescene.hh"
@@ -43,6 +43,7 @@ public:
     void changeEnablers(bool b);
     void setImages();
     void maxMovesReached();
+    std::shared_ptr<Game::GameScene> scene_ = nullptr;
 
 
 public slots: 
@@ -74,7 +75,6 @@ private:
     Ui::GameWindow *ui;
     std::shared_ptr<Game::GameEventHandler> handler_ = nullptr;
     std::shared_ptr<Game::ObjectManager> oManager_ = nullptr;
-    std::shared_ptr<Game::GameScene> scene_ = nullptr;
     std::shared_ptr<Game::Player> wInTurn = nullptr; // current player
     int currentWorkerIndex; // from 1 to 5
 };
