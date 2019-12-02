@@ -26,11 +26,6 @@ INCLUDEPATH += $$PWD/../../Game
 DEPENDPATH += $$PWD/../../Game
 
 HEADERS += \
-    Core/objectmanager.hh \
-    Core/player.hh \
-    Workers/basicworker.hh \
-    core/basicresources.h \
-    interfaces/igameeventhandler.h \
     ../../Game/Core/gameeventhandler.hh \
     ../../Game/Core/player.hh \
     ../../Game/Core/objectmanager.hh \
@@ -43,6 +38,7 @@ HEADERS += \
     ../../Game/Workers/fisher.hh \
     ../../Game/Graphics/gamescene.hh \
     ../../Game/Graphics/mapitem.hh
+
 
 
 SOURCES += \
@@ -59,6 +55,7 @@ SOURCES += \
     ../../Game/Workers/fisher.cpp \
     ../../Game/Graphics/gamescene.cpp \
     ../../Game/Graphics/mapitem.cpp
+
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Course/CourseLib/release/ -lCourseLib
