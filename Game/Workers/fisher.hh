@@ -11,11 +11,11 @@ namespace Game {
  * @brief The Fisher class represents a fisher in the game.
  *
  * Fisher has following production-efficiency: \n
- * * Money - 0 \n
- * * Food - 0 \n
- * * Wood - 0 \n
- * * Stone - 0 \n
- * * Ore - 0 \n
+ * * Money - 1.00 \n
+ * * Food - 3.00 \n
+ * * Wood - 0.75 \n
+ * * Stone - 0.25 \n
+ * * Ore - 0.25 \n
  *
  * Fisher consume Food and money. \n
  * * 1 Food - Or Fisher refuses to work. \n
@@ -67,7 +67,7 @@ public:
      * True - If baseclass' method return true and target Tile has space
      * for fisher.
      * False - If both conditions aren't met.
-     * @note Override to change placement rules for derived miner.
+     * @note Override to change placement rules for derived fisher.
      * @post Exception guarantee: Basic
      */
     virtual bool canBePlacedOnTile(
@@ -81,7 +81,7 @@ public:
     /**
      * @brief Returns fisher's efficiency at resource production.
      * fisher consumes FOOD and MONEY. Resource consumption and resource
-     * focus determine final multiplier that is based on FISHER_EFFICIENCY.
+     * focus determine final multiplier that is based on WORKER_EFFICIENCY.
      *
      * @return
      */

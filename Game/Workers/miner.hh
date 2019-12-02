@@ -11,11 +11,11 @@ namespace Game {
  * @brief The Miner class represents a miner in the game.
  *
  * Miner has following production-efficiency: \n
- * * Money - 0 \n
- * * Food - 0 \n
- * * Wood - 0 \n
- * * Stone - 0 \n
- * * Ore - 0 \n
+ * * Money - 0.50 \n
+ * * Food - 0.25 \n
+ * * Wood - 0.50 \n
+ * * Stone - 2.50 \n
+ * * Ore - 1.50 \n
  *
  * Miner consume Food and money. \n
  * * 1 Food - Or Miner refuses to work. \n
@@ -81,7 +81,7 @@ public:
     /**
      * @brief Returns miner's efficiency at resource production.
      * Miner consumes FOOD and MONEY. Resource consumption and resource
-     * focus determine final multiplier that is based on MINER_EFFICIENCY.
+     * focus determine final multiplier that is based on WORKER_EFFICIENCY.
      *
      * @return
      */

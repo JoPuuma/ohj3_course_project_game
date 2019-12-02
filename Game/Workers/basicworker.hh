@@ -11,11 +11,11 @@ namespace Game {
  * @brief The BasicWorker class represents a "normal worker" in the game.
  *
  * Worker has following production-efficiency: \n
- * * Money - 0.25 \n
- * * Food - 1.00 \n
- * * Wood - 0.75 \n
- * * Stone - 0.50 \n
- * * Ore - 0.50 \n
+ * * Money - 1.00 \n
+ * * Food - 0.75 \n
+ * * Wood - 0.50 \n
+ * * Stone - 0.25 \n
+ * * Ore - 0.25 \n
  *
  * BasicWorkers consume Food and money. \n
  * * 1 Food - Or BasicWorker refuses to work. \n

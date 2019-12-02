@@ -100,7 +100,7 @@ GameWindow::GameWindow(QWidget *parent,
    worldgen.addConstructor<Game::Sand>('s');
    worldgen.addConstructor<Game::Water>('w');
    worldgen.addConstructor<Course::Forest>('f');
-   worldgen.GenerateMap(7,7,oManager_,handler_);
+   worldgen.generateMap(7,7,oManager_,handler_);
 
     setImages();
     startGame();
@@ -175,9 +175,6 @@ void GameWindow::addWorker()
                          wInTurn,
                          currentWorkerIndex);
     }
-    else {
-        textBrowserEdit("Choose worker");
-    }
 }
 
 
@@ -213,9 +210,6 @@ void GameWindow::getTrainigData(WorkerType& type)
     adjustResources();
     adjustRightWorkers();
     maxMovesReached();
-    }
-    else {
-        textBrowserEdit("Choose worker");
     }
 }
 
@@ -310,11 +304,6 @@ void GameWindow::changeEnablers(bool b)
     ui->buttonEndTurn->setEnabled(b);
     ui->buttonTrain->setEnabled(b);
     ui->buttonAssign->setEnabled(b);
-}
-
-void GameWindow::textBrowserEdit(std::string text)
-{
-    ui->textBrowser->setText(QString::fromStdString(text));
 }
 
 void GameWindow::setImages()

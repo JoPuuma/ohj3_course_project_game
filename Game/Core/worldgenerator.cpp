@@ -19,13 +19,13 @@ WorldGenerator& WorldGenerator::getInstance()
 
 
 
-void WorldGenerator::GenerateMap(
+void WorldGenerator::generateMap(
         unsigned int size_x,
         unsigned int size_y,
         const std::shared_ptr<ObjectManager>& objectmanager,
         const std::shared_ptr<GameEventHandler>& eventhandler)
 {
-    GreateReferenceMap();
+    greateReferenceMap();
     std::vector<std::shared_ptr<Course::TileBase>> tiles;
 
     for (unsigned int x = 0; x < size_x; ++x)
@@ -34,7 +34,7 @@ void WorldGenerator::GenerateMap(
         {
             for (const auto&ctor : m_ctors)
             {
-                if (ctor.first == Referencemap[y][x])
+                if (ctor.first == referenceMap[y][x])
                 {
                  tiles.push_back(ctor.second(Course::Coordinate(x, y), eventhandler, objectmanager));
 
@@ -49,9 +49,9 @@ void WorldGenerator::GenerateMap(
 }
 
 
-void WorldGenerator::GreateReferenceMap()
+void WorldGenerator::greateReferenceMap()
 {
-       Referencemap = {
+       referenceMap = {
         {'f', 'r', 's', 'w', 'w', 'f', 'r'},
         {'f', 'r', 's', 'w', 'f', 'f', 'r'},
         {'f', 'f', 's', 'w', 'f', 'f', 'f'},

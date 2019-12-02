@@ -11,11 +11,11 @@ namespace Game {
  * @brief The Timberjack class represents a timberjack in the game.
  *
  * timberjack has following production-efficiency: \n
- * * Money - 0 \n
- * * Food - 0 \n
- * * Wood - 0 \n
- * * Stone - 0 \n
- * * Ore - 0 \n
+ * * Money - 0.50 \n
+ * * Food - 1.00 \n
+ * * Wood - 2.50 \n
+ * * Stone - 0.75 \n
+ * * Ore - 0.50 \n
  *
  * Timberjack consume Food and money. \n
  * * 1 Food - Or Timberjack refuses to work. \n
@@ -74,14 +74,14 @@ public:
             const std::shared_ptr<Course::TileBase> &target) const override;
 
     /**
-     * @brief Performs the miner's default action.
+     * @brief Performs the timberjack's default action.
      */
     virtual void doSpecialAction() override;
 
     /**
      * @brief Returns timberjack's efficiency at resource production.
      * Timberjack consumes FOOD and MONEY. Resource consumption and resource
-     * focus determine final multiplier that is based on TIMBERJACK_EFFICIENCY.
+     * focus determine final multiplier that is based on WORKER_EFFICIENCY.
      *
      * @return
      */

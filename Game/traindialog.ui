@@ -38,8 +38,7 @@
    <property name="text">
     <string>Miner
 money: 200
-food: 50
-duration: 2</string>
+food: 50</string>
    </property>
   </widget>
   <widget class="QPushButton" name="buttonFisher">
@@ -54,8 +53,7 @@ duration: 2</string>
    <property name="text">
     <string>Fisher
 money: 150
-food: 50
-duration: 1</string>
+food: 50</string>
    </property>
   </widget>
   <widget class="QPushButton" name="buttonTimberJack">
@@ -70,8 +68,7 @@ duration: 1</string>
    <property name="text">
     <string>Timber Jack
 money: 100
-food: 50
-duration: 2</string>
+food: 50</string>
    </property>
   </widget>
   <widget class="QPushButton" name="buttonCancel">

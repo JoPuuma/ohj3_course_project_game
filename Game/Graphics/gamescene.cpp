@@ -147,7 +147,8 @@ void GameScene::drawWorker(std::shared_ptr<Course::GameObject> obj, unsigned int
 
         workers[obj->ID]->setZValue(10);
     }
-    workers[obj->ID]->setPos(rectPtr->pos().rx(), rectPtr->pos().y() + ((workerNumber -1) * 12));
+    workers[obj->ID]->setPos(rectPtr->pos().rx() + 50 ,
+                             rectPtr->pos().y() + ((workerNumber -1) * 12));
 
 }
 

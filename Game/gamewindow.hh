@@ -41,7 +41,6 @@ public:
     void adjustRightWorkers();
     void setHeadQuarter();
     void changeEnablers(bool b);
-    void textBrowserEdit(std::string text);
     void setImages();
     void maxMovesReached();
 
