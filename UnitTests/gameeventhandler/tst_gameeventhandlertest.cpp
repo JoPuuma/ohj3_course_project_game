@@ -21,6 +21,22 @@ class GameeventhandlerTest : public QObject
 
 
 public:
+    const Course::ResourceMap resource1 = {
+        {Course::BasicResource::NONE, 0},
+        {Course::BasicResource::MONEY, 10},
+        {Course::BasicResource::FOOD, 60},
+        {Course::BasicResource::WOOD, 97},
+        {Course::BasicResource::STONE, 50},
+        {Course::BasicResource::ORE, 10}
+    };
+    const Course::ResourceMap resource2 = {
+        {Course::BasicResource::NONE, 0},
+        {Course::BasicResource::MONEY, 10},
+        {Course::BasicResource::FOOD, -60},
+        {Course::BasicResource::WOOD, 97},
+        {Course::BasicResource::STONE, 50},
+        {Course::BasicResource::ORE, -115}
+    };
 
     GameeventhandlerTest();
     std::shared_ptr<Game::ObjectManager> createManager();
@@ -47,22 +63,7 @@ std::shared_ptr<Game::ObjectManager> GameeventhandlerTest::createManager()
 
 void GameeventhandlerTest::testModifyResources()
 {
-    const Course::ResourceMap resource1 = {
-        {Course::BasicResource::NONE, 0},
-        {Course::BasicResource::MONEY, 10},
-        {Course::BasicResource::FOOD, 60},
-        {Course::BasicResource::WOOD, 97},
-        {Course::BasicResource::STONE, 50},
-        {Course::BasicResource::ORE, 10}
-    };
-    const Course::ResourceMap resource2 = {
-        {Course::BasicResource::NONE, 0},
-        {Course::BasicResource::MONEY, 10},
-        {Course::BasicResource::FOOD, -60},
-        {Course::BasicResource::WOOD, 97},
-        {Course::BasicResource::STONE, 50},
-        {Course::BasicResource::ORE, -115}
-    };
+
     Game::GameEventHandler handler;
     std::shared_ptr<Game::Player> p =
             std::make_shared<Game::Player>("Pate",0xffffff);
@@ -77,15 +78,6 @@ void GameeventhandlerTest::testGameInitializing()
     QFETCH(std::shared_ptr<Game::GameEventHandler>, handler);
     QFETCH(std::shared_ptr<Game::ObjectManager>, manager);
     QFETCH(std::vector<std::string>, names);
-
-    const Course::ResourceMap resource1 = {
-        {Course::BasicResource::NONE, 0},
-        {Course::BasicResource::MONEY, 10},
-        {Course::BasicResource::FOOD, 60},
-        {Course::BasicResource::WOOD, 97},
-        {Course::BasicResource::STONE, 50},
-        {Course::BasicResource::ORE, 10}
-    };
 
     handler->initializeGame(names,handler,manager);
     QCOMPARE(handler->currentPlayer()->getName(),names[0]) ;

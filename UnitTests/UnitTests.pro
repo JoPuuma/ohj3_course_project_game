@@ -1,7 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    gameeventhandler
+    gameeventhandler \
+    ObjectManagerTest
 
 QT += \
     Game\

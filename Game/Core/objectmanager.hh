@@ -136,7 +136,7 @@ public:
     void trainWorker(std::shared_ptr<Game::Player>& player,
                      std::shared_ptr<Game::ObjectManager>& objectmanager,
                      std::shared_ptr<Game::GameEventHandler>& eventhandler,
-                     WorkerType& type,
+                     WorkerType type,
                      int workerNumber);
 
     /**

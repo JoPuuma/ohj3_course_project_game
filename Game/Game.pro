@@ -100,7 +100,8 @@ DISTFILES += \
     images/fisher.jpg \
     images/fishingHut.jpg \
     images/mine.jpg \
-    images/HQ.jpg
+    images/HQ.jpg \
+    ../Documentation/Documentation.pdf
 
 RESOURCES += \
     image.qrc
